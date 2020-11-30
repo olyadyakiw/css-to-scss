@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="company-info.css">
+</head>
+<body>
+
+  <div class="content">
+    <div class="cols-wrapper">
+      <div class="cols">
+        <div class="col-main">
+
+          <div class="company-info">
+            <div class="company-info__left">
+              <h1 class="company-info__name">Star Utsav</h1>
+              <h4 class="company-info__legal">Star Utsav</h4>
+              <div class="company-info__address">Address</div>
+              <table class="company-info__address-table">
+                <tr class="company-info__address-row">
+                  <td class="company-info__address-item" itemprop="address" itemscope
+                    itemtype="https://schema.org/PostalAddress">
+                    <div class="company-info__address-wrapper">
+                      <span class="company-info__address-country">India</span>
+                    </div>
+                  </td>
+                  <td style="padding-left:20px;" onmouseover="jQuery('#map-layer').prop('src','/img/map-layer2.png')"
+                    onmouseout="jQuery('#map-layer').prop('src','/img/map-layer.png')">
+                  </td>
+                </tr>
+              </table>
+              <br>
+              <h3 class="company-info__phone">Customer Care Phone Numbers and Contacts</h3>
+              <br>
+              <div class="company-info__btn-wrapper">
+                <a class="company-info__btn" href="#" onclick="jQuery.ajax('/ajax.php?set-new-complaint-bname=115617').done(function () {
+                  location.href = '/new_complaint/';
+                }); return false">Submit a Complaint</a>
+              </div>
+            </div>
+
+            <div class="company-info__right">
+              <h5 class="company-info__rating">Customer satisfaction rating</h5>
+              <div class="company-info__border-rating">
+                <div class="company-info__dots">
+                  <div class="company-info__statistics-name">Complaints</div>
+                  <div class="company-info__statistics-number">37</div>
+                  <div class="company-info__statistics-dotted"></div>
+                </div>
+                <div class="company-info__dots">
+                  <div class="company-info__statistics-name">Resolved</div>
+                  <div class="company-info__statistics-number company-info__statistics-number--green">2</div>
+                  <div class="company-info__statistics-dotted"></div>
+                </div>
+              </div>
+              <div class="company-info__alert company-info__alert--no-complaints">
+                <div class="company-info__img-wrapper">
+                  <img src="img/nocomplaints.png" alt="" class="company-info__img">
+                </div>
+                <div class="company-info__alert-text company-info__alert-text--no-complaints">
+                  There are no complaints against this company so far
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

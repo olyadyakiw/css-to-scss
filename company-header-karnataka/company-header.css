@@ -56,9 +56,9 @@ body {
 .company-header__name {
   font: 400 24px roboto;
   color: #000;
+  padding-right: 10px;
   padding-left: 0;
   margin: 0;
-  padding-right: 10px;
 }
 
 .company-header__rating {
@@ -123,6 +123,13 @@ body {
   font-weight: 700;
 }
 
+.company-header__description {
+  display: table-cell;
+  color: #6a6a6a;
+  font-size: 15px;
+  padding-left: 10px;
+}
+
 @media only screen and (max-width: 780px) {
   .company-header__inner {
     display: block;
@@ -154,6 +161,13 @@ body {
 
   .company-header__table-bottom {
     margin: 0 auto;
+  }
+
+  .company-header__description {
+    display: block;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
   }
 }
 
