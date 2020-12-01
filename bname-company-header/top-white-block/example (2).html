@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+   <link rel="stylesheet" href="top-white-block.css">
+</head>
+<body>
+   <div class="top-white-block">
+      <div class="top-white-block__inner">
+        <div class="top-white-block__avatar">
+          <canvas class="top-white-block__avatar-ring" width="150" height="150"></canvas>
+          <div class="top-white-block__avatar-img" style="background-image:url('img/no_photo.jpg');" id="clickAvatar">
+          </div>
+        </div>
+        <div class="top-white-block__info">
+          <div class="top-white-block__table-top">
+            <div class="top-white-block__name">Star Utsav</div>
+          </div>
+          <div class="top-white-block__rating">
+            Customer satisfaction rating:
+            <span class="top-white-block__rating-percent">5%</span>
+          </div>
+          <div class="top-white-block__table-bottom">
+            <div class="top-white-block__btn-wrapper">
+              <a class="top-white-block__btn" onclick="jQuery.ajax('/ajax.php?set-new-complaint-company-name=Star+Utsav').done(function () {
+                location.href = '/new_complaint/';
+              }); return false">Submit a Complaint</a>
+            </div>
+            <div class="top-white-block__divider"></div>
+            <div class="top-white-block__complaints">
+              <div class="top-white-block__complaints-number">36</div>
+              COMPLAINTS
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
