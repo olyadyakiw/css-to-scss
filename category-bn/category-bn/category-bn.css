@@ -40,7 +40,7 @@ a {
    -ms-flex-positive: 1;
    flex-grow: 1;
 }
-.bname-in-list {
+.category-bn {
    width: 100%;
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
@@ -55,24 +55,24 @@ a {
    align-items: center;
    cursor: pointer;
 }
-.bname-in-list:hover {
+.category-bn:hover {
    -webkit-box-shadow: 0 0 5px 0 #cccfcf;
    box-shadow: 0 0 5px 0 #cccfcf;
 }
-.bname-in-list__inner,
-.bname-in-list__logo {
+.category-bn__logo-border,
+.category-bn__left {
    width: 64px;
    height: 64px;
    min-width: 64px;
 }
-.bname-in-list__logo {
+.category-bn__left {
    position: relative;
 }
-.bname-in-list__inner {
+.category-bn__logo-border {
    border: 1px solid #ccc;
    border-radius: 50%;
 }
-.bname-in-list__img {
+.category-bn__logo-image {
    background-position: 50% 50%;
    background-repeat: no-repeat;
    background-size: contain;
@@ -81,8 +81,8 @@ a {
    border-radius: 50%;
    overflow: hidden;
 }
-.bname-in-list__img,
-.bname-in-list__inner {
+.category-bn__logo-image,
+.category-bn__logo-border {
    position: absolute;
    top: 43%;
    left: 50%;
@@ -92,7 +92,7 @@ a {
    -webkit-box-sizing: border-box;
    box-sizing: border-box;
 }
-.bname-in-list__right {
+.category-bn__right {
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
@@ -102,12 +102,12 @@ a {
    flex-direction: column;
    padding-left: 15px;
 }
-.bname-in-list__title {
+.category-bn__title {
    font: 400 24px Roboto;
    color: #333;
    word-break: break-word;
 }
-.bname-in-list__info {
+.category-bn__info {
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
@@ -121,7 +121,7 @@ a {
    color: #999;
    font-size: 14px;
 }
-.bname-in-list__stars {
+.category-bn__stars {
    display: -webkit-box;
    display: -ms-flexbox;
    display: flex;
@@ -130,68 +130,44 @@ a {
    align-items: center;
    padding-right: 5px;
 }
-.bname-in-list__stars.bname-in-list__stars--1 .bname-in-list__star:nth-child(1) {
+.category-bn__stars.category-bn__stars_1 .category-bn__star:nth-child(1) {
    background: url(img/bnstar-24.svg) 50% 50% no-repeat;
 }
-.bname-in-list__stars.bname-in-list__stars--2 .bname-in-list__star:nth-child(-n + 2) {
+.category-bn__stars.category-bn__stars_2 .category-bn__star:nth-child(-n + 2) {
    background: url(img/bnstar-24.svg) 50% 50% no-repeat;
 }
-.bname-in-list__stars.bname-in-list__stars--3 .bname-in-list__star:nth-child(-n + 3) {
+.category-bn__stars.category-bn__stars_3 .category-bn__star:nth-child(-n + 3) {
    background: url(img/bnstar-24.svg) 50% 50% no-repeat;
 }
-.bname-in-list__stars.bname-in-list__stars--4 .bname-in-list__star:nth-child(-n + 4) {
+.category-bn__stars.category-bn__stars_4 .category-bn__star:nth-child(-n + 4) {
    background: url(img/bnstar-24.svg) 50% 50% no-repeat;
 }
-.bname-in-list__stars.bname-in-list__stars--5 .bname-in-list__star:nth-child(-n + 5) {
+.category-bn__stars.category-bn__stars_5 .category-bn__star:nth-child(-n + 5) {
    background: url(img/bnstar-24.svg) 50% 50% no-repeat;
 }
-.bname-in-list__star {
+.category-bn__star {
    background: url(img/bnstarf-24-emp.svg) 50% 50% no-repeat;
    width: 24px;
    height: 24px;
    padding-right: 2px;
 }
-.bname-in-list__stats {
+.category-bn__stats {
    padding-top: 5px;
    font-weight: 500;
 }
-.bname-in-list__stats-complaints,
-.bname-in-list__stats-resolved {
+.category-bn__complaints,
+.category-bn__resolved {
    text-transform: uppercase;
 }
-.bname-in-list__stats-number {
+.category-bn__number {
    color: #000;
    padding: 0 10px 0 5px;
 }
-.bname-in-list__stats-number--green {
+.category-bn__number--green {
    color: #00a684;
    padding: 0 10px 0 5px;
 }
-.bname-in-list__divider {
-   height: 20px;
-   padding: 0;
-   display: block;
-   min-height: 0;
-}
-.bname-in-list__in-ads {
-   width: 100%;
-   -webkit-box-orient: vertical;
-   -webkit-box-direction: normal;
-   -ms-flex-direction: column;
-   flex-direction: column;
-   -webkit-box-align: center;
-   -ms-flex-align: center;
-   align-items: center;
-   -webkit-box-pack: start;
-   -ms-flex-pack: start;
-   justify-content: flex-start;
-   -webkit-box-sizing: border-box;
-   box-sizing: border-box;
-   position: relative;
-}
-.bname-in-list__advcomplaint {
-   max-width: 820px;
-}
+
 @media only screen and (max-width: 1200px) {
    .page-content {
        padding: 0 20px;
@@ -217,7 +193,7 @@ a {
    }
 }
 @media only screen and (max-width: 590px) {
-   .bname-in-list__info {
+   .category-bn__info {
        -webkit-box-orient: vertical;
        -webkit-box-direction: normal;
        -ms-flex-direction: column;
@@ -226,28 +202,28 @@ a {
        -ms-flex-align: start;
        align-items: flex-start;
    }
-   .bname-in-list__star {
+   .category-bn__star {
        background: url(img/bnstarf-16-emp.svg) 50% 50% no-repeat;
        width: 16px;
        height: 16px;
    }
-   .bname-in-list__stars.bname-in-list__stars--1 .bname-in-list__star:nth-child(1) {
+   .category-bn__stars.category-bn__stars_1 .category-bn__star:nth-child(1) {
        background: url(img/bnstar-16.svg) 50% 50% no-repeat;
    }
-   .bname-in-list__stars.bname-in-list__stars--2 .bname-in-list__star:nth-child(-n + 2) {
+   .category-bn__stars.category-bn__stars_2 .category-bn__star:nth-child(-n + 2) {
        background: url(img/bnstar-16.svg) 50% 50% no-repeat;
    }
-   .bname-in-list__stars.bname-in-list__stars--3 .bname-in-list__star:nth-child(-n + 3) {
+   .category-bn__stars.category-bn__stars_3 .category-bn__star:nth-child(-n + 3) {
        background: url(img/bnstar-16.svg) 50% 50% no-repeat;
    }
-   .bname-in-list__stars.bname-in-list__stars--4 .bname-in-list__star:nth-child(-n + 4) {
+   .category-bn__stars.category-bn__stars_4 .category-bn__star:nth-child(-n + 4) {
        background: url(img/bnstar-16.svg) 50% 50% no-repeat;
    }
-   .bname-in-list__stars.bname-in-list__stars--5 .bname-in-list__star:nth-child(-n + 5) {
+   .category-bn__stars.category-bn__stars_5 .category-bn__star:nth-child(-n + 5) {
        background: url(img/bnstar-16.svg) 50% 50% no-repeat;
    }
-   .bname-in-list__stats-complaints,
-   .bname-in-list__stats-resolved {
+   .category-bn__complaints,
+   .category-bn__resolved {
        display: -webkit-inline-box;
        display: -ms-inline-flexbox;
        display: inline-flex;
