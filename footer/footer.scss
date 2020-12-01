@@ -27,6 +27,9 @@ a {
    line-height: 18px;
    &__menu-link {
       color: #4a8a29;
+      &:hover {
+         text-decoration: underline;
+      }
    }
    &__company-list {
       padding: 15px;
@@ -34,6 +37,9 @@ a {
    &__company-letter {
       color: #4a8a29;
       padding: 4px;
+      &:hover {
+         text-decoration: underline;
+      }
    }
    &__socials {
       display: flex;
@@ -54,6 +60,9 @@ a {
          display: block;
          width: 16px;
          height: 16px;
+      }
+      &:hover {
+         background: #cdcfcf;
       }
    }
    &__social-link--fb {

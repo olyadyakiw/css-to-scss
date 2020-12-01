@@ -30,12 +30,18 @@ a {
 .footer__menu-link {
    color: #4a8a29;
 }
+.footer__menu-link:hover {
+   text-decoration: underline;
+}
 .footer__company-list {
    padding: 15px;
 }
 .footer__company-letter {
    color: #4a8a29;
    padding: 4px;
+}
+.footer__company-letter:hover {
+   text-decoration: underline;
 }
 .footer__socials {
    display: -webkit-box;
@@ -61,6 +67,9 @@ a {
    background: #dee0e0;
    border-radius: 50%;
    margin: 0 5px;
+}
+.footer__social-link:hover {
+   background: #cdcfcf;
 }
 .footer__social-link::after {
    content: "";
