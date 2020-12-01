@@ -1,0 +1,77 @@
+body {
+   font-weight: 400;
+   font-family: Roboto, sans-serif;
+   background: #eff0f0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   margin: 0;
+   padding: 0;
+   font-weight: 400;
+}
+a {
+   color: #105cb6;
+   text-decoration: none;
+   cursor: pointer;
+}
+.footer {
+   display: block;
+   width: 100%;
+   text-align: center;
+   padding-top: 15px;
+   color: #333;
+   font-size: 12px;
+   line-height: 18px;
+}
+.footer__menu-link {
+   color: #4a8a29;
+}
+.footer__company-list {
+   padding: 15px;
+}
+.footer__company-letter {
+   color: #4a8a29;
+   padding: 4px;
+}
+.footer__socials {
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   padding: 20px 0;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+}
+.footer__social-link {
+   display: -webkit-box;
+   display: -ms-flexbox;
+   display: flex;
+   -webkit-box-align: center;
+   -ms-flex-align: center;
+   align-items: center;
+   -webkit-box-pack: center;
+   -ms-flex-pack: center;
+   justify-content: center;
+   width: 32px;
+   height: 32px;
+   background: #dee0e0;
+   border-radius: 50%;
+   margin: 0 5px;
+}
+.footer__social-link::after {
+   content: "";
+   display: block;
+   width: 16px;
+   height: 16px;
+}
+.footer__social-link--fb::after {
+   background: url(img/fb.svg) 50% 50% no-repeat;
+}
+.footer__social-link--tw::after {
+   background: url(img/tw.svg) 50% 50% no-repeat;
+}
+
