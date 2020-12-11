@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/posts-form.css">
+</head>
+
+<body>
+
+  <div class="page-content">
+    <div class="page-content__cols">
+      <div class="page-content__left">
+
+        <div class="posts-form posts-form__comment-border">
+          <form class="posts-form__form" method="POST" action="">
+            <h4 class="posts-form__title_dark">Post your Comment</h4>
+            <div class="posts-form__inner posts-form__inner-comments">
+              <form class="posts-form__comments-form" action="">
+                <textarea class="posts-form__comments-textarea" placeholder="Please provide as much information as possible..."></textarea>
+                <div class="posts-form__photo posts-form__photo-comments">
+                  <a href="#" class="posts-form__photo-link posts-form__photo-link_comments">
+                    Add Image
+                  </a>
+                </div>
+                <div class="posts-form__captcha posts-form__captcha-comments">
+                  <img class="posts-form__captcha-img" src="img/captcha.jpg" alt="">
+                  <img class="posts-form__arrow" src="img/arrow1.png" alt="">
+                  <input class="posts-form__captcha-input" type="text">
+                </div>
+                <button class="posts-form__submit posts-form__submit-comments">Submit</button>
+              </form>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="page-content__right"></div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/posts-form.css">
+</head>
+
+<body>
+
+  <div class="page-content">
+    <div class="posts-form__contact">
+      <form class="posts-form__contact-form">
+        <div class="posts-form__contact-item">
+          <div class="posts-form__contact-error active">Fullname required</div>
+          <input class="posts-form__contact-input posts-form__contact-input_name" type="text">
+          <label class="posts-form__contact-label">Full Name</label>
+        </div>
+
+        <div class="posts-form__contact-item">
+          <div class="posts-form__contact-error active">Email required</div>
+          <input class="posts-form__contact-input posts-form__contact-input_email" type="text">
+          <label class="posts-form__contact-label">Email</label>
+        </div>
+
+        <div class="posts-form__contact-item">
+          <div class="posts-form__contact-error">Subject required</div>
+          <input class="posts-form__contact-input posts-form__contact-input_subject" type="text">
+          <label class="posts-form__contact-label">Subject</label>
+        </div>
+        <div class="posts-form__contact-item">
+          <div class="posts-form__contact-error">Message required</div>
+          <textarea class="posts-form__contact-message"></textarea>
+          <label class="posts-form__contact-label posts-form__contact-label_message">
+            Your message. <br>
+            Please include the complaint URL (if applicable)
+          </label>
+        </div>
+
+        <button class="posts-form__contact-btn">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
