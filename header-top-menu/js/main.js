@@ -1,31 +1,33 @@
 $(function () {
-	$('.header-top-menu__search').on('click', function(){
-		$('.header-top-menu').addClass('close');
-		$('.header-top-menu__search-wrapper').addClass('open');
+	$('.page-menu__search').on('click', function(){
+		$('.page-menu').addClass('close');
+		$('.page-menu__search-wrapper').addClass('open');
 	});
-	$('.header-top-menu__search-close').on('click', function(){
-		$('.header-top-menu').removeClass('close');
-		$('.header-top-menu__search-wrapper').removeClass('open');
-	});
-
-
-	$('.header-top-menu__close, .header-top-menu__quest-close' ).on('click', function(){
-		$('.header-top-menu').removeClass('close');
-		$('.header-top-menu__search-wrapper').removeClass('open');
-		$('.header-top-menu__search').removeClass('none');
-		$('.header-top-menu__burger').removeClass('none');
-		$('.header-top-menu__close').removeClass('block');
-		$('.header-top-menu__quest').removeClass('open');
-		$('.header-top-menu__bg').removeClass('open');
+	$('.page-menu__search-close').on('click', function(){
+		$('.page-menu').removeClass('close');
+		$('.page-menu__search-wrapper').removeClass('open');
 	});
 
 
-	$('.header-top-menu__burger').on('click', function(){
-		$('.header-top-menu__quest').addClass('open');
-		$('.header-top-menu__bg').addClass('open');
-		$('.header-top-menu__search').addClass('none');
-		$('.header-top-menu__burger').addClass('none');
-		$('.header-top-menu__close').addClass('block');
+	$('.page-menu__close, .page-menu__submenu-close, .page-menu__bg' ).on('click', function(){
+		$('.page-menu').removeClass('close');
+		$('.page-menu__search-wrapper').removeClass('open');
+		$('.page-menu__search').removeClass('none');
+		$('.page-menu__burger').removeClass('none');
+		$('.page-menu__close').removeClass('block');
+		$('.page-menu__submenu-quest').removeClass('open');
+		$('.page-menu__submenu-login').removeClass('open');
+		$('.page-menu__bg').removeClass('open');
+	});
+
+
+	$('.page-menu__burger').on('click', function(){
+		$('.page-menu__submenu-quest').addClass('open');
+		$('.page-menu__submenu-login').addClass('open');
+		$('.page-menu__bg').addClass('open');
+		$('.page-menu__search').addClass('none');
+		$('.page-menu__burger').addClass('none');
+		$('.page-menu__close').addClass('block');
 	});
 
 	

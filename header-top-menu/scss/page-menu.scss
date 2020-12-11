@@ -24,7 +24,7 @@ body {
     padding: 0 10px;
   }
 
-.header-top-menu {
+.page-menu {
     width: 100%;
     position: fixed;
     top: 0;
@@ -63,9 +63,9 @@ body {
         flex-grow: 1;
         justify-content: center;
     }
-    &__menu-submit,
-    &__menu-faq,
-    &__menu-sign-in {
+    &__submit,
+    &__faq,
+    &__sign-in {
         border: 0;
         padding: 0;
         display: inline-flex;
@@ -76,6 +76,9 @@ body {
         text-decoration: none;
         margin: 0 10px;
         height: 59px;
+    }
+    &__sign-in.login {
+        display: none;
     }
     &__menu-image {
         margin-right: 10px;
@@ -97,6 +100,12 @@ body {
     }
     &__close.block {
         display: flex;
+    }
+    &__burger.login {
+        display: flex;
+    }
+    &__burger.login.none {
+        display: none;
     }
     &__space {
         height: 59px;
@@ -145,28 +154,30 @@ body {
         padding-bottom: 10px;
         box-sizing: border-box;
     }
-    &.close .header-top-menu__close {
+    &.close .page-menu__close {
         display: block;
     }
-    &.close .header-top-menu__search,
-    &.close .header-top-menu__burger {
+    &.close .page-menu__search,
+    &.close .page-menu__burger {
         display: none;
     }
-    &__quest {
+    &__submenu-quest,
+    &__submenu-login {
         max-height: 0;
         background: #52902d;
         overflow: hidden;
         transition: max-height 0.8s;
         &.open {
-            max-height: 475px;
+            max-height: 600px;
         }
-        &.open .header-top-menu__burger {
+        &.open .page-menu__burger {
             display: none;
         }
     }
-    &__quest-faq,
-    &__quest-sign-in,
-    &__quest-close {
+    &__submenu-faq,
+    &__submenu-user,
+    &__submenu-close,
+    &__submenu-item {
         display: flex;
         height: 59px;
         align-items: center;
@@ -179,7 +190,7 @@ body {
         width: 100%;
         z-index: 5;
     }
-    &__quest-close {
+    &__submenu-close {
         cursor: pointer;
         justify-content: center;
         height: 60px;
@@ -189,7 +200,7 @@ body {
         z-index: 5;
         margin: 0;
     }
-    &__quest-image {
+    &__submenu-image {
         margin-right: 10px;
     }
     &__bg {
@@ -211,12 +222,12 @@ body {
 }
 
 @media only screen and (max-width: 1024px) {
-    .header-top-menu {
+    .page-menu {
         &__burger {
             display: flex;
         }
-        &__menu-faq,
-        &__menu-sign-in {
+        &__faq,
+        &__sign-in {
             display: none;
         }
         &__close {
@@ -226,7 +237,7 @@ body {
 }
 
 @media only screen and (max-width: 660px) {
-    .header-top-menu {
+    .page-menu {
         &__logo-text {
             display: none;
         }
@@ -237,11 +248,11 @@ body {
 }
 
 @media only screen and (max-width: 410px) {
-    .header-top-menu {
-        &__menu-submit img {
+    .page-menu {
+        &__submit img {
             display: none;
         }
-        &__menu-submit {
+        &__submit {
             font-size: 14px;
         }
     }

@@ -27,7 +27,7 @@
           <img class="page-menu__menu-image" src="img/faq.svg" alt="">
           FAQ
         </a>
-        <a class="page-menu__sign-in" href="#">
+        <a class="page-menu__sign-in login" href="#">
           <img class="header-top-menu__menu-image" src="img/user.svg" alt="">
           Sign in
         </a>
@@ -35,7 +35,7 @@
       <div class="page-menu__search">
         <img class="page-menu__search-image" src="img/search.svg" alt="">
       </div>
-      <div class="page-menu__burger">
+      <div class="page-menu__burger login">
         <img class="page-menu__burger-image" src="img/menu.svg" alt="">
       </div>
       <div class="page-menu__close">
@@ -53,17 +53,28 @@
       <img class="page-menu__search-close-image" src="img/close.svg" alt="">
     </div>
   </div>
-  <div class="page-menu__submenu-quest">
-    
+  <div class="page-menu__submenu-login">
+
     <a class="page-menu__submenu-faq" href="#">
       <img class="page-menu__submenu-image" src="img/faq.svg" alt="">
       FAQ
     </a>
-    <a class="page-menu__submenu-user" href="#">
-      <img class="page-menu__submenu-image" src="img/user.svg" alt="">
-      Sign in
-    </a>
-   
+    <a class="page-menu__submenu-item" href="#">Account</a>
+    <a class="page-menu__submenu-item" href="#">Messages</a>
+    <a class="page-menu__submenu-item" href="#"> Notifications (3)</a>
+
+    <!-- <if( $base->session['user']["type"] == "business" )> -->
+      <a class="page-menu__submenu-item" href="#">Timeline</a>
+      <a class="page-menu__submenu-item" href="#">Subscriptions</a>
+			<!-- <if( $base->session['bname-options']['vip'] )> -->
+        <a class="page-menu__submenu-item" href="#">Auto reply</a>
+			<!-- </if> -->
+		<!-- <else> -->
+			<!-- <a href="{$MainSiteUrl}/my-complaints.html" class="complaints" tabindex="-1">Complaints</a> -->
+      <a class="page-menu__submenu-item" href="#">Complaints</a>
+        <!-- </if> -->
+        <a class="page-menu__submenu-item" href="#">Sign out</a>
+	<!-- </if> -->
     <div class="page-menu__submenu-close" onclick="topHead.close()">
       <img src="img/close.svg" alt="" class="page-menu__submenu-close-image">
     </div>
