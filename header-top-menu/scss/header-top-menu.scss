@@ -1,4 +1,28 @@
-@import "page.scss";
+body {
+    font-weight: 400;
+    font-family: "Roboto", sans-serif;
+    background: #eff0f0;
+    margin: 0;
+  }
+  
+  h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+    padding: 0;
+    font-weight: 400;
+  }
+  
+  a {
+    color: #105cb6;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .page-content {
+    max-width: 780px;
+    flex-grow: 1;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
 
 .header-top-menu {
     width: 100%;

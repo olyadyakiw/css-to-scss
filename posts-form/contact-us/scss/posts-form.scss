@@ -58,14 +58,14 @@ a {
    }
 }
 
-.posts-form {
-   &__contact-form {
+.contact-us {
+   &__form {
       width: 100%;
       max-width: 404px;
       margin: 0 auto;
    }
-   &__contact-input,
-   &__contact-message {
+   &__input,
+   &__message {
       box-sizing: border-box;
       display: block;
       margin-bottom: 20px;
@@ -82,7 +82,7 @@ a {
       &:focus {
          border: 2px solid #97979b;
       }
-      &:focus + .posts-form__contact-label {
+      &:focus + .contact-us__label {
          background-color: #fff;
          top: 0;
          z-index: 11;
@@ -94,13 +94,13 @@ a {
          }
       }
    }
-   &__contact-message {
+   &__message {
       height: 180px;
       resize: none;
       padding: 10px;
       margin-bottom: 20px;
    }
-   &__contact-btn {
+   &__btn {
       background: #315bb4;
       height: 44px;
       width: 200px;
@@ -118,12 +118,12 @@ a {
          background: #1f3972;
       }
    }
-   &__contact-item {
+   &__item {
       position: relative;
       background-color: #fff;
       border-radius: 8px;
    }
-   &__contact-label {
+   &__label {
       display: inline-flex;
       align-items: center;
       transition: all 0.25s ease-in-out;
@@ -138,12 +138,12 @@ a {
       font-size: 16px;
       font-weight: 700;
    }
-   &__contact-label_message {
+   &__label_message {
       display: flex;
       align-items: flex-start;
       padding-top: 30px;
    }
-   &__contact-error {
+   &__error {
       display: none;
       box-sizing: border-box;
       width: 100%;
@@ -158,11 +158,11 @@ a {
       z-index: 15;
       &.active {
          display: block;
-            & + .posts-form__contact-input {
+            & + .contact-us__input {
                margin-bottom: 40px;
                border-color: #b22470;
             }
-            & + .posts-form__contact-message {
+            & + .contact-us__message {
                margin-bottom: 60px;
             }
       }

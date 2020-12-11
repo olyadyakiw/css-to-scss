@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/posts-form.css">
+</head>
+
+<body>
+
+  <div class="page-content">
+    <div class="contact-us__contact">
+      <form class="contact-us__form">
+        <div class="contact-us__item">
+          <div class="contact-us__error active">Fullname required</div>
+          <input class="contact-us__input contact-us__input_name" type="text">
+          <label class="contact-us__label">Full Name</label>
+        </div>
+
+        <div class="contact-us__item">
+          <div class="contact-us__error active">Email required</div>
+          <input class="contact-us__input contact-us__input_email" type="text">
+          <label class="contact-us__label">Email</label>
+        </div>
+
+        <div class="contact-us__item">
+          <div class="contact-us__error">Subject required</div>
+          <input class="contact-us__input contact-us__input_subject" type="text">
+          <label class="contact-us__label">Subject</label>
+        </div>
+        <div class="contact-us__item">
+          <div class="contact-us__error">Message required</div>
+          <textarea class="contact-us__message"></textarea>
+          <label class="contact-us__label contact-us__label_message">
+            Your message. <br>
+            Please include the complaint URL (if applicable)
+          </label>
+        </div>
+
+        <button class="contact-us__btn">Send</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
