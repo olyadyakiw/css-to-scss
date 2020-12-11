@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="company-info.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/bname-info-block.css">
 </head>
+
 <body>
 
   <div class="content">
@@ -15,17 +19,17 @@
       <div class="cols">
         <div class="col-main">
 
-          <div class="company-info">
-            <div class="company-info__left">
-              <h1 class="company-info__name">Star Utsav</h1>
-              <h4 class="company-info__legal">Star Utsav</h4>
-              <div class="company-info__address">Address</div>
-              <table class="company-info__address-table">
-                <tr class="company-info__address-row">
-                  <td class="company-info__address-item" itemprop="address" itemscope
+          <div class="bname-info-block">
+            <div class="bname-info-block__left">
+              <h1 class="bname-info-block__name">Star Utsav</h1>
+              <h4 class="bname-info-block__legal">Star Utsav</h4>
+              <div class="bname-info-block__address">Address</div>
+              <table class="bname-info-block__address-table">
+                <tr class="bname-info-block__address-row">
+                  <td class="bname-info-block__address-item" itemprop="address" itemscope
                     itemtype="https://schema.org/PostalAddress">
-                    <div class="company-info__address-wrapper">
-                      <span class="company-info__address-country">India</span>
+                    <div class="bname-info-block__address-wrapper">
+                      <span class="bname-info-block__address-country">India</span>
                     </div>
                   </td>
                   <td style="padding-left:20px;" onmouseover="jQuery('#map-layer').prop('src','/img/map-layer2.png')"
@@ -34,37 +38,106 @@
                 </tr>
               </table>
               <br>
-              <h3 class="company-info__phone">Customer Care Phone Numbers and Contacts</h3>
+              <h3 class="bname-info-block__phone">Customer Care Phone Numbers and Contacts</h3>
               <br>
-              <div class="company-info__btn-wrapper">
-                <a class="company-info__btn" href="#" onclick="jQuery.ajax('/ajax.php?set-new-complaint-bname=115617').done(function () {
+              <div class="bname-info-block__btn-wrapper">
+                <a class="bname-info-block__btn" href="#" onclick="jQuery.ajax('/ajax.php?set-new-complaint-bname=115617').done(function () {
                   location.href = '/new_complaint/';
                 }); return false">Submit a Complaint</a>
               </div>
             </div>
 
-            <div class="company-info__right">
-              <h5 class="company-info__rating">Customer satisfaction rating</h5>
-              <div class="company-info__border-rating">
-                <div class="company-info__dots">
-                  <div class="company-info__statistics-name">Complaints</div>
-                  <div class="company-info__statistics-number">37</div>
-                  <div class="company-info__statistics-dotted"></div>
+            <div class="bname-info-block__right">
+              <h5 class="bname-info-block__rating">Customer satisfaction rating</h5>
+              <div class="bname-info-block__border-rating">
+                <div class="bname-info-block__dots">
+                  <div class="bname-info-block__statistics-name">Complaints</div>
+                  <div class="bname-info-block__statistics-number">37</div>
+                  <div class="bname-info-block__statistics-dotted"></div>
                 </div>
-                <div class="company-info__dots">
-                  <div class="company-info__statistics-name">Resolved</div>
-                  <div class="company-info__statistics-number company-info__statistics-number--green">2</div>
-                  <div class="company-info__statistics-dotted"></div>
-                </div>
-              </div>
-              <div class="company-info__alert company-info__alert--no-complaints">
-                <div class="company-info__img-wrapper">
-                  <img src="img/nocomplaints.png" alt="" class="company-info__img">
-                </div>
-                <div class="company-info__alert-text company-info__alert-text--no-complaints">
-                  There are no complaints against this company so far
+                <div class="bname-info-block__dots">
+                  <div class="bname-info-block__statistics-name">Resolved</div>
+                  <div class="bname-info-block__statistics-number bname-info-block__statistics-number--green">2</div>
+                  <div class="bname-info-block__statistics-dotted"></div>
                 </div>
               </div>
+
+              <!-- <if($args["company_rating"] < 10 && $args['bname_resolved']!=0)> -->
+              <div class="bname-info-block__alert bname-info-block__alert_finger-down">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/finger_down.png" alt="">
+                </div>
+                <div class="bname-info-block__alert-text">
+                  Bad news - Even though we've managed to contact the company, they're quite slow at resolving
+                  complaints.
+                </div>
+              </div>
+              <!-- </if> -->
+
+              <!-- <if($args["company_rating"]>=70)> -->
+              <div class="bname-info-block__alert bname-info-block__alert_star">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/star.png" alt="Awesome">
+                </div>
+                <div class="bname-info-block__alert-text">
+                  Awesome! This company provides an awesome customer support service, responds to our every
+                  notification, and resolves most of the user complaints.
+                </div>
+              </div>
+              <!-- </if> -->
+
+              <!-- <if($args["company_rating"]>=40 && $args["company_rating"] < 70)> -->
+              <div class="bname-info-block__alert bname-info-block__alert_finger">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/finger.png" alt="Awesome">
+                </div>
+                <div class="bname-info-block__alert-text">
+                  Good news! We have a good connection with the company and they're good at resolving user
+                  complaints.
+                </div>
+              </div>
+              <!-- </if> -->
+
+              <!-- <if($args["company_rating"]>=10 && $args["company_rating"] < 40)> -->
+
+              <div class="bname-info-block__alert bname-info-block__alert_load">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/load.png" alt="Awesome">
+                </div>
+                <div class="bname-info-block__alert-text">
+                  So far so good - The company responded to our
+                  notifications and is working on resolving complaints.
+                </div>
+              </div>
+
+              <!-- </if> -->
+
+              <!-- <if($args["company_rating"] < 10 && $args['bname_resolved']==0)>
+                <if($args['bname_complaints']==0)> -->
+
+              <div class="bname-info-block__alert bname-info-block__alert_no-complaints">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/nocomplaints.png" alt="Awesome">
+                </div>
+                <div class="bname-info-block__alert-text bname-info-block__alert-text_no-complaints">
+                  So far so good - The company responded to our
+                  notifications and is working on resolving complaints.
+                </div>
+              </div>
+              <!-- <else> -->
+              <div class="bname-info-block__alert bname-info-block__alert_alert">
+                <div class="bname-info-block__alert-wrapper">
+                  <img class="bname-info-block__alert_img" src="img/bname-alert/alert.png" alt="Alert">
+                </div>
+                <div class="bname-info-block__alert-text">
+                  Oops! We're trying to establish a communication with the {$args["bname_name"]}, but apparently they're
+                  not interested in resolving complaints
+                </div>
+              </div>
+
+              <!-- </if>
+                </if> -->
+
             </div>
           </div>
 
@@ -74,4 +147,5 @@
   </div>
 
 </body>
+
 </html>

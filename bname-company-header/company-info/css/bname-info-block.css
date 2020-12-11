@@ -1,25 +1,6 @@
-html {
-   -webkit-box-sizing: border-box;
-   box-sizing: border-box;
-}
-*, ::after, ::before {
-   -webkit-box-sizing: inherit;
-   box-sizing: inherit;
-}
-body, html {
-   height: 100%;
-   position: relative;
-}
-h1, h2, h3, h4, h5, h6, li, ol, p, ul {
-   margin: 0;
-   padding: 0;
-}
-button:focus, input:focus {
-   outline: transparent;
-}
 body {
    font-weight: 400;
-   font-family: Roboto, sans-serif;
+   font-family: "Roboto", sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
    margin: 0;
@@ -41,80 +22,75 @@ a {
    border-radius: 10px;
 }
 .cols {
-   display: -webkit-box;
-   display: -ms-flexbox;
    display: flex;
-   -webkit-box-orient: horizontal;
-   -webkit-box-direction: normal;
-   -ms-flex-direction: row;
    flex-direction: row;
    max-width: 1120px;
-   width: 100%}
+   width: 100%;
+}
 .col-main {
    max-width: 780px;
-   -webkit-box-flex: 1;
-   -ms-flex-positive: 1;
    flex-grow: 1;
 }
-.company-info {
+.bname-info-block {
    display: table;
    border: 0;
-   width: 100%}
-.company-info__left {
+   width: 100%;
+}
+.bname-info-block__left {
    border-top-left-radius: 15px;
    border-bottom-left-radius: 15px;
    display: table-cell;
-   padding: 20px 0 20px 20px;
-   background: #fff;
+   padding: 20px;
+   background: white;
    color: #333;
-   font: 14px/20px Roboto;
+   font: 14px Roboto;
    border: 1px solid #e4e4e4;
    border-top: 2px solid #52902d;
+   line-height: 20px;
+   padding-right: 0;
    border-right: 0;
 }
-.company-info__name {
+.bname-info-block__name {
    color: #333;
    margin: 0;
    line-height: 30px;
    font-size: 28px;
    padding: 0;
 }
-.company-info__legal {
+.bname-info-block__legal {
    color: #8d8b8b;
-   padding: 25px 0 15px;
+   padding: 25px 0 15px 0;
    font-size: 15px;
 }
-.company-info__website {
+.bname-info-block__website {
    padding-bottom: 15px;
 }
-.company-info__website-table {
+.bname-info-block__website-table {
    width: 100%;
    border-collapse: collapse;
 }
-.company-info__website-item {
+.bname-info-block__website-item {
    margin: 0;
    padding: 0;
    color: #333;
    vertical-align: top;
 }
-.company-info__website-link:hover {
+.bname-info-block__website-link:hover {
    text-decoration: underline;
 }
-.company-info__socials {
-   padding: 10px 0;
+.bname-info-block__socials {
+   padding: 10px 0 10px 0;
 }
-.company-info__socials-img {
-   opacity: .8;
+.bname-info-block__socials-img {
+   opacity: 0.8;
    margin-left: 3px;
    margin-right: 3px;
-   -webkit-transition: .2s;
-   -o-transition: .2s;
-   transition: .2s;
+   transition: all 0.2s;
 }
-.company-info__socials-img:hover {
+.bname-info-block__socials-img:hover {
    opacity: 1;
 }
-.company-info__address {
+.bname-info-block__address {
    color: #979595;
    font-size: 16px;
    display: block;
@@ -124,18 +100,18 @@ a {
    line-height: 20px;
    font-weight: 700;
 }
-.company-info__address::before {
+.bname-info-block__address::before {
    display: inline-block;
-   content: '';
+   content: "";
    width: 10px;
    height: 15px;
    margin-right: 10px;
    background-repeat: no-repeat;
    vertical-align: top;
    margin-top: 3px;
-   background-image: url(img/location2.png);
+   background-image: url(../fw/bname-alert/location2.png);
 }
-.company-info__phone {
+.bname-info-block__phone {
    color: #979595;
    font-size: 16px;
    display: block;
@@ -145,27 +121,30 @@ a {
    line-height: 20px;
    font-weight: 700;
 }
-.company-info__phone::before {
+.bname-info-block__phone::before {
    display: inline-block;
-   content: '';
+   content: "";
    width: 13px;
    height: 14px;
    margin-right: 10px;
    background-repeat: no-repeat;
    vertical-align: top;
    margin-top: 3px;
-   background-image: url(img/phone2.png);
+   background-image: url(../fw/bname-alert/phone2.png);
 }
-.company-info__phones {
+.bname-info-block__phones {
    display: table;
    width: 100%;
    border-collapse: collapse;
 }
-.company-info__phones-content, .company-info__phones-header {
+.bname-info-block__phones-header {
    display: table-row;
 }
-.company-info__phones-phone--first {
-   color: #000;
+.bname-info-block__phones-content {
+   display: table-row;
+}
+.bname-info-block__phones-phone--first {
+   color: black;
    display: none;
    border-left: 1px solid #dddbdb;
    border-top: 1px solid #dddbdb;
@@ -173,8 +152,8 @@ a {
    background: #f8f8f8;
    padding: 10px;
 }
-.company-info__phones-phone {
-   color: #000;
+.bname-info-block__phones-phone {
+   color: black;
    width: 100px;
    display: table-cell;
    border-bottom: 1px solid #dddbdb;
@@ -183,7 +162,7 @@ a {
    background: #f8f8f8;
    padding: 10px;
 }
-.company-info__phones-wrapper {
+.bname-info-block__phones-wrapper {
    display: table-cell;
    border-top: 1px solid #dddbdb;
    border-bottom: 1px solid #dddbdb;
@@ -191,18 +170,18 @@ a {
    padding: 10px;
    color: #b2b2b2;
 }
-.company-info__phones-link {
-   color: #000;
+.bname-info-block__phones-link {
+   color: black;
 }
-.company-info__phones-link:hover {
+.bname-info-block__phones-link:hover {
    text-decoration: underline;
 }
-.company-info__phones-space {
+.bname-info-block__phones-space {
    color: #999;
    font-size: 13px;
-   padding: 0 0 6px;
+   padding: 0 0 6px 0;
 }
-.company-info__call {
+.bname-info-block__call {
    border-right: 1px solid #dddbdb;
    vertical-align: middle;
    display: table-cell;
@@ -213,47 +192,48 @@ a {
    color: #b2b2b2;
    border-collapse: collapse;
 }
-.company-info__call-wrapper {
+.bname-info-block__call-wrapper {
    display: table;
    margin-left: auto;
 }
-.company-info__call-button {
+.bname-info-block__call-button {
    padding: 0;
    display: table-cell;
 }
-.company-info__call-img {
+.bname-info-block__call-img {
    vertical-align: middle;
    margin-bottom: 3px;
    cursor: pointer;
 }
-.company-info__call-up {
+.bname-info-block__call-up {
    width: 10px;
-   padding: 0 5px;
+   padding: 0 5px 0 5px;
    white-space: nowrap;
    display: table-cell;
 }
-.company-info__call-down {
-   padding: 0 0 0 5px;
+.bname-info-block__call-down {
+   padding: 0 5px 0 5px;
    white-space: nowrap;
+   padding-right: 0;
 }
-.company-info__btn {
+.bname-info-block__btn {
    background-color: #ff8000;
-   color: #fff;
+   color: white;
    font-size: 14px;
-   font-weight: 700;
+   font-weight: bold;
    padding: 10px;
-   text-decoration: none!important;
+   text-decoration: none !important;
    border-radius: 4px;
    border-bottom: 2px solid #c60;
    white-space: nowrap;
    display: inline-block;
 }
-.company-info__btn:hover {
+.bname-info-block__btn:hover {
    background-color: #ffa64d;
    border-bottom: 2px solid #ee8a26;
    color: #fff;
 }
-.company-info__right {
+.bname-info-block__right {
    text-align: center;
    width: 40%;
    max-width: 250px;
@@ -261,14 +241,15 @@ a {
    border-bottom-right-radius: 15px;
    display: table-cell;
    padding: 20px;
-   background: #fff;
+   background: white;
    color: #333;
-   font: 14px/20px Roboto;
+   font: 14px Roboto;
    border: 1px solid #e4e4e4;
    border-top: 2px solid #52902d;
+   line-height: 20px;
    border-left: 0;
 }
-.company-info__rating {
+.bname-info-block__rating {
    color: #979595;
    font-size: 16px;
    display: block;
@@ -278,34 +259,32 @@ a {
    line-height: 20px;
    font-weight: 700;
 }
-.company-info__rating::before {
+.bname-info-block__rating::before {
    display: inline-block;
-   content: '';
+   content: "";
    width: 16px;
    height: 16px;
    margin-right: 10px;
    background-repeat: no-repeat;
    vertical-align: top;
    margin-top: 3px;
-   background-image: url(img/rating.png);
+   background-image: url(../fw/bname-alert/rating.png);
 }
-.company-info__border-rating {
+.bname-info-block__border-rating {
    background-color: #fbfbfb;
    border: 1px solid #dddbdb;
    border-bottom: 0;
    padding: 10px;
 }
-.company-info__rating-canvas {
+.bname-info-block__rating-canvas {
    position: relative;
    margin-bottom: 20px;
 }
-.company-info__rating-number {
+.bname-info-block__rating-number {
    position: absolute;
    left: 50%;
    top: 50%;
    display: inline-block;
-   -webkit-transform: translate(-50%, -50%);
-   -ms-transform: translate(-50%, -50%);
    transform: translate(-50%, -50%);
    font-size: 58px;
    color: #bababa;
@@ -315,98 +294,114 @@ a {
    text-align: center;
    font-weight: 200;
 }
-.company-info__rating-percent {
+.bname-info-block__rating-percent {
    font-size: 22px;
    display: block;
    font-weight: 100;
    font-style: normal;
 }
-.company-info__statistics {
-   margin: 10px 0 30px;
+.bname-info-block__statistics {
+   margin: 10px 0 30px 0;
    cursor: pointer;
 }
-.company-info__statistics-img {
+.bname-info-block__statistics-img {
    margin-right: 5px;
    vertical-align: middle;
 }
-.company-info__statistics-view:hover {
+.bname-info-block__statistics-view:hover {
    text-decoration: underline;
 }
-.company-info__dots {
+.bname-info-block__dots {
    padding: 3px 0;
 }
-.company-info__statistics-name {
+.bname-info-block__statistics-name {
    float: left;
    clear: both;
-   padding: 1px .5em;
+   padding: 1px 0.5em;
    background: #fbfbfb;
    height: 1em;
    font-size: 14px;
 }
-.company-info__statistics-number {
-   padding: 1px .5em;
+.bname-info-block__statistics-number {
+   padding: 1px 0.5em;
    background: #fbfbfb;
    float: right;
-   color: #000;
+   color: black;
    height: 1em;
    font-size: 14px;
 }
-.company-info__statistics-number--green {
+.bname-info-block__statistics-number--green {
    color: #64af37;
 }
-.company-info__statistics-dotted {
+.bname-info-block__statistics-dotted {
    border-bottom: 1px dotted grey;
    margin-bottom: 2px;
    height: 1em;
    color: #b3b3b3;
    font-size: 14px;
 }
-.company-info__alert {
-   background: #e1675d;
+.bname-info-block__alert {
    width: 100%;
    display: table;
    overflow: hidden;
 }
-.company-info__alert--no-complaints {
+.bname-info-block__alert_no-complaints {
    background: #ebebeb;
 }
-.company-info__img-wrapper {
+.bname-info-block__alert_finger-down, .bname-info-block__alert_alert {
+   background: #e1675d;
+}
+.bname-info-block__alert_star {
+   background: #618ed7;
+}
+.bname-info-block__alert_finger {
+   background: #8abf6a;
+}
+.bname-info-block__alert_load {
+   background: #f3a948;
+}
+.bname-info-block__alert-wrapper {
    width: 50px;
    vertical-align: middle;
    text-align: center;
    display: table-cell;
-   color: #fff;
+   color: white;
 }
-.company-info__alert-text {
+.bname-info-block__alert-text {
    text-align: left;
    vertical-align: middle;
    font-size: 12px;
    line-height: 14px;
    padding: 10px 10px 10px 0;
    display: table-cell;
-   color: #fff;
+   color: white;
 }
-.company-info__alert-text--no-complaints {
+.bname-info-block__alert-text_no-complaints {
    color: #aaa;
    text-align: left;
 }
-@media only screen and (max-width:1200px) {
+@media only screen and (max-width: 1200px) {
    .content {
       padding: 0;
-   }
+  }
 }
-@media only screen and (max-width:780px) {
+@media only screen and (max-width: 780px) {
    .cols-wrapper {
       padding: 0 10px;
-   }
+  }
    .cols {
       margin-right: 0;
       display: block;
-   }
-   .col-main, .company-info {
+  }
+   .col-main {
       display: block;
-   }
-   .company-info__left {
+  }
+}
+@media only screen and (max-width: 780px) {
+   .bname-info-block {
+      display: block;
+  }
+   .bname-info-block__left {
       display: block;
       width: auto;
       max-width: none;
@@ -415,35 +410,36 @@ a {
       padding-right: 20px;
       border-bottom: 0;
       border-right: 1px solid #e4e4e4;
-   }
-   .company-info__right {
+  }
+   .bname-info-block__right {
       display: block;
       width: auto;
       max-width: none;
-      border-radius: 0 0 15px 15px;
+      border-radius: 0;
       border-top: 0;
       padding-top: 0;
+      border-bottom-left-radius: 15px;
+      border-bottom-right-radius: 15px;
       border-left: 1px solid #e4e4e4;
-   }
+  }
 }
-
-@media only screen and (max-width:630px) {
-   .company-info__address {
+@media only screen and (max-width: 630px) {
+   .bname-info-block__address {
       padding-bottom: 0;
-   }
-   .company-info__btn-wrapper {
+  }
+   .bname-info-block__btn-wrapper {
       text-align: center;
-   }
-   .company-info__phones-phone--first, .company-info__phones-row {
+  }
+   .bname-info-block__phones-phone--first, .bname-info-block__phones-row {
       display: table-cell;
       border: 0;
       background: 0;
       padding-top: 0;
-   }
-   .company-info__phones-phone {
+  }
+   .bname-info-block__phones-phone {
       display: none;
-   }
-   .company-info__phones-wrapper {
+  }
+   .bname-info-block__phones-wrapper {
       border-left: 1px solid #dddbdb;
-   }
+  }
 }

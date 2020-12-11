@@ -45,7 +45,7 @@ a {
    flex-grow: 1;
 }
 
-.company-info {
+.bname-info-block {
    display: table;
    border: 0;
    width: 100%;
@@ -123,7 +123,7 @@ a {
            background-repeat: no-repeat;
            vertical-align: top;
            margin-top: 3px;
-           background-image: url(../img/location2.png);
+           background-image: url(../fw/bname-alert/location2.png);
        }
    }
    &__phone {
@@ -144,7 +144,7 @@ a {
            background-repeat: no-repeat;
            vertical-align: top;
            margin-top: 3px;
-           background-image: url(../img/phone2.png);
+           background-image: url(../fw/bname-alert/phone2.png);
        }
    }
    &__phones {
@@ -284,7 +284,7 @@ a {
            background-repeat: no-repeat;
            vertical-align: top;
            margin-top: 3px;
-           background-image: url(../img/rating.png);
+           background-image: url(../fw/bname-alert/rating.png);
        }
    }
    &__border-rating {
@@ -360,15 +360,28 @@ a {
        font-size: 14px;
    }
    &__alert {
-       background: #e1675d;
        width: 100%;
        display: table;
        overflow: hidden;
+    }
+    &__alert_no-complaints {
+        background: #ebebeb;
+    }
+    &__alert_finger-down,
+    &__alert_alert {
+        background: #e1675d;
    }
-   &__alert--no-complaints {
-       background: #ebebeb;
-   }
-   &__img-wrapper {
+   
+    &__alert_star {
+	    background:#618ed7;
+    }
+    &__alert_finger {
+        background:#8abf6a;
+    }
+    &__alert_load {
+	    background:#f3a948;
+    }
+   &__alert-wrapper {
        width: 50px;
        vertical-align: middle;
        text-align: center;
@@ -384,7 +397,7 @@ a {
        display: table-cell;
        color: white;
    }
-   &__alert-text--no-complaints {
+   &__alert-text_no-complaints {
        color: #aaa;
        text-align: left;
    }
@@ -410,7 +423,7 @@ a {
 }
 
 @media only screen and (max-width: 780px) {
-   .company-info {
+    .bname-info-block {
        display: block;
        &__left {
            display: block;
@@ -437,7 +450,7 @@ a {
 }
 
 @media only screen and (max-width: 630px) {
-   .company-info {
+   .bname-info-block {
        &__address {
            padding-bottom: 0;
        }
