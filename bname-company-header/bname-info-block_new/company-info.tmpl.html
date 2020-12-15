@@ -1,0 +1,124 @@
+<includeCSS(blocks/company-info)>
+<link rel="stylesheet" href="../css/bname-info-block.css">
+<div class="bname-info-block">
+    <div class="bname-info-block__left">
+        <div class="bname-info-block__name">{$args["company_name"]}</div>
+        <if($args["company_bname"])><h4 class="bname-info-block__legal">{$args["company_bname"]}</h4></if>
+        <if($args["company_website"])>
+            <div class="bname-info-block__website">
+            <table class="bname-info-block__website-table">
+            <tr class="bname-info-block__website-row">
+                <td class="bname-info-block__website-item" valign="top" width="100"><if(sizeof($args['company_website'])==1)>Website:<else>Websites:</if></td>
+                <td class="bname-info-block__website-item">
+                <for($i=0,$l=sizeof($args['company_website']); $i < $l; $i++)>
+                    <a class="bname-info-block__website-link" ref="http://{$args["company_website"][$i]}" rel="nofollow" target="_blank">{$args["company_website"][$i]}</a><br>
+                </for>
+                </td>
+            </tr>
+            </table>
+            </div>
+        </if>
+        <if( $args["company_twitter"] || $args["company_facebook"] )>
+            <div class="bname-info-block__socials">
+                <if($args["company_twitter"])><a class="bname-info-block__socials-link" href="{$args["company_twitter"]}" target="_blank" rel="nofollow"><img src="/img/socials/twitter.png" width="28" height="28" alt="Twitter" title="Twitter"></a></if>
+                <if($args["company_facebook"])><a class="bname-info-block__socials-link" href="{$args["company_facebook"]}" target="_blank" rel="nofollow"><img src="/img/socials/facebook.png" width="29" height="28" alt="Facebook" title="Facebook"></a></if>
+            </div>
+        </if>
+        <if($args["address"])>
+            <div class="bname-info-block__address">Address</div>
+            <table class="bname-info-block__address-table">
+            <tr class="bname-info-block__address-row">
+                <td class="bname-info-block__address-item">
+                    <div class="bname-info-block__address-wrapper">
+                       <span class="bname-info-block__address-street">{$args["address"]}</span>  
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </if>
+        
+        <br>
+        <h3 class="bname-info-block__phone">Customer Care Phone Numbers and Contacts</h3>
+        
+        <if($args["phone"])>
+            {$args['phone']}
+            <br>
+        </if>
+        
+        <if($args["mobile"])>
+            {$args['mobile']}
+            <br>
+        </if>
+        
+        <if($args["fax"])>
+            {$args['fax']}
+            <br>
+        </if>
+        
+        <div class="bname-info-block__btn-wrapper" submitcomp>
+            <a class="bname-info-block__btn" href="#" class="btn-orange" onclick="jQuery.ajax('/ajax.php?set-new-complaint-company-name={$args['compl_company_encoded']}').done(function () {
+                location.href = '/new_complaint/';
+            }); return false">Submit a Complaint</a>
+        </div>
+    </div>
+    <div class="bname-info-block__right">
+        <h5 class="bname-info-block__rating">Customer satisfaction rating</h5>
+        <div class="bname-info-block__border-rating">
+            
+            <div class="bname-info-block__dots">
+                <div class="bname-info-block__statistics-name">Complaints</div>
+                <div class="bname-info-block__statistics-number">{$args['compl_count']}</div>
+                <div class="bname-info-block__statistics-dotted"></div>
+            </div>
+            
+            <div class="bname-info-block__dots">
+                <div class="bname-info-block__statistics-name">Resolved</div>
+                <div class="bname-info-block__statistics-number bname-info-block__statistics-number--green"">{$args['compl_resolved_count']}</div>
+                <div class="bname-info-block__statistics-dotted"></div>
+            </div>
+        </div>
+        <if($args["company_rating"]>=70)>
+        <div class="bname-info-block__alert bname-info-block__alert_star">
+            <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/star.png" alt="Awesome"></div>
+            <div class="bname-info-block__alert-text">Awesome! This company provides an awesome customer support service, responds to our every notification, and resolves most of the user complaints.</div>
+        </div>
+        </if>
+        
+        <if($args["company_rating"]>=40 && $args["company_rating"] < 70)>
+        <div class="bname-info-block__alert bname-info-block__alert_finger">
+            <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/finger.png" alt="Good"></div>
+            <div class="bname-info-block__alert-text">Good news! We have a good connection with the company and they're good at resolving user complaints.</div>
+        </div>
+        </if>
+        
+        <if($args["company_rating"]>=10 && $args["company_rating"] < 40)>
+        <div class="bname-info-block__alert bname-info-block__alert_load">
+            <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/load.png" alt="Load"></div>
+            <div class="bname-info-block__alert-text">So far so good - The company responded to our notifications and is working on resolving complaints.</div>
+        </div>
+        </if>
+        
+        <if($args["company_rating"] < 10 && $args['bname_resolved']==0)>
+            <if($args['bname_complaints']==0)>
+            <div class="bname-info-block__alert bname-info-block__alert_no-complaints">
+                <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/nocomplaints.png" alt="No complaints"></div>
+                <div class="bname-info-block__alert-text bname-info-block__alert-text_no-complaints">There are no complaints against this company so far</div>
+            </div>
+                                <else>
+            <div class="bname-info-block__alert bname-info-block__alert_alert">
+                <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/alert.png" alt="Alert"></div>
+                <div class="bname-info-block__alert-text">Oops! We're trying to establish a communication with the {$args["bname_name"]}, but apparently they're not interested in resolving complaints</div>
+            </div>
+            </if>
+        </if>
+        
+        <if($args["company_rating"] < 10 && $args['bname_resolved']!=0)>
+        <div class="bname-info-block__alert bname-info-block__alert_finger-down">
+            <div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/finger_down.png" alt="Bad"></div>
+            <div class="bname-info-block__alert-text">Bad news - Even though we've managed to contact the company, they're quite slow at resolving complaints.</div>
+        </div>
+        </if>
+        
+    </div>
+</div>
+<br>

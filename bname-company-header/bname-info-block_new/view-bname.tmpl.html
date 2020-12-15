@@ -37,7 +37,6 @@
 							<td class="bname-info-block__address-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
 								<div class="bname-info-block__address-wrapper">
 									<span class="bname-info-block__address-street">{$args["address"]}</span>
-
 								</div>
 							</td>
 							<td style="padding-left:20px;" onmouseover="jQuery('#map-layer').prop('src','/img/map-layer2.png')"  onmouseout="jQuery('#map-layer').prop('src','/img/map-layer.png')">
@@ -94,7 +93,7 @@
 				</div>
 				<div class="bname-info-block__right">
 					<h5 class="bname-info-block__rating">Customer satisfaction rating</h5>
-					<div class="border-rating">
+					<div class="bname-info-block__border-rating">
 						<if( $args['bname_complaints'] )>
 							<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
 								<meta itemprop="bestRating" content="100">
@@ -124,7 +123,7 @@
 						
 						<div class="bname-info-block__dots">
 							<div class="bname-info-block__statistics-name">Resolved</div>
-							<div class="bname-info-block__statistics-number company-info__statistics-number--green">{$args['bname_resolved']}</div>
+							<div class="bname-info-block__statistics-number bname-info-block__statistics-number--green">{$args['bname_resolved']}</div>
 							<div class="bname-info-block__statistics-dotted"></div>
 						</div>
 					</div>
@@ -153,7 +152,7 @@
 						<if($args['bname_complaints']==0)>
 						<div class="bname-info-block__alert bname-info-block__alert_no-complaints">
 							<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/nocomplaints.png" alt="No complaints"></div>
-							<div class="bname-info-block__alert-text">There are no complaints against this company so far</div>
+							<div class="bname-info-block__alert-text bname-info-block__alert-text_no-complaints">There are no complaints against this company so far</div>
 						</div>
 											<else>
 						<div class="bname-info-block__alert bname-info-block__alert_alert">
