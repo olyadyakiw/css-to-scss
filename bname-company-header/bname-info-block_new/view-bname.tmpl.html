@@ -47,10 +47,11 @@
 					<if($args["address"] && $args['bname_landmarks'])>
 					{$args['bname_landmarks']}
 					</if>
-					
 					<br>
 					<h3 class="bname-info-block__phone">Customer Care Phone Numbers and Contacts</h3>
 					
+<!-- ..................................................... -->
+
 					<if($args["tollfree"])>
 						{$args['tollfree']}
 						<br>
@@ -70,6 +71,8 @@
 						{$args['fax']}
 						<br>
 					</if>
+
+<!-- ....................................................... -->
 					
 					<if($args["bname_desc"])>
 						<b class="subcaption">Description</b>

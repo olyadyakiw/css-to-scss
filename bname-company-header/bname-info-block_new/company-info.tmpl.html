@@ -1,5 +1,5 @@
-<includeCSS(blocks/company-info)>
 <link rel="stylesheet" href="../css/bname-info-block.css">
+<!-- <includeCSS(blocks/company-info)> -->
 <div class="bname-info-block">
     <div class="bname-info-block__left">
         <div class="bname-info-block__name">{$args["company_name"]}</div>
@@ -20,8 +20,8 @@
         </if>
         <if( $args["company_twitter"] || $args["company_facebook"] )>
             <div class="bname-info-block__socials">
-                <if($args["company_twitter"])><a class="bname-info-block__socials-link" href="{$args["company_twitter"]}" target="_blank" rel="nofollow"><img src="/img/socials/twitter.png" width="28" height="28" alt="Twitter" title="Twitter"></a></if>
-                <if($args["company_facebook"])><a class="bname-info-block__socials-link" href="{$args["company_facebook"]}" target="_blank" rel="nofollow"><img src="/img/socials/facebook.png" width="29" height="28" alt="Facebook" title="Facebook"></a></if>
+                <if($args["company_twitter"])><a class="bname-info-block__socials-link" href="{$args["company_twitter"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/twitter.png" width="28" height="28" alt="Twitter" title="Twitter"></a></if>
+                <if($args["company_facebook"])><a class="bname-info-block__socials-link" href="{$args["company_facebook"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/facebook.png" width="29" height="28" alt="Facebook" title="Facebook"></a></if>
             </div>
         </if>
         <if($args["address"])>
@@ -54,6 +54,8 @@
             {$args['fax']}
             <br>
         </if>
+        
+
         
         <div class="bname-info-block__btn-wrapper" submitcomp>
             <a class="bname-info-block__btn" href="#" class="btn-orange" onclick="jQuery.ajax('/ajax.php?set-new-complaint-company-name={$args['compl_company_encoded']}').done(function () {

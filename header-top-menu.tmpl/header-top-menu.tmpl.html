@@ -1,0 +1,77 @@
+<includeCSS(blocks/header-top-menu)>
+<includeCSS(ajax/auto-search)>
+<includeJS(blocks/header-top-menu)>
+
+<link rel="stylesheet" href="../css/page-menu.css">
+
+<header  class="page-menu" id="top-head" class="<if( isset( $base->session['user'] ) )>user<else>guest</if>">
+	<div class="page-menu__inner">
+		<a href="{$MainSiteUrl}/" class="page-menu__logo" tabindex="-1">
+			<img class="page-menu__logo-icon" src="/img/logo/icon.svg" height="50" alt="ConsumerComplaints.in logo">
+			<img class="page-menu__logo-text" src="/img/top-menu/text.svg" height="34" alt="ConsumerComplaints.in">
+		</a>
+		<nav class="page-menu__menu">
+			<if(!$base->session['disable-submit-complaint-menu'])>
+			<a class="page-menu__submit" href="{$MainSiteUrl}/new_complaint/" tabindex="-1">
+				<img class="page-menu__menu-image" src="/img/top-menu/submit.svg" height="24" alt="Submit a Complaint"> 
+				Submit a Complaint
+			</a>
+			</if>
+			<a class="page-menu__faq" href="{$MainSiteUrl}/faq/" class="faq" tabindex="-1">
+				<img class="page-menu__menu-image" src="/img/top-menu/faq.svg" height="24" alt="FAQ"> 
+				FAQ
+			</a>
+			<if( !isset( $base->session['user'] ) )>
+				<a class="page-menu__sign-in" href="#" tabindex="-1" onclick="
+					UserLogin.OnSuccess=function(){location.reload()};
+					UserRegistration.OnSuccess=function(){location.href='{$MainSiteUrl}/new_complaint/'};
+					return UserLogin.Show()">
+					<img class="page-menu__menu-image" src="/img/top-menu/user.svg" height="24" alt="Sign in"> 
+					Sign in
+				</a>
+			</if>
+		</nav>
+		<div class="page-menu__search"><img class="page-menu__search-image" src="/img/top-menu/search.svg" height="20" title="Show search" alt="Show search" onclick="topHead.openSearch()"></div>
+		<div class="page-menu__burger"><img class="page-menu__burger-image" src="/img/top-menu/menu.svg" height="20" title="Show menu" alt="Show menu" onclick="topHead.openMenu()"></div>
+		<div class="page-menu__close"><img class="page-menu__close-image" src="/img/top-menu/close2.svg" height="20" title="Close" alt="Close" onclick="topHead.close()"></div>
+	</div>
+</header>
+<div class="page-menu__space"></div>
+<div class="page-menu__search-wrapper top-head-search">
+	<form class="page-menu__search-form" method="get" action="{$MainSiteUrl}/" method="get" id="search-form-top">
+		<input class="page-menu__search-input" type="text" name="search" value="{$args['searchtxt']}" placeholder="Search for a Business, Product, Service" autocomplete="off">
+		<input class="page-menu__search-submit submit" type="submit">
+	</form>
+	<div class="page-menu__search-close" onclick="topHead.close()"><img class="page-menu__search-close-image" src="/img/top-menu/close.svg" height="10" alt="Close"></div>
+</div>
+<div class="top-head-menu <if( isset( $base->session['user'] ) )>user<else>guest</if>">
+	<a class="page-menu__submenu-faq" href="{$MainSiteUrl}/faq/"  tabindex="-1">
+		<img class="page-menu__submenu-image" src="/img/top-menu/faq.svg" height="24" alt="FAQ"> 
+		FAQ
+	</a>
+	<if( !isset( $base->session['user'] ) )
+		<a class="page-menu__submenu-user" href="#" tabindex="-1" onclick="
+			UserLogin.OnSuccess=function(){location.reload()};
+			UserRegistration.OnSuccess=function(){location.href='{$MainSiteUrl}/new_complaint/'};
+			return UserLogin.Show()">
+			<img class="page-menu__submenu-image" src="/img/top-menu/user.svg" height="24" alt="Sign in"> 
+			Sign in
+		</a>
+	<else>
+		<a class="page-menu__submenu-item" href="{$MainSiteUrl}/my-profile.html" class="account" tabindex="-1">Account</a>
+		<a class="page-menu__submenu-item" href="{$MainSiteUrl}/messages-inbox.html" class="messages" tabindex="-1">Messages <if($base->session['user']['msgcount'])>({$base->session['user']['msgcount']})</if></a>
+		<a class="page-menu__submenu-item" href="{$MainSiteUrl}/notifications.html" class="notifications" tabindex="-1">Notifications <if($base->session['user']['notifies'])>({$base->session['user']['notifies']})</if></a>
+		<if( $base->session['user']["type"] == "business" )>
+			<a class="page-menu__submenu-item" href="{$MainSiteUrl}/complaint-timeline" class="timeline" tabindex="-1">Timeline</a> 
+			<a class="page-menu__submenu-item" href="{$MainSiteUrl}/complaint-notifications" class="subscriptions" tabindex="-1">Subscriptions</a>
+			<if( $base->session['bname-options']['vip'] )>
+				<a class="page-menu__submenu-item" href="{$MainSiteUrl}/auto-reply" tabindex="-1">Auto reply</a>
+			</if>
+		<else>
+			<a class="page-menu__submenu-item" href="{$MainSiteUrl}/my-complaints.html" class="complaints" tabindex="-1">Complaints</a>
+        </if>
+        <a class="page-menu__submenu-item" href="{$MainSiteUrl}/?submitlogout=true&backUrl=" tabindex="-1" onclick="this.href+=encodeURIComponent(location.href);return true">Sign out</a>
+	</if>
+	<div class="page-menu__submenu-close close" onclick="topHead.close()"><img class="page-menu__submenu-close-image" src="/img/top-menu/close.svg" height="10" alt="Close"></div>
+</div>
+<div class="top-head-bg page-menu__bg" onclick="topHead.close()"></div>
