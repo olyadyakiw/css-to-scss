@@ -1,0 +1,233 @@
+
+	<link rel="stylesheet" href="../css/bname-info-block.css">
+			<div class="bname-info-block" itemscope itemtype="https://schema.org/LocalBusiness">
+				<meta itemprop="image" content="<if( $args['logo_big'] )>{$args['logo_big']}<else>{$MainSiteUrl}/img/logo/main.svg</if>">
+				<meta itemprop="identifier" content="{$args['backUrl']}">
+				<meta itemprop="telephone" content="{$args['firstPhone']}">
+                <meta itemprop="name" content="{$args['bname_name']}">
+				<div class="bname-info-block__left">
+					<h1 class="bname-info-block__name">{$args["bname_h1"]}</h1>
+					<if($args["bname_ltd"])><h4 class="bname-info-block__legal" itemprop="legalName">{$args["bname_ltd"]}</h4></if>
+					<if($args["bname_websites"])>
+						<div class="bname-info-block__website">
+						<table class="bname-info-block__website-table">
+						<tr class="bname-info-block__website-row">
+							<td class="bname-info-block__website-item" valign="top" width="100"><if(sizeof($args['bname_websites'])==1)>Website:<else>Websites:</if></td>
+							<td class="bname-info-block__website-item">
+							<for($i=0,$l=sizeof($args['bname_websites']); $i < $l; $i++)>
+								<a class="bname-info-block__website-link" href="http://{$args["bname_websites"][$i]}" rel="nofollow" target="_blank" itemprop="url">{$args["bname_websites"][$i]}</a><br>
+							</for>
+							</td>
+						</tr>
+						</table>
+						</div>
+					</if>
+					<if($args["bname_twitter"]||$args["bname_facebook"]||$args["bname_linkedin"]||$args["bname_google"]||$args["bname_youtube"])>
+						<div class="bname-info-block__socials">
+						<if($args["bname_twitter"])><a class="bname-info-block__socials-link" href="{$args["bname_twitter"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/twitter.png" width="28" height="28" alt="Twitter" title="Twitter"></a></if>
+						<if($args["bname_facebook"])><a class="bname-info-block__socials-link" href="{$args["bname_facebook"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/facebook.png" width="29" height="28" alt="Facebook" title="Facebook"></a></if>
+						<if($args["bname_linkedin"])><a class="bname-info-block__socials-link" href="{$args["bname_linkedin"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/linkedin.png" width="29" height="28" alt="LinkedIn" title="LinkedIn"></a></if>
+						<if($args["bname_youtube"])><a class="bname-info-block__socials-link" href="{$args["bname_youtube"]}" target="_blank" rel="nofollow"><img class="bname-info-block__socials-img" src="/img/socials/youtube.png" width="28" height="28" alt="Youtube" title="Youtube"></a></if>
+						</div>
+					</if>
+					<if($args["address"])>
+						<div class="bname-info-block__address">Address</div>
+						<table class="bname-info-block__address-table">
+						<tr class="bname-info-block__address-row">
+							<td class="bname-info-block__address-item" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+								<div class="bname-info-block__address-wrapper">
+									<span class="bname-info-block__address-street">{$args["address"]}</span>
+
+								</div>
+							</td>
+							<td style="padding-left:20px;" onmouseover="jQuery('#map-layer').prop('src','/img/map-layer2.png')"  onmouseout="jQuery('#map-layer').prop('src','/img/map-layer.png')">
+							</td>
+						</tr>
+						</table>
+					</if>
+					<if($args["address"] && $args['bname_landmarks'])>
+					{$args['bname_landmarks']}
+					</if>
+					
+					<br>
+					<h3 class="bname-info-block__phone">Customer Care Phone Numbers and Contacts</h3>
+					
+					<if($args["tollfree"])>
+						{$args['tollfree']}
+						<br>
+					</if>
+					
+					<if($args["phones"])>
+						{$args['phones']}
+						<br>
+					</if>
+					
+					<if($args["mobile"])>
+						{$args['mobile']}
+						<br>
+					</if>
+					
+					<if($args["fax"])>
+						{$args['fax']}
+						<br>
+					</if>
+					
+					<if($args["bname_desc"])>
+						<b class="subcaption">Description</b>
+						<div class="border" itemprop="description">
+							{$args["bname_desc"]}
+						</div>
+						<br>
+					</if>
+					<if($args["bname_info"])>
+						<b class="subcaption info">Additional info</b>
+						<div class="border">
+							{$args["bname_info"]}
+						</div>
+						<br>
+					</if>
+                    <div class="bname-info-block__btn-wrapper" submitcomp>
+					<a class="bname-info-block__btn" href="#" onclick="jQuery.ajax('/ajax.php?set-new-complaint-bname={$args['ID']}').done(function () {
+						location.href = '/new_complaint/';
+					}); return false">Submit a Complaint</a>
+                    </div>
+				</div>
+				<div class="bname-info-block__right">
+					<h5 class="bname-info-block__rating">Customer satisfaction rating</h5>
+					<div class="border-rating">
+						<if( $args['bname_complaints'] )>
+							<div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+								<meta itemprop="bestRating" content="100">
+								<meta itemprop="worstRating" content="0">
+								<meta itemprop="ratingValue" content="{$args['bname_rating']}">
+								<meta itemprop="reviewCount" content="{$args['bname_complaints']}">
+							</div>
+						</if>
+						
+						<div class="bname-info-block__rating-canvas"><canvas id="overall-satisfaction" width="150" height="150"></canvas><if($args['bname_complaints']==0)><span id="overall-satisfaction-percents" style="padding-top:0">N/A</span><else><span class="bname-info-block__rating-number" id="overall-satisfaction-percents">{$args['bname_rating']}<i class="bname-info-block__rating-percent">%</i></if></span></div>
+											
+						<div class="bname-info-block__statistics" onclick="location.href = '/statistics/{$args["bname_url"]}-s{$args["ID"]}'">
+							<img class="bname-info-block__statistics-img" src="/img/statistics.png"  alt="Statistics"> <a class="bname-info-block__statistics-view" href="/statistics/{$args["bname_url"]}-s{$args["ID"]}">View Statistics</a>
+						</div>
+						
+						<div class="bname-info-block__dots">
+							<div class="bname-info-block__statistics-name">Complaints</div>
+							<div class="bname-info-block__statistics-number">{$args['bname_complaints']}</div>
+							<div class="bname-info-block__statistics-dotted"></div>
+						</div>
+						
+						<div class="bname-info-block__dots">
+							<div class="bname-info-block__statistics-name">Pending</div>
+							<div class="bname-info-block__statistics-number">{$args['bname_responses_diff']}</div>
+							<div class="bname-info-block__statistics-dotted"></div>
+						</div>
+						
+						<div class="bname-info-block__dots">
+							<div class="bname-info-block__statistics-name">Resolved</div>
+							<div class="bname-info-block__statistics-number company-info__statistics-number--green">{$args['bname_resolved']}</div>
+							<div class="bname-info-block__statistics-dotted"></div>
+						</div>
+					</div>
+					<if($args["bname_rating"]>=70)>
+					<div class="bname-info-block__alert bname-info-block__alert_star">
+						<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/star.png" alt="Awesome"></div>
+						<div class="bname-info-block__alert-text">Awesome! This company provides an awesome customer support service, responds to our every notification, and resolves most of the user complaints.</div>
+					</div>
+					</if>
+					
+					<if($args["bname_rating"]>=40 && $args["bname_rating"] < 70)>
+					<div class="bname-info-block__alert bname-info-block__alert_finger">
+						<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/finger.png" alt="Good"></div>
+						<div class="bname-info-block__alert-text">Good news! We have a good connection with the company and they're good at resolving user complaints.</div>
+					</div>
+					</if>
+					
+					<if($args["bname_rating"]>=10 && $args["bname_rating"] < 40)>
+					<div class="bname-info-block__alert bname-info-block__alert_load">
+						<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/load.png" alt="Load"></div>
+						<div class="bname-info-block__alert-text">So far so good - The company responded to our notifications and is working on resolving complaints.</div>
+					</div>
+					</if>
+					
+					<if($args["bname_rating"] < 10 && $args['bname_resolved']==0)>
+						<if($args['bname_complaints']==0)>
+						<div class="bname-info-block__alert bname-info-block__alert_no-complaints">
+							<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/nocomplaints.png" alt="No complaints"></div>
+							<div class="bname-info-block__alert-text">There are no complaints against this company so far</div>
+						</div>
+											<else>
+						<div class="bname-info-block__alert bname-info-block__alert_alert">
+							<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/alert.png" alt="Alert"></div>
+							<div class="bname-info-block__alert-text">Oops! We're trying to establish a communication with the {$args["bname_name"]}, but apparently they're not interested in resolving complaints</div>
+						</div>
+						</if>
+					</if>
+					
+					<if($args["bname_rating"] < 10 && $args['bname_resolved']!=0)>
+					<div class="bname-info-block__alert bname-info-block__alert_finger-down">
+						<div class="bname-info-block__alert-wrapper"><img class="bname-info-block__alert_img" src="/img/bname-alert/finger_down.png" alt="Bad"></div>
+						<div class="bname-info-block__alert-text">Bad news - Even though we've managed to contact the company, they're quite slow at resolving complaints.</div>
+					</div>
+					</if>	
+					<if($args["workingHours"])>
+					<br>
+					<b class="subcaption hours">Working hours</b>
+					<table class="working-hours">
+					<foreach( $args["workingHours"] as $day => $info )>						
+						<tr <if( $info["type"] == "closed" )>class="closed"</if>>
+							<td>{$day}</td>
+							<if( $info["type"] == "open" )>
+								<td itemprop="openingHoursSpecification" itemscope itemtype="http://schema.org/OpeningHoursSpecification">
+                                    <meta itemprop="dayOfWeek" content="http://schema.org/{$info['dayName']}">
+                                    
+                                    <if( $info['is24'] )>
+                                        <meta itemprop="opens" content="00:00:00">
+                                        <meta itemprop="closes" content="23:59:00">
+                                    <else>
+                                        <meta itemprop="opens" content="{$info['startPeriod24']}">
+                                        <meta itemprop="closes" content="{$info['endPeriod24']}">
+                                    </if>
+                                    
+									{$info['startHour']}:{$info['startMinute']} {$info['startAbbreviation']} - {$info['endHour']}:{$info['endMinute']} {$info['endAbbreviation']}
+								
+								</td>
+							<else>
+								<td>
+									Closed
+								</td>
+							</if>
+						</tr>
+					</foreach>
+					</table>
+					{$args["bname_workdays"]}
+					</if>
+					
+				</div>
+			</div>
+			
+			<script>
+				fw.push(function () {
+					drawMultiRadiantCircle('#overall-satisfaction', 75, 75, 70, {$args['bname_rating']});
+				});
+			</script>
+			
+			<if($base->isAdmin)>
+			<div style="background-color:#eff0f0;padding:12px 25px;margin-bottom:25px;min-height:15px;line-height:32px">
+				<div style="float:right;">
+				<if($base->isAdmin && (!$base->adminRole || isset($base->adminRole['bname'])))>
+					<img src="/img/edit.png" style="vertical-align:middle;" />&nbsp;<a href="/?editbname={$args["ID"]}">Edit</a>
+					&nbsp;&nbsp;
+				</if>
+				<if($base->isAdmin && !$base->adminRole)>
+					<a href="/ajax.php?send_bname_to_facebook={$args["ID"]}"><img src="/img/send-fb.png" style="vertical-align:middle" /></a>
+					&nbsp;&nbsp;
+					<a href="/ajax.php?send_bname_to_twitter={$args["ID"]}"><img src="/img/send-tw.png" style="vertical-align:middle" /></a>
+					&nbsp;
+				</if>
+				</div>
+				
+			</div>
+			</if>
+			
+
+			

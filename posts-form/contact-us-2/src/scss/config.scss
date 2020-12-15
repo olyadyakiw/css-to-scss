@@ -1,0 +1,26 @@
+@import 'functions.scss';
+
+$config-data: (
+    round-forms: (
+        caption: (
+            font-size: 24px,
+            color: black,
+            space-bottom: 36px,
+        ),
+        textarea: (
+            line-height:24px,
+        )
+    )
+);
+
+@function config( $stringWithDots )
+{
+    $keys: explode( ".", $stringWithDots );
+    $map: $config-data;
+    
+    @each $key in $keys {
+        $map: map-get( $map, $key );
+    }
+    
+    @return $map;
+}

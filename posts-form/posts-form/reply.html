@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/default-forms.css">
+</head>
+
+<body>
+
+  <div class="page-content">
+    <div class="page-content__cols">
+      <div class="page-content__left">
+
+        <form class="default-forms__reply">
+          <div class="default-forms__reply-error">
+            Please type in the confirmation code! <br>
+            Text required!
+          </div>
+          <textarea class="default-forms__reply-textarea" placeholder="Post your reply here."></textarea>
+          <div class="default-forms__captcha default-forms__captcha-comments">
+            <img class="default-forms__captcha-img" src="img/captcha.jpg" alt="">
+            <img class="default-forms__arrow" src="img/arrow1.png" alt="">
+            <input class="default-forms__captcha-input" type="text">
+          </div>
+          <div class="default-forms__reply-buttons">
+            <button class="default-forms__submit default-forms__reply-reply">Reply</button>
+            <button class="default-forms__submit default-forms__reply-cancel">Cancel</button>
+          </div>
+        </form>
+
+      </div>
+
+        
+      <div class="page-content__right"></div>
+    </div>
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+
+</html>
