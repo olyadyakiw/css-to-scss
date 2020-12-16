@@ -1,0 +1,47 @@
+<includeCSS(blocks/company-phone)>
+<link rel="stylesheet" href="../css/bname-info-block.css">
+<div class="bname-info-block__phones {$args['rows_type']}">
+    <for($i=0,$rows=&$args['rows'];$i<sizeof($rows);$i++)>
+    <if($rows[$i]['title'])>
+    <div class="bname-info-block__phones-header" hdr>
+        <div class="bname-info-block__phones-phone--first">{$rows[$i]['title']}</div>
+        <div class="bname-info-block__phones-row"></div>
+    </div>
+    </if>
+    <div class="bname-info-block__phones-content" rvs <if($i>10)>style="display:none"</if>>
+        <div class="bname-info-block__phones-phone" style="width:80px">{$rows[$i]['title']}</div>
+        <div class="bname-info-block__phones-wrapper">
+            <if($args['rows_type']!='fax')>
+            <a class="bname-info-block__phones-link" href="tel:{$rows[$i]['phone']}"><span class="bname-info-block__phones-number" <if($args['schema'])>itemprop="{$args['schema']}"</if>>{$rows[$i]['phone']}</span></a>
+            <else>
+            <span style="color:black" <if($args['schema'])>itemprop="{$args['schema']}"</if>>{$rows[$i]['phone']}</span>
+            </if>
+            &nbsp;<span class="bname-info-block__phones-space">{$rows[$i]['alt']}</span>
+        </div>
+        <div class="bname-info-block__call">
+            <div class="bname-info-block__call-wrapper">
+              <div class="bname-info-block__call-button" onclick="rate_phone(this, 116068, 'phone', '919705807551',1);return false;" title="I was able to reach the company using this phone number">
+                <img src="../img/up.png" alt="up" class="bname-info-block__call-img">
+              </div>
+              <div class="bname-info-block__call-up">0</div>
+              <div class="bname-info-block__call-button" onclick="rate_phone(this, 116068, 'phone', '919705807551',-1);return false;" title="I couldn't reach the company using this phone number">
+                <img src="../img/down.png" alt="down" class="bname-info-block__call-img">
+              </div>
+              <div class="bname-info-block__call-down">0</div>
+            </div>
+          </div>
+    </div>
+    </for>
+</div>
+<if( sizeof($args['rows']) > 10 )>
+    <div class="company-phones-more"><a href="#" style="color:#105cb6;font-weight:normal" onclick="
+    if( jQuery(this).html()=='View more' )
+    {
+        jQuery('div.phones.{$args['rows_type']} div').removeAttr('style');
+        jQuery(this).html('Less');
+    }else{
+        jQuery('div.phones.{$args['rows_type']} div[rvs]').slice(10).attr('style','display:none');
+        jQuery(this).html('View more');
+    }
+    return false">View more</a></div>
+</if>
