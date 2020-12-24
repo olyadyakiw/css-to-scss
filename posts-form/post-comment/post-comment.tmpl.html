@@ -1,0 +1,150 @@
+<link rel="stylesheet" href="../css/default-forms.css?">
+
+<script src="/scripts/jquery.fileupload.js"></script>
+
+	<h4 class="default-forms__title_dark">
+		Post your Comment
+	</h4>
+	
+<div id="addcomment{$args['complaintID']}" class="default-forms__inner default-forms__inner-comments">
+<form class="default-forms__form" method="post" action="/ajax.php?addcomment={$args['complaintID']}">
+	<input type=hidden name="is_update" value="0">
+	<input type=hidden name="post_reply" value="0">
+    <input type=hidden name="spititout" value="Submit">
+    <input type=hidden name="stars" value=""/>
+	<input type=hidden name="_no_rating" value="1">
+    <ul class="default-forms__errors errors"></ul>
+	 <div class="default-forms__type-comment" style="text-align:center;display:none;">
+		<b class="default-forms__type-comment_title">I want to submit</b>
+		<input class="default-forms__type-comment_complaint" type="radio" name="score" value="D"
+		  style="vertical-align:bottom;margin-left:20px;"> Complaint
+		<input class="default-forms__type-comment_positive" type="radio" name="score" value="A"
+		  style="vertical-align:bottom;margin-left:15px;"> Positive
+		Review
+		<input class="default-forms__type-comment_neutral" type="radio" name="score" value="N" checked
+		  style="vertical-align:bottom;margin-left:15px;">
+		Neutral Comment
+	 </div>
+
+    <div class="default-forms__comments-textarea_wrapper">
+		<if($base->isAdmin && (!$base->adminRole))>
+    		<a href="#" onclick="
+    			$.post('{$MainSiteUrl}/ajax.php', {grammer_text: $(this).parent().find('textarea').val()}, function(data) {
+    				$(this).parent().find('textarea').val(data);
+    			}.bind(this));
+    			return false;
+    		">Grammar</a> |
+    		<a href="#" onclick="
+    			$.post('{$MainSiteUrl}/ajax.php', {sentence_text: $(this).parent().find('textarea').val()}, function(data) {
+    				$(this).parent().find('textarea').val(data);
+    			}.bind(this));
+    			return false;
+    		">Sentence case</a>
+    		<br/>
+    	</if>
+    	<textarea class="default-forms__comments-textarea" name="text" placeholder="Please provide as much information as possible..."></textarea>
+	</div>
+
+    <div>
+		<div class="add-image-block">
+			<input type="file" name="file" style="position:absolute;margin-left:-5000px;">
+			<div class="default-forms__photo default-forms__photo-comments">
+				<a class="default-forms__photo-link" href="#" onclick="$(this).parent().prev().click();return false;">Add Image</a>
+			</div>
+			<div class="default-forms__progress" style="display: none" id="user-uploads-progress">
+				<div class="default-forms__progress-inner"></div>
+		</div>
+		</div>
+		<div class="image-list files"></div>
+	 </div>
+	 
+    <div class="default-forms__captcha">
+		<if($config['captcha']['type']=='solvemedia')>
+			<script type="text/javascript" src="//api.solvemedia.com/papi/challenge.script?k={$config['captcha']['solvemedia']['ckey']}"></script>
+		<else>
+			<img class="default-forms__captcha-img" src="/captcha/captcha.php?{$args['rand']}">
+			<img class="default-forms__arrow" src="/img/arrow1.png"  width="23" height="16" />
+			<input class="default-forms__captcha-input" type=text name="code" id="code">
+		</if>
+    </div>
+	 
+	 <div class="default-forms__submit-wrapper">
+		<a class="default-forms__submit" href="#" id="main-btn-submit" onclick="$(this).closest('form').submit(); return false">Submit</a>
+	</div>
+
+</form>
+</div>
+
+<script>
+fw.push(function () {
+	var rootBlock = $( '#addcomment{$args["complaintID"]}' );
+	
+	// bind ratting event handlers
+	rootBlock.find( "a[data-ratting]" ).click( function () {
+		var val = $(this).attr( "data-ratting" );
+		
+		rootBlock.find( "input[name=stars]" ).val( val );
+		rootBlock.find( "input[name='_no_rating']" ).prop( "checked", false );
+		
+		return false;
+	}).mouseover( function () {
+		var val = $(this).attr( "data-ratting" );
+		
+		rootBlock.find( ".stars-big" ).attr( "class", "stars-big stars-big-" + val );
+	}).mouseout( function () {
+		var formRatting = rootBlock.find( "input[name=stars]" ).val();
+		
+		rootBlock.find( ".stars-big" ).attr( "class", "stars-big stars-big-" + formRatting );
+		rootBlock.find( "input[name='_no_rating']" ).prop( "checked", formRatting.length && formRatting > 0 ? false : true );
+	});
+	
+	rootBlock.find( "input[name=_no_rating]" ).click( function () {
+		rootBlock.find( "input[name=stars]" ).val( "" );
+		rootBlock.find( ".stars-big" ).attr( "class", "stars-big" );
+	});
+	
+	// submit button event
+	rootBlock.find( "form" ).on('submit', addcomment);
+	
+	// upload button event
+	rootBlock.find( "input[name=file]" ).fileupload({
+		url: '{$MainSiteUrl}/ajax.php?fileupload=comment',
+		dataType: 'json',
+		send: function (e, data) {
+
+		},
+		done: function (e, data) {
+			data.donefinished(data);
+		},
+		donefinished: function(data) {
+			rootBlock.find('.progress').fadeOut('slow');
+			if (typeof(data.result.error) != 'undefined') {
+				alert(data.result.error);
+			} else {
+				var div = $('<div class="del" title="Delete" style="display:none"></div>');
+				div.attr('id', data.result.id);
+				div.css('background-image','url('+data.result.src+')');
+				div.on('click', function(){
+					$.getJSON('{$MainSiteUrl}/ajax.php?fileupload=comment&delete='+this.id)
+						.done(function(data) {
+							if (typeof(data.done) != 'undefined') {
+							   $('#'+data.id).fadeOut('slow', function() {
+								   $('#'+data.id).remove();
+							   });
+							}
+						});
+				});
+				div.appendTo( rootBlock.find( ".files" ) );
+				rootBlock.find( ".files" ).find('div:hidden').fadeIn('slow');
+			}
+		},
+		fail: function() {
+			alert("System error! Can't upload file!");
+		},
+		progressall: function (e, data) {
+			var progress = parseInt(data.loaded / data.total * 100, 10);
+			rootBlock.find('.progress').show().css( 'width', progress + '%' );
+		}
+	});
+});
+</script>

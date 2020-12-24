@@ -1,0 +1,176 @@
+<div id="c{$args['comment_id']}" style="border:1px solid {$args['border-color']};margin:10px 0" 
+	onmouseover="jQuery('#c{$args['comment_id']} .like-buttons').show();" onmouseout="jQuery('#c{$args['comment_id']} .like-buttons').hide();"
+	itemprop="comment" itemscope itemtype="https://schema.org/Comment">
+    <table class="w100">
+	<tr>
+	    <td class="comments">
+		<div class="small user-info" itemprop="author" itemscope itemtype="https://schema.org/Person">
+				<meta itemprop="name" content="<if( $args['uid'] && $args['bnuLink'] )>{$args['bnuName']} Customer Care<else>{$args['comment_user']}</if>">
+				<if( $args['comment_time'] )>
+					<meta itemprop="dateCreated" content="{$args['dateCreated']}">
+				</if>
+				<if($base->isAdmin)>
+				<input type="checkbox" name="selectComments" value="{$args['comment_id']}" style="margin-top:5px; vertical-align:middle">
+				</if>
+	    	    <if($args['uid'])>
+		    		<div class="avatar">
+						<if($args['img'])>
+						<div class="profimgcont"><div style="background-image:url('{$args['img']}');"></div></div>
+						<else>
+						<div class="bname_no_logo s20 {$args['no_logo_alpha_style']}">{$args['no_logo_alpha']}</div>
+						</if>
+					</div>
+					<div>
+	    	    	<if($args['bnuLink'] && !$base->isAdmin)>
+		    			<a href="{$args['bnuLink']}" itemprop="url" class="comment-profile">{$args['bnuName']} Customer Care</a> <img src="/img/user-ok.png" class="user-ok" title="Verified" alt="Verified">
+                    <else>
+		    			<a href="{$MainSiteUrl}/profile-{$args['uid']}" itemprop="url" class="comment-profile">{$args['comment_user']}</a>
+		    		</if>
+					&nbsp;<span class="time">{$args['comment_time']}</span>
+					</div>
+	    	    <else>
+					<div>
+		    		{$args['comment_user']} 
+		    		<img src="/img/mail.gif" width="14" height="11" style="vertical-align:top;margin-top:1px"> 
+	    			<a href="{$args['sendmail']}" rel="nofollow">Send email</a>
+					</div>
+	    	    </if> 
+	    	    <div>{$args['email_confirm']} {$args['ip']} {$args['admin_del']} <!-- <span style="padding-left:20px;font-weight:bold;">{$args['company_name']}&nbsp;</span> {$args['location_str']}--></div>
+				<div>
+					<if($base->isAdmin)>
+					<div style="float:right;padding: 4px 0 0 10px;">
+							<input type="checkbox" style="vertical-align:middle;margin-right:20px;" class="chk" id="chk{$args['comment_id']}" onchange="
+							this.disabled = true;
+							jQuery.getJSON('/ajax.php?check_comment_admin={$args['comment_id']}&type=comment&check='+(this.checked ? 1 : 0), function(data) {
+								jQuery('#chk{$args['comment_id']}').get(0).disabled = false;
+								jQuery('#chkCnt').html(data.total);
+								jQuery('#chkCntComplaint').html(data.cc+(data.ccl?' <span title=\'Last 60 days (total/uniq)\'>('+data.ccl+'/'+data.cclu+')</span>':''));
+								jQuery('#chkCntComment').html(data.cp+(data.cpl?' <span title=\'Last 60 days (total/uniq)\'>('+data.cpl+'/'+data.cplu+')</span>':''));
+							});" <if( $base->session["check_comment_admin_ses"]["comment"][ $args['comment_id'] ] )>checked</if> />
+					</div>
+					</if>
+					<if($args['uid'] && $args['bnuID'] && $args['company_bname_id'] && $args['company_bname_id']==$args['bnuID'])><div class="verified-support">Verified Support</div></if>
+					<if($args['is_best'])><div class="best-post">Best Review</div></if>
+				<if(!$base->isAdmin && $args['uid'] && $args['uid']!=$base->session['user']['id'])>
+					<span style="display:none" class="like-buttons">
+						<a <if($args['btn-like']!="like")>style="display:none"</if> href="#" onclick="
+							likeID = {$args['comment_id']};
+							<if(!isset($base->session['user']))>
+								UserLogin.OnSuccess = clickLike;
+								UserLogin.Show();
+							<else>
+								clickLike();
+							</if>
+							return false;" class="btn-like" title="I think this review is helpful"></a>
+						<a href="#" <if($args['btn-like']!="unlike")>style="display:none"</if> onclick="
+							likeID = {$args['comment_id']};
+							<if(!isset($base->session['user']))>
+								UserLogin.OnSuccess = clickUnLike;
+								UserLogin.Show();
+							<else>
+								clickUnLike();
+							</if>
+							return false;" class="btn-unlike"></a>
+					</span>
+					<div class="like-count">{$args['post_like']}</div>
+				</if>
+				</div>
+	    </div>
+	    </td>
+	</tr>
+	<tr>
+	    <td><div style="position:absolute;margin:-8px 0 0 10px"><img src="/img/pointer-down.png" alt=""/></div></td>
+	</tr>
+	<tr>
+	    <td class="compl-text">
+	    <div  style="padding:15px 10px 5px 10px;" itemprop="text" >
+			{$args['comment_text']}
+			
+			<if( $args["isComplaint"] && $args['uid'] )>
+				<div class="small" style="text-align:right;padding-right:5px;">
+					<a href="#" onclick="<if($base->session['user']['id'])>
+						return replyComment.show(jQuery(this).parent(), '{$args['comment_id']}', '{$args['is_captcha']}');
+					<else>
+						UserLogin.OnSuccess=function(){show_gray_bg();location.reload()};
+						UserLogin.Show();
+						return false;
+					</if>
+					">Reply</a>
+					<!-- <if($args['uid']!=$base->session['user']['id'])
+					<div class="profile-navigation-parent report-this-post"><span style="color:#ef1c23;font-weight:bold;font-size:12px;">!</span>Report this post
+						<div class='profile-navigation'>
+							<ul>
+								<li><a href="#" onclick="return PostReport.offensive({$args['ID']})">This post is offensive</a></li>
+								<li><a href="#" onclick="return PostReport.spam({$args['ID']})">This post is spam</a></li>
+							</ul>
+						</div> 
+					</div>
+					</if> -->
+
+
+					<link rel="stylesheet" href="../css/default-forms.css">
+
+					<div class="default-forms__reply" replyCommentData postID="' + postID + '" isCaptcha="' + isCaptcha + '">
+						<div class="default-forms__errors red"></div>
+						<textarea class="default-forms__reply-textarea" placeholder="Post your reply here."></textarea>
+
+						<div class="default-forms__captcha">
+							<if($config['captcha']['type']=='solvemedia')>
+								<script type="text/javascript" src="//api.solvemedia.com/papi/challenge.script?k={$config['captcha']['solvemedia']['ckey']}"></script>
+							<else>
+								<img class="default-forms__captcha-img" src="/captcha/captcha.php?{$args['rand']}">
+								<img class="default-forms__arrow" src="/img/arrow1.png"  width="23" height="16" />
+								<input class="default-forms__captcha-input" type=text name="code" id="code">
+							</if>
+						 </div>
+						 
+						 <div class="default-forms__submit-wrapper">
+							<a href="#" class="default-forms__submit default-forms__reply-reply" onclick="return replyComment.submit()" style="color: #fff;">Reply</a>
+							<a href="#" class="default-forms__submit default-forms__reply-cancel" onclick="return replyComment.cancel()" style="color: #fff;">Cancel</a>
+						</div>
+				  </div>
+				  
+
+				</div>
+			</if>
+			<if($args['replies'])>
+				<foreach($args['replies'] as $reply)>
+					<if( $reply['userID']==$reply['complaintAuthorID'])>
+					<div class="resolved-text author" id="reply-{$reply['ID']}">
+						<span><a href="/profile-{$reply['userID']}">{$reply['userDisplayname']}'s</a> [Complaint's author] reply, {$reply['dateCreate']} {$reply['admin']}</span><br>
+					<elseif( $reply['bnameID'] )>
+						<if($reply['bnameID']==$reply['complaintBnameID'])>
+							<div class="resolved-text support" id="reply-{$reply['ID']}">
+								<span><a href="/profile-{$reply['userID']}">{$reply['bname_name']} Customer Care</a>'s response, {$reply['dateCreate']} <div class="verified-support" style="margin-top:3px;">Verified Support</div> {$reply['admin']}</span><br>
+						<else>
+							<div class="resolved-text user" id="reply-{$reply['ID']}">
+								<span><a href="/profile-{$reply['userID']}">{$reply['bname_name']} Customer Care</a>'s response, {$reply['dateCreate']} {$reply['admin']}</span><br>
+						</if>
+					<else>
+					<div class="resolved-text user" id="reply-{$reply['ID']}">
+						<span><a href="/profile-{$reply['userID']}">{$reply['userDisplayname']}</a>'s reply, {$reply['dateCreate']} {$reply['admin']}</span><br>
+					</if>
+					<div text>{$reply['text']}</div>
+				</div>
+				</for>
+			</if>
+		</div>
+		<if($args["post_resolved_text"])>
+    		<div style="padding:10px;background-color:#F5F4F3;">
+    			<div style="padding-bottom:5px"><h4><span style="color:#008000;font-size:14px;font-weight:bold;">Comment marked as Resolved</span></h4></div>
+     			{$args["post_resolved_text"]}
+      		</div>
+		</if>
+	    </td>
+	</tr>
+    </table>
+</div>
+<if(!empty($args['nr']) && !($args['nr'] % 4))>
+	<if($base->adsense2["inside-mid"])>
+	<div class="in-ads comment">
+		<header>ADVERTISEMENT</header>
+		<code>{ad2:inside-mid}</code>
+	</div>
+	</if>
+</if>
+

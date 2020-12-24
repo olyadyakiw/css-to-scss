@@ -1,158 +1,3 @@
-@import "config.scss";
-
-body {
-   font-weight: 400;
-   font-family: "Roboto", sans-serif;
-   background: #eff0f0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-   margin: 0;
-   padding: 0;
-   font-weight: 400;
-}
-
-a {
-   color: #105cb6;
-   text-decoration: none;
-   cursor: pointer;
-}
-
-.page-content {
-   max-width: 1160px;
-   margin: 0 auto;
-   padding: 0 50px;
-   padding-top: 20px;
-   &__cols {
-      display: flex;
-      flex-direction: row;
-      max-width: 1120px;
-      width: 100%;
-   }
-   &__left {
-      max-width: 780px;
-      flex-grow: 1;
-      &.page-content__hide-right {
-         max-width: none;
-      }
-   }
-   &__right {
-      width: 340px;
-      min-width: 340px;
-      padding-left: 20px;
-   }
-   &__hide-right + .page-content__right {
-      display: none;
-   }
-}
-
-@media only screen and (max-width: 1200px) {
-   .page-content {
-      padding: 0 20px;
-   }
-}
-@media only screen and (max-width: 780px) {
-   .page-content {
-      &__cols {
-         flex-direction: column;
-      }
-      &__left,
-      &__right {
-         display: block;
-         width: 100%;
-         max-width: 100%;
-         padding-left: 0;
-         min-width: 0;
-      }
-   }
-}
-
-.block-header__name {
-   font-size: 22px;
-   font-weight: 700;
-}
-
-.block-header_contact-us {
-   color: #000;
-   padding: 0 0 36px;
-   margin: 0;
-   font-size: 22px;
-}
-
-.form-block {
-   width: 100%;
-   max-width: 400px;
-   margin: 0 auto;
-}
-
-body {
-   font-weight: 400;
-   font-family: "Roboto", sans-serif;
-   background: #eff0f0;
-}
-
-h1,h2,h3,h4,h5,h6 {
-   margin: 0;
-   padding: 0;
-   font-weight: 400;
-}
-
-a {
-   color: #105cb6;
-   text-decoration: none;
-   cursor: pointer;
-}
-
-.page-content {
-   max-width: 1160px;
-   margin: 0 auto;
-   padding: 0 50px;
-   padding-top: 20px;
-   &__cols {
-      display: flex;
-      flex-direction: row;
-      max-width: 1120px;
-      width: 100%;
-   }
-   &__left {
-      max-width: 780px;
-      flex-grow: 1;
-   }
-   &__right {
-      width: 340px;
-      min-width: 340px;
-      padding-left: 20px;
-   }
-}
-
-@media only screen and (max-width: 1200px) {
-   .page-content {
-       padding: 0 20px;
-   }
-}
-@media only screen and (max-width: 780px) {
-   .page-content {
-      &__cols {
-         flex-direction: column;
-      }
-      &__left,
-      &__right {
-         display: block;
-         width: 100%;
-         max-width: 100%;
-         padding-left: 0;
-         min-width: 0;
-      }
-   }
-}
-
-
-
 .default-forms {
    position: relative;
    padding: 30px 40px;
@@ -171,6 +16,34 @@ a {
       background-color: #f8f8f8;
       padding: 34px 20px 30px 10px;
       color: #000;
+   }
+   &__errors {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #c00;
+      line-height: 24px;
+      text-align: left;
+      font-size: 16px;
+      li {
+         padding-bottom: 10px;
+      }
+   }
+   &__type-comment {
+      text-align: center;
+      display: none;
+   }
+   &__type-comment_complaint {
+      vertical-align: bottom;
+      margin-left: 20px;
+   }
+   &__type-comment_positive {
+      vertical-align: bottom;
+      margin-left: 15px;
+   }
+   &__type-comment_neutral {
+      vertical-align: bottom;
+      margin-left: 15px;
    }
    &__label {
       display: inline-block;
@@ -260,7 +133,7 @@ a {
          position: absolute;
          width: 11px;
          height: 21px;
-         background-image: url(../fw/tip-arrow.png);
+         background-image: url(../img/tip-arrow.png);
          margin: -5px 0 0 -30px;
       }
    }
@@ -301,7 +174,7 @@ a {
       display: block;
       font-weight: 700;
       padding: 0 5px 5px 20px;
-      background: url(../fw/check-gray.png) no-repeat 0 1px;
+      background: url(../img/check-gray.png) no-repeat 0 1px;
    }
    &__tip-text {
       font-weight: 400;
@@ -329,7 +202,7 @@ a {
       padding: 18px 18px 18px 62px;
       display: block;
       width: auto;
-      background: url(../fw/foto.png) 10px 50% no-repeat #eff0f0;
+      background: url(../img/foto.png) 10px 50% no-repeat #eff0f0;
       font-size: 14px;
    }
    &__captcha {
@@ -349,6 +222,10 @@ a {
       border: 1px solid #cccccc;
       border-top: 1px solid #9a9a9a;
       padding: 4px;
+   }
+   &__buttons {
+      text-align: center;
+      padding: 20px 20px 0;
    }
    &__submit {
       background-color: #ff8000;
@@ -392,7 +269,7 @@ a {
       width: 20px;
       height: 20px;
       z-index: 12;
-      background: url(../fw/modal_close.png) no-repeat;
+      background: url(../img/modal_close.png) no-repeat;
    }
    &__categories-title {
       background-color: #64af37;
@@ -495,8 +372,52 @@ a {
       margin-top: 0;
       margin-bottom: 30px;
    }
+   &__progress {
+      padding: 1px;
+      border: 1px solid #aaaaaa;
+      max-width: 300px;
+      & > div {
+         background: #64af37;
+         height: 4px;
+      }
+   }
+   &__image-list {
+      & > div {
+         display: inline-block;
+         margin: 0 5px 5px 0;
+         border: 2px solid #fff;
+         box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+         border-radius: 3px;
+         position: relative;
+         background-size: cover;
+         background-position: 50% 50%;
+         background-repeat: no-repeat;
+         width: 110px;
+         height: 90px;
+      }
+      & > div.del {
+         &:hover::after {
+            display: block;
+         }
+         &::after {
+            content: attr(title);
+            display: none;
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #b9483e;
+            opacity: 0.7;
+            font-size: 10px;
+            padding: 10px;
+            text-align: center;
+            color: white;
+         }
+      }
+   }
    &__submit-comments {
       padding: 10px 25px;
+      display: inline-block;
    }
    &__captcha-comments {
       margin-bottom: 20px;
@@ -640,7 +561,7 @@ a {
          max-width: none;
          width: 90%;
       }
-      &__photo-link{
+      &__photo-link {
          padding-left: 5px;
       }
    }
