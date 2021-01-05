@@ -1,0 +1,27 @@
+@import 'green-dialogs-base.scss';
+
+.green-dialogs {
+   &__view-pictures {
+      background-color: #fff;
+      padding: 10px;
+      box-sizing: border-box;
+      max-width: 1146px;
+      position: absolute;
+      z-index: 120;
+      display: none;
+   }
+   &__view-pictures-inner {
+      padding: 15px;
+      text-align: center;
+   }
+   &__page-links {
+      text-align: center;
+      padding-top: 10px;
+      width: 100%;
+      margin: 15px;
+      margin-right: 0;
+      display: inline-block;
+      overflow: hidden;
+      vertical-align: top;
+   }
+}

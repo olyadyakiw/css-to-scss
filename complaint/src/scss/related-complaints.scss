@@ -1,0 +1,31 @@
+.related-complaints {
+   &__title {
+      font-size: 15px;
+      color: #999;
+      margin: 0;
+      padding: 10px 0;
+      font-weight: 700;
+   }
+   &__row {
+      padding: 8px 0;
+      border-bottom: 1px dashed #ccc;
+      font-size: 14px;
+   }
+   &__item {
+      color: green;
+      font-weight: 700;
+   }
+   &__number {
+      color: #999;
+      font-size: 13px;
+      padding: 0 0 6px;
+   }
+   &__view-all {
+      text-align: center;
+      padding: 15px 0;
+   }
+   &__view-all_link {
+      font-size: 14px;
+      color: #128705;
+   }
+}

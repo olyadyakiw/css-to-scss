@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- npm install webp-converter@2.2.3 --save-dev -->
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <link rel="stylesheet" href="css/libs.min.css" />
+   <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet">
+   <link rel="stylesheet" href="css/style.min.css" />
+   <title>Document</title>
+</head>
+
+<body>
+
+   <h3 class="related-complaints__title">Related Complaints</h3>
+   <!-- {$args['morecomplrows']} -->
+
+   <div class="related-complaints__row">
+      <if($args["isResolved"]>0)>
+         <span class="related-complaints__item">[Resolved]</span>&nbsp;
+      <else>
+         <if($args['haveResponse'])><span class="related-complaints__item">[Has Response]</span>&nbsp;</if>
+      </if>
+      <a class="related-complaints__link" href="{$args['compl_ripped_link']}">{$args['complaint_company']} - {$args['compl_subject']}</a>
+      <if($args['compl_comments'])>
+         &nbsp;<span class='related-complaints__number'>{$args['compl_comments']}</span>
+      </if>
+   </div>
+
+   <div class="related-complaints__view-all"">
+      <a class="related-complaints__view-all_link" href="{$args['company_ripped_link']}">View all {$args["countComplaints"]}
+         {$args['complaint_company']} Reviews</a>
+   </div>
+
+   <!-- <div class="page-content">
+      <div class="page-content__cols">
+         <div class="page-content__left">
+            <h3 class="related-complaints__title">Related Complaints</h3>
+
+            <div class="related-complaints__row">
+               <span class="related-complaints__item">[Resolved]</span>&nbsp;
+               <a href="#" class="related-complaints__link"> Star Utsav - Restart ssshhh phir koi hai</a>
+               <span class="related-complaints__number">11</span>
+            </div>
+
+            <div class="related-complaints__row">
+               <span class="related-complaints__item">[Has Response]</span>&nbsp;
+               <a href="#" class="related-complaints__link"> Star Utsav - Restart ssshhh phir koi hai</a>
+               <span class="related-complaints__number">10</span>
+            </div>
+            <div class="related-complaints__view-all">
+               <a class="related-complaints__view-all_link" href="#">View all 38 Reviews</a>
+            </div>
+         </div>
+      </div>
+   </div> -->
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+   <script src="js/main.js"></script>
+   <script src="js/main.min.js"></script>
+</body>
+
+</html>

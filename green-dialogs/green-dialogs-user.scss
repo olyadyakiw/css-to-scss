@@ -1,0 +1,124 @@
+@import 'green-dialogs-base.scss';
+
+.green-dialogs {
+   &__user {
+      position: relative;
+      background: #fff;
+      padding: 10px;
+      max-width: 450px;
+      box-sizing: border-box;
+   }
+   &__note {
+      color: #666;
+      text-align: center;
+      border-bottom: 1px dotted #666;
+      padding: 15px;
+   }
+   &__note-link {
+      font-weight: 700;
+   }
+   &__form-inner {
+      margin: 20px 0 0;
+   }
+   &__registration-errors {
+      padding: 16px 40px;
+      list-style-type: square;
+      background: #ffd7d7;
+      display: block;
+      color: red;
+   }
+   &__step-1 {
+      overflow: hidden;
+   }
+   &__connect {
+      padding: 0 40px 20px;
+      color: #666;
+      vertical-align: top;
+      max-width: 295px;
+      text-align: center;
+      width: 100%;
+   }
+   &__connect-label {
+      vertical-align: top;
+      font-weight: 400;
+      padding-top: 3px;
+      width: 100px;
+      display: inline-block;
+      margin-top: 6px;
+   }
+   &__connect-icons {
+      display: inline-block;
+   }
+   &__connect-images {
+      width: 32px;
+      height: 32px;
+   }
+   &__or {
+      line-height: 30px;
+      font-size: 13px;
+      vertical-align: top;
+   }
+   &__email-wrapper,
+   &__password {
+      margin-bottom: 10px;
+      padding: 0 40px;
+   }
+   &__email-label,
+   &__password-label {
+      text-align: right;
+      padding-right: 20px;
+      width: 90px;
+      display: inline-block;
+      font-weight: 700;
+      margin-top: 6px;
+   }
+   &__email-input,
+   &__password-input {
+      margin: 0;
+      max-width: 200px;
+      width: 100%;
+      padding: 5px;
+      border-color: #ccc;
+      &:focus {
+         outline: 0;
+         border-color: #9acb53;
+         box-shadow: 0 0 3px #9acb53;
+      }
+   }
+   &__password-input {
+      max-width: 140px;
+   }
+   &__password-input_user {
+      max-width: 200px;
+   }
+   &__submit-wrapper {
+      padding: 20px;
+      background-color: #eff0f0;
+      width: 100%;
+      height: 40px;
+      display: table;
+      border-top: 1px solid #d5d7d8;
+      text-align: center;
+      box-sizing: border-box;
+   }
+   &__submit {
+      background-color: #ff8000;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      padding: 10px;
+      text-decoration: none!important;
+      border-radius: 4px;
+      border-bottom: 2px solid #c60;
+      white-space: nowrap;
+      display: inline-block;
+      &:hover {
+         background-color: #ffa64d;
+         border-bottom: 2px solid #ee8a26;
+         color: #fff;
+      }
+   }
+   &__submit-forgot {
+      padding-left: 10px;
+   }
+}

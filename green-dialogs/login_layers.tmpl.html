@@ -1,0 +1,585 @@
+<div class="green-dialogs" id="UserDialog_Table">
+<div class="green-dialogs__registration" id="UserRegistration_Table">
+    <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#" onclick="UserRegistration.Close();return false;"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">New Member Registration</h3>
+        </div>
+        <div class="green-dialogs__steps" style="display: none;">
+            <ul>
+                <li><a href="#1"></a></li>
+                <li class="curw w2"><a href="#2"></a></li>
+                <li class="w3"><a href="#3"></a></li>
+            </ul>
+        </div>
+        <div class="green-dialogs__note">
+            Already a Consumer Complaints member? <a class="green-dialogs__note-link" href="#" onclick="UserRegistration.Close();return UserLogin.Show()">Log in now</a>
+        </div>
+        <div class="green-dialogs__noteOptional" style="display: none;">
+            You can skip this step and add information later.
+        </div>
+        
+        <div class="green-dialogs__bussinesNote" style="display:none;" id="bussinesNote">
+        	Business registration form is meant for the companies who want to<br>
+        	resolve the complaints about their products and services.
+        </div>
+
+        <form class="green-dialogs__form" method="POST" id="UserRegistration_Form">
+            <div class="green-dialogs__form-inner" class="regform" id="UserRegistration_fields">
+		        <ul id="UserRegistration_errors" class="green-dialogs__registration-errors" style="display:none"></ul>
+                <div class="green-dialogs__step-1">
+					<input type="hidden" name="UserRegistration_type" value="personal">
+                    <div class="green-dialogs__connect">
+                    	<label class="green-dialogs__connect-label">Connect with</label>
+                        <div class="green-dialogs__connect-icons">
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByFacebook();"><img class="green-dialogs__connect-link-images" src="/img/facebook-icon.png" width="32" height="32"/></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();"><img class="green-dialogs__connect-link-images" src="/img/google-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByTwitter();"><img class="green-dialogs__connect-link-images"src="/img/twitter-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByLinkedin();"><img class="green-dialogs__connect-link-images" src="/img/linedin-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                        </div>
+                    	<span class="green-dialogs__or">or</span>
+                    </div>
+                    <div class="green-dialogs__username">
+                        <label class="green-dialogs__username-label">Username</label>
+                        <input  class="green-dialogs__username-input" name="UserRegistration_displayname" id="UserRegistration_displayname" type="text" placeholder="Nickname">
+                    </div>
+                    <div class="green-dialogs__email-wrapper">
+                        <label class="green-dialogs__email-label" for="email">E-mail</label>
+                        <input class="green-dialogs__username-input" name="UserRegistration_email" id="UserRegistration_email" type="email" placeholder="mail@example.com">
+                    </div>
+                    <div class="green-dialogs__password">
+                        <label class="green-dialogs__password-label" for="pass">Password</label>
+                        <input class="green-dialogs__password-input" name="UserRegistration_password" id="UserRegistration_password" type="password">
+                    </div>
+                    <div id="tr_UserRegistration_code" class="green-dialogs__code">
+                        <label class="green-dialogs__code-label" for="code">Code:</label>
+						<img class="green-dialogs__code-image" src="/captcha/captcha.php?{$args['rand']}" id="UserRegistration_authcode" width="120" height="50" />
+						<img class="green-dialogs__code-arrow" src="/img/arrow1.png"  width="23" height="16" style="padding:0 10px;" />
+						<input class="green-dialogs__code-input" name="UserRegistration_code" id="UserRegistration_code" type="text" maxlength="6"> 
+                    </div>
+                </div>
+
+
+                <div class="wizard step2" style="display: none;">
+                    <ul>
+                        <li>
+                            <label for="company">Company Name:</label>
+                            <input class="forminpt" name="UserRegistration_company" id="UserRegistration_company" type="text" placeholder="Company Title">
+                        </li>
+                        <li>
+                            <label for="country">Country:</label>
+                            <select class="formsel large" id="UserRegistration_country" name="UserRegistration_country">
+                            	<option value="5" >India<option value="3" >United States<option value="201" >United Kingdom<option value="200" >United Arab Emirates<option value="172" >Singapore<option value="0" >-----------------------------------------------<option value="7" >Afghanistan<option value="8" >Albania<option value="9" >Algeria<option value="10" >American Samoa<option value="11" >Andorra<option value="12" >Angola<option value="13" >Argentina<option value="14" >Armenia<option value="15" >Aruba<option value="16" >Ascension<option value="17" >Australia<option value="18" >Australian Ext. Territory<option value="19" >Austria<option value="20" >Azerbaijan<option value="21" >Bahrain<option value="22" >Bangladesh<option value="23" >Belarus<option value="24" >Belgium<option value="25" >Belize<option value="26" >Benin<option value="27" >Bhutan<option value="28" >Bolivia<option value="29" >Bosnia<option value="30" >Botswana<option value="31" >Brazil<option value="32" >Brunei Darussalam<option value="33" >Bulgaria<option value="34" >Burkina Faso<option value="35" >Burundi<option value="36" >Cambodia<option value="37" >Cameroon<option value="38" >Canada<option value="39" >Cape Verde<option value="40" >Central African Republic<option value="41" >Chad<option value="42" >Chile<option value="43" >China<option value="44" >Colombia<option value="45" >Congo<option value="46" >Cook Islands<option value="47" >Costa Rica<option value="48" >Croatia<option value="49" >Cuba<option value="50" >Cyprus<option value="51" >Czech Republic<option value="52" >Denmark<option value="53" >Diego Garcia<option value="54" >Djibouti<option value="55" >Dominican Republic<option value="56" >DPR Korea (North)<option value="57" >East Timor<option value="58" >Ecuador<option value="59" >Egypt<option value="60" >El Salvador<option value="61" >Equatorial Guinea<option value="62" >Eritrea<option value="63" >Estonia<option value="64" >Ethiopia<option value="65" >F.S. Micronesia<option value="66" >Falkland Islands<option value="67" >Faroe Islands<option value="68" >Fiji<option value="69" >Finland<option value="70" >France<option value="71" >French Polynesia<option value="72" >Gabon<option value="73" >Gambia<option value="74" >Georgia<option value="75" >Germany<option value="76" >Ghana<option value="77" >Gibraltar<option value="78" >Greece<option value="79" >Greenland<option value="80" >Guadeloupe<option value="81" >Guatemala<option value="82" >Guiana (French)<option value="83" >Guinea<option value="84" >Guinea-Bissau<option value="85" >Guyana<option value="86" >Haiti<option value="87" >Honduras<option value="88" >Hong Kong<option value="89" >Hungary<option value="90" >Iceland<option value="5" >India<option value="92" >Indonesia<option value="93" >Iran<option value="94" >Iraq<option value="95" >Ireland<option value="96" >Israel<option value="97" >Italy<option value="98" >Ivory Coast<option value="99" >Jamaica<option value="100" >Japan<option value="101" >Jordan<option value="102" >Kazakhstan<option value="103" >Kenya<option value="104" >Kiribati<option value="105" >Korea (South)<option value="106" >Kuwait<option value="107" >Kyrgyz Republic<option value="108" >Laos<option value="109" >Latvia<option value="110" >Lebanon<option value="111" >Lesotho<option value="112" >Liberia<option value="113" >Libya<option value="114" >Liechtenstein<option value="115" >Lithuania<option value="116" >Luxembourg<option value="117" >Macau<option value="118" >Macedonia<option value="119" >Madagascar<option value="120" >Malawi<option value="121" >Malaysia<option value="122" >Maldives<option value="123" >Mali<option value="124" >Malta<option value="125" >Marshall Islands<option value="126" >Martinique<option value="127" >Mauritania<option value="128" >Mauritius<option value="129" >Mayotte, Comoros Is.<option value="130" >Mexico<option value="131" >Moldova<option value="132" >Monaco<option value="133" >Mongolia<option value="134" >Morocco<option value="135" >Mozambique<option value="136" >Myanmar (Burma)<option value="137" >Namibia<option value="138" >Nauru<option value="139" >Nepal<option value="140" >Netherlands<option value="141" >Netherlands Antilles<option value="142" >New Caledonia<option value="143" >New Zealand<option value="144" >Nicaragua<option value="145" >Niger<option value="146" >Nigeria<option value="147" >Niue<option value="148" >Norway<option value="149" >Oman<option value="150" >Pakistan<option value="151" >Palau<option value="152" >Palestine<option value="153" >Panama<option value="154" >Papua New Guinea<option value="155" >Paraguay<option value="156" >Peru<option value="157" >Philippines<option value="158" >Poland<option value="159" >Portugal<option value="160" >Qatar<option value="161" >Reunion Island<option value="162" >Romania<option value="163" >Russia<option value="164" >Rwanda<option value="165" >Saint Helena<option value="166" >San Marino<option value="167" >Sao Tome & Principe<option value="168" >Saudi Arabia<option value="214" >Schotland<option value="169" >Senegal<option value="170" >Seychelles<option value="171" >Sierra Leone<option value="172" >Singapore<option value="173" >Slovakia<option value="174" >Slovenia<option value="175" >Solomon Islands<option value="176" >Somalia<option value="177" >South Africa<option value="178" >Spain<option value="179" >Sri Lanka<option value="180" >St Pierre & Miquelon<option value="181" >Sudan<option value="182" >Suriname<option value="183" >Swaziland<option value="184" >Sweden<option value="185" >Switzerland<option value="186" >Syria<option value="187" >Taiwan<option value="188" >Tajikistan<option value="189" >Tanzania<option value="190" >Thailand<option value="191" >Togo<option value="192" >Tokelau<option value="193" >Tonga<option value="194" >Tunisia<option value="195" >Turkey<option value="196" >Turkmenistan<option value="197" >Tuvalu<option value="198" >Uganda<option value="199" >Ukraine<option value="200" >United Arab Emirates<option value="201" >United Kingdom<option value="3" >United States<option value="202" >Uruguay<option value="203" >Uzbekistan<option value="204" >Vanuatu<option value="205" >Vatican City<option value="206" >Venezuela<option value="207" >Vietnam<option value="208" >Wallis and Futuna<option value="209" >Western Samoa<option value="210" >Yemen<option value="211" >Yugoslavia<option value="212" >Zambia<option value="213" >Zimbabwe</select>
+                            </select>
+                        </li>
+                        <li>
+                            <label for="city">City:</label>
+                            <input class="forminpt middle" name="UserRegistration_city" id="UserRegistration_city" type="text">
+                        </li>
+                        <li>
+                            <label for="addr">Address:</label>
+                            <textarea class="formtxarea forminpt" name="UserRegistration_address" id="UserRegistration_address"></textarea>
+                        </li>
+                        <li>
+                            <label for="pin">Postal / PIN Code:</label>
+                            <input class="forminpt fsmall" name="UserRegistration_pin" id="UserRegistration_pin" type="text">
+                        </li>
+                    </ul>
+                    <ul>
+                        <li id="phone_container">
+                            <label for="phone">Phone:</label>
+                            <span class="addMoreBlock">
+                                <input class="forminpt middle" data-more="true" name="UserRegistration_phone[]" id="phone" type="text">
+                            </span>
+                            <a href="#" class="addMore">Add More Numbers</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li id="mobile_container">
+                            <label for="mobile">Mobile:</label>
+                            <span class="addMoreBlock">
+                                <input class="forminpt middle" data-more="true" name="UserRegistration_mobile[]" id="mobile" type="text">
+                            </span>
+                            <a href="#" class="addMore">Add More Numbers</a>
+                        </li>
+                    </ul>
+                    <ul>
+                        <li>
+                            <label for="website">Website:</label>
+                            <input class="forminpt" name="UserRegistration_website" id="UserRegistration_website" type="text">
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="wizard step3" style="display: none;">
+                    <ul>
+                        <li>
+                            <label for="services">Services / Products Description:</label>
+                            <textarea id="UserRegistration_services" name="UserRegistration_services" class="formtxarea"></textarea>
+                        </li>
+                        <li>
+                            <label>Working Hours:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_main_from">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                             -
+                            <select class="formsel fsmall" name="UserRegistration_hours_main_to">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="applyAll"><a href="#">Apply to all</a></span>
+                        </li>
+                    </ul>
+                    <ul class="grayBlock hours">
+                        <li>
+                            <label>Monday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_1">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_1">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_1" id="cl1" /> <label for="cl1">Closed</label></span>
+                        </li>
+                        <li>
+                            <label>Tuesday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_2">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_2">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_2" id="cl2" /> <label for="cl2">Closed</label>
+                        </li>
+                        <li>
+                            <label>Wednesday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_3">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_3">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_3" id="cl3" /> <label for="cl3">Closed</label>
+                        </li>
+                        <li>
+                            <label>Thursday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_4">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_4">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_4" id="cl4" /> <label for="cl4">Closed</label>
+                        </li>
+                        <li>
+                            <label>Friday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_5">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_5">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_5" id="cl5" /> <label for="cl5">Closed</label>
+                        </li>
+                        <li>
+                            <label>Saturday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_6">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_6">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_6" id="cl6" /> <label for="cl6">Closed</label>
+                        </li>
+                        <li>
+                            <label>Sunday:</label>
+                            <select class="formsel fsmall" name="UserRegistration_hours_to_7">
+                                <option value="0">00:00</option>
+                                <option value="1">01:00</option>
+                                <option value="2">02:00</option>
+                                <option value="3">03:00</option>
+                                <option value="4">04:00</option>
+                                <option value="5">05:00</option>
+                                <option value="6">06:00</option>
+                                <option value="7">07:00</option>
+                                <option value="8">08:00</option>
+                                <option value="9" selected>09:00</option>
+                                <option value="10">10:00</option>
+                                <option value="11">11:00</option>
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                            </select>
+                            -
+                            <select class="formsel fsmall" name="UserRegistration_hours_from_7">
+                                <option value="12">12:00</option>
+                                <option value="13">13:00</option>
+                                <option value="14">14:00</option>
+                                <option value="15">15:00</option>
+                                <option value="16">16:00</option>
+                                <option value="17">17:00</option>
+                                <option value="18" selected>18:00</option>
+                                <option value="19">19:00</option>
+                                <option value="20">20:00</option>
+                                <option value="21">21:00</option>
+                                <option value="22">22:00</option>
+                                <option value="23">23:00</option>
+                                <option value="24">24:00</option>
+                            </select>
+                            <span class="closed"><input type="checkbox" name="UserRegistration_closed_7" id="cl7" /> <label for="cl7">Closed</label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="green-dialogs__submit-wrapper">
+    	            <a class="green-dialogs__submit" href="#" onclick="return UserRegistration.Register()" class="btn-orange" id="submit_button"> &nbsp; Register &nbsp; </a>
+    	        </div>
+            </div>
+			<div id="UserRegistration_loading" style="display:none">
+ 		        <div class="note">
+					Loading, please wait...
+				</div>
+			</div>
+        </form>
+    </div>
+</div>
+
+
+
+
+<div class="green-dialogs__registration" id="UserMail_Table">
+    <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#" onclick="UserMail.Hide();return false;"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">New Member Registration</h3>
+        </div>
+        <div class="green-dialogs__note" style="border-bottom:0px">
+			A confirmation email was sent to "<b><span id="UserMail_email"></span></b>". <br>
+			To confirm your account, please click the link in the message. <br> <br>
+			If you don't see the email in your Inbox, please check your Spam box.
+        </div>
+
+        <div class="green-dialogs__submit-wrapper">        
+	    	<a href="#" class="green-dialogs__submit" onclick="UserMail.Hide();return false;">&nbsp; OK &nbsp; </a>
+    	</div>
+	</div>
+</div>
+		
+
+<div class="green-dialogs__user" id="UserLogin_Table">
+    <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#" onclick="UserLogin.Close();return false;"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">User Login</h3>
+        </div>
+        <div class="green-dialogs__note">
+        	Not a member of Consumer Complaints? <a class="green-dialogs__note-link" href="#" onclick="UserLogin.Close();UserRegistration.OnSuccess = UserLogin.OnSuccess;return UserRegistration.Show()">Register now.</a>
+        </div>
+        
+        
+        <div id="UserLogin_fields">
+          <form class="green-dialogs__form" method="POST" id="UserLogin_Form1" onsubmit="return UserLogin.Login()">
+          	 <input type="submit" name="submit" value="submit" style="width:0px;height:0px;position:absolute;margin-left:-10000px;" />
+             <div class="green-dialogs__form-inner">
+		        <ul id="UserLogin_lerrors" class="green-dialogs__registration-errors" style="display:none"></ul>
+                <div class="green-dialogs__step-1">
+                    <div class="green-dialogs__connect">
+                    	<label class="green-dialogs__connect-label">Connect with</label>
+                        <div class="green-dialogs__connect-icons">
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByFacebook();"><img class="green-dialogs__connect-link-images" src="/img/facebook-icon.png" width="32" height="32"/></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();"><img class="green-dialogs__connect-link-images" src="/img/google-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByTwitter();"><img class="green-dialogs__connect-link-images"src="/img/twitter-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                            <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByLinkedin();"><img class="green-dialogs__connect-link-images" src="/img/linedin-icon.png" width="32" height="32" /></a>&nbsp;&nbsp;
+                        </div>
+                    	<span class="green-dialogs__or">or</span>
+                    </div>
+                    <div class="green-dialogs__email-wrapper">
+                        <label class="green-dialogs__email-label" for="email">E-mail</label>
+                        <input class="green-dialogs__username-input" name="UserRegistration_email" id="UserRegistration_email" type="email">
+                    </div>
+                    <div class="green-dialogs__password">
+                        <label class="green-dialogs__password-label" for="pass">Password</label>
+                        <input class="green-dialogs__password-input green-dialogs__password-input_user" name="UserRegistration_password" id="UserRegistration_password" type="password">
+                    </div>
+                </div>
+		        <div class="green-dialogs__submit-wrapper">
+	    			<a href="#" class="green-dialogs__submit" onclick="jQuery('#UserLogin_Form1').submit();return false;"> &nbsp; Login &nbsp; </a>
+	                <a href="#" class="green-dialogs__submit-forgot" onclick="return UserLogin.ShowReset()">Forgot your password?</a>
+		    	</div>
+             </div>
+          </form>
+        </div>
+        
+        <div id="UserLogin_reset">
+          <form class="green-dialogs__form" method="POST" id="UserLogin_Form2" onsubmit="return UserLogin.Reset();">
+          	 <input type="submit" name="submit" value="submit" style="width:0px;height:0px;position:absolute;margin-left:-10000px;" />
+            <div class="green-dialogs__form-inner">
+		        <ul id="UserLogin_rerrors" class="green-dialogs__registration-errors" style="display:none;"></ul>
+                <div class="green-dialogs__step-1">
+                    <div class="green-dialogs__email-wrapper">
+                        <label for="UserLogin_lemail" class="green-dialogs__email-label">E-mail:</label>
+                        <input class="green-dialogs__username-input" name="UserLogin_remail" id="UserLogin_remail" type="email">
+                    </div>
+                </div>
+		        <div class="green-dialogs__submit-wrapper">
+	    			<a class="green-dialogs__submit" href="#" class="btn-orange" onclick="jQuery('#UserLogin_Form2').submit();return false;"> &nbsp; Reset &nbsp; </a>
+	                <a href="#" onclick="return UserLogin.Show()" class="extra green-dialogs__submit-forgot">Back</a>
+		    	</div>
+		     </div>
+          </form>
+        </div>
+        
+		<div id="UserLogin_loading">
+ 	        <div class="green-dialogs__note">
+				Loading, please wait...<br/>
+				<img src="/img/loadinganim.gif" width="220" height="19" style="vertical-align:bottom"><br/><br/>
+			</div>
+		</div>
+		
+		<div id="UserLogin_reset_done">
+ 	        <div class="green-dialogs__note">
+				Your password has been sent to the specified email address. <a href="#" onclick="return UserLogin.Show()" class=extra><b>Log in</b></a><br/><br/>
+			</div>
+		</div>
+
+        <!--div class="note2 ftr" style="margin-top:20px;">
+        	<div style="padding-top:10px">
+			or connect with Facebook <a href="https://graph.facebook.com/oauth/authorize?client_id=135685293174850&amp;redirect_uri=http%3A%2F%2Fwww.consumercomplaints.in%2Ffb%2F&scope=email"><img src="/img/fb.png" style="margin-top:-3px;padding-left:5px;vertical-align:middle;"></a>
+			</div>
+		</div-->
+        
+    </div>
+</div>
+
+<div class="green-dialogs__registration" id="UserFBLogin_Table">
+    <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#" onclick="UserFBLogin.Close();return false;"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">User Facebook Login</h3>
+        </div>
+
+		<form name="UserFBLogin_Form" action="/fb/" method="post">
+            <input type="hidden" name="code" value="" id="UserFBLogin_code" />
+            <div class="green-dialogs__form-inner" id="UserFBLogin_fields">
+		        <div id="UserFBLogin_errors" class="green-dialogs__registration-errors"></div>
+                <div class="green-dialogs__step-1">
+                    <div class="green-dialogs__email-wrapper">
+                        <label class="green-dialogs__username-label" for="username">Enter Username:</label>
+                        <input class="green-dialogs__username-input" name="name" id="UserFBLogin_name" type="text">
+                    </div>
+                </div>
+				<span class="prev"></span>
+                <span class="green-dialogs__submit-login"><input class="green-dialogs__submit-login_input" value="Login" type="submit" /></span> 
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="green-dialogs__registration" id="GDPR_Table">
+    <span class="green-dialogs__closemodal"><a href="#" onclick="GDPR.Close();return false;"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">GDPR</h3>
+        </div>
+        <div class="green-dialogs__form-inner" id="gdpr-content">
+        </div>
+    </div>
+</div>
+
+
+</div>

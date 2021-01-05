@@ -1,0 +1,204 @@
+<script src="/scripts/messup.js"></script>
+<script>
+function rate_phone(obj,bnameID,type,phoneID,plus)
+{
+	jQuery(obj).parent().find('div:not(:first-child)').css('display', 'none');
+	var ldr = jQuery(obj).parent().find('div:first-child');		
+	
+	ldr.html( ldr.html() + '<div class="ldr">Loading...</div>');
+	
+	jQuery.getJSON('/ajax.php?bname-rate-phone='+bnameID+'&type='+type+'&id='+phoneID+'&plus='+plus,function (json) {
+		obj = jQuery(obj).parent();
+		
+		obj.find('div.up').html(json['up']);
+		obj.find('div.down').html(json['down']);
+				
+		switch( json.state )
+		{
+			case -1:
+				obj.find('img[src*=up]').css('opacity', '1'); 
+				obj.find('img[src*=down]').css('opacity', '0.3'); 
+				
+				/*setTimeout(function () {
+					addAddInfo.show();
+				},1500);*/
+				break;
+			case 0: 
+				obj.find('img[src*=up]').css('opacity', '1'); 
+				obj.find('img[src*=down]').css('opacity', '1');  
+				break;
+			case 1: 
+				obj.find('img[src*=up]').css('opacity', '0.3'); 
+				obj.find('img[src*=down]').css('opacity', '1');  
+				break;
+		}
+				
+		obj.find('div:not(:first-child)').css('display', 'table-cell');
+		ldr.find('div.ldr').remove();
+	});
+}
+</script>
+
+<includePHP(blocks/breadcrumbs.php)>
+<include(blocks/bname-info.tmpl.html)>
+
+<if($args['count_with_images'])>
+<div id="pictures-block">
+    <h2 style="font-weight:normal;font-size:24px;margin:30px 0 3px 0px;color:#999;">{$args["bname_name"]} related photos ({$args['count_with_images']})</h2>
+    <div class="bname-pictures <if( $args['count_with_images'] < 4 )>bottom-radius</if>">
+        <div></div>
+        <div class="pictures">
+            {$args['pictures-3']}
+        </div>
+        <if( $args['count_with_images'] > 3 )>
+        <div class="expand" onclick="BnamePictures.show();"></div>
+        <div class="view-all">Complaints with pictures are more trusted and informative &nbsp;&nbsp;&nbsp;<a href="#" onclick="BnamePictures.show(); return false">View all</a></div>
+        <else>
+        <div class="closed"></div>
+        </if>
+    </div>
+</div>
+<script>
+var BnamePictures = {
+    id : 'view-all-pictures',
+    updatelinks : function () {
+        var obj = jQuery('#' + this.id + ' div.green-dialogs__page-links');
+        if( !obj.attr('bname-parsed') )
+        {
+            obj.attr('bname-parsed', true);
+            
+            obj.find('a').each(function (i,a) {
+                a = jQuery(a);
+        
+                a.attr('onclick', "BnamePictures.page('" + a.attr('page') + "'); return false");
+            });
+        }
+    },
+    show : function () {
+        this.updatelinks();
+        
+        show_gray_bg();
+        var dlg = document.getElementById(this.id);
+        dlg.style.display = 'block';
+        center_element(dlg,dlg.clientHeight/2,dlg.clientWidth/2);
+    },
+    hide : function () {
+        hide_gray_bg();
+        document.getElementById(this.id).style.display = 'none';
+    },
+    page : function (url) {
+        jQuery.ajax(url).done(function (data) {
+            jQuery('#' + BnamePictures.id + ' div.bname-va-pictures').html(data);
+            
+            BnamePictures.updatelinks();
+        });
+    }
+};
+</script>
+
+<link rel="stylesheet" href="../css/registration.css">
+
+<div class="green-dialogs__view-pictures" id="view-all-pictures">
+    <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" onclick="BnamePictures.hide();return false;" href="#"></a></span>
+    <div class="green-dialogs__container">
+        <div class="green-dialogs__title-wrapper"><h3 class="green-dialogs__title">{$args["bname_h1"]} related pictures ({$args['count_with_images']})</h3></div>
+        <div class="green-dialogs__view-pictures-inner">		
+            {$args['pictures-8']}
+            <div class="green-dialogs__page-links">
+            {$args["pictures-pagelinks"]}
+            </div>
+        </div>
+    </div>
+</div>
+</if>
+
+<h2 style="font-weight:normal;font-size:24px;margin:30px 0 15px 0px;color:#999;">{$args["h1_title"]}</h2>
+<div class="bname-posts">
+    <if($base->isAdmin)>
+    
+        <input type=checkbox onclick="jQuery('input.chk:not(.admin-complaint-tools)').prop('checked', this.checked)">&nbsp;&nbsp;
+        With selected: 
+        <select data-admin-actions="delete-complaints;delete-users:{attr:'user'};disable;disable-including-comments;release;release-including-comments;ban-users:{attr:'user'}" data-admin-checkbox="input.chk"></select>
+    </if>
+    <div class="sort-by">Sort by: 
+        <select onchange="location.href = $(this).val()">
+            <option value="/{$args['bname_url']}-b{$args['ID']}">All</option>
+            <option value="/{$args['bname_url']}-b{$args['ID']}/resolved" <if($in['type']=='resolved')>selected</if>>Resolved</option>
+        </select>
+    </div>
+    <div>
+        <includePHP(blocks/complaints-list.php?type=bname)>
+        <div class="pagelinks" style="padding-top:15px; text-align:center">
+        {$args["pagelinks"]}
+        </div>
+    </div>
+</div>
+
+<script>
+function phone_action(obj)
+{
+    var obj = jQuery(obj);
+    if( (img = obj.find('img[src*=plus]')).length )
+    {		
+        var clone = obj.parent().clone();
+        
+        clone.find('input').val('');
+        Inputmask("+91 #{1,2} #{1,4} #{1,4}").mask(clone.find('input'));
+            
+        clone.insertAfter( obj.parent() );
+        
+        if( jQuery('div.phone-row').length > 4 )
+        {
+            clone.find('img').attr('src', '/img/minus.png');
+        }
+                
+        img.attr('src', '/img/minus.png');
+    }else{
+        obj.parent().remove();
+    }
+}
+</script>
+<if($base->isAdmin)>
+<includePHP(blocks/chk-complaints-comments.php)>
+<script type="text/javascript">
+var lastID="0";
+var textOK=false;
+function savecomment(ID) {
+   lastID="0";
+   var score='';
+   if (document.getElementById('scoreA'+ID).checked) score="A";
+   else
+   if (document.getElementById('scoreN'+ID).checked) score="N";
+   else score="D";
+   var ratting=0;
+   ratting = document.getElementById('ratting'+ID).options[document.getElementById('ratting'+ID).selectedIndex].value;
+   if (!ratting) ratting = 0;
+
+   var poststr="savecomment="+encodeURI(ID)+"&fullname="+encodeURI(document.getElementById('fullname'+ID).value).replace(/&/g, "%26")+"&score="+score+"&ratting="+ratting+"&email="+encodeURI(document.getElementById('email'+ID).value)+
+   "&subject="+encodeURI(document.getElementById('subject'+ID).value)+
+   "&company="+encodeURI(document.getElementById('company'+ID).value)+
+   "&text="+encodeURI(document.getElementById('text'+ID).value).replace(/&/g, "%26")+
+   "&isResolved="+(document.getElementById('isResolved'+ID).checked ? 1 : 0)+
+   "&isResolvedTitle="+(document.getElementById('isResolvedTitle'+ID).checked ? 1 : 0)+
+   "&post_time="+encodeURI(document.getElementById('post_time'+ID).value)+
+   "&resolved="+encodeURI(document.getElementById('resolved'+ID).value).replace(/&/g, "%26");
+   makePOSTRequest('/ajax.php', poststr,"c"+ID);
+   showbox('<b>Saving comment...</b><br> Please Wait...<br><img src="/img/loadinganim.gif">', document.getElementById('c'+ID),'200');
+}
+
+function getcomment(ID) {
+   lastID="0";
+   var poststr="getcomment="+encodeURI(ID);
+   makePOSTRequest('/ajax.php', poststr,"c"+ID);
+   showbox('<b>Canceling...</b><br> Please Wait...<br><img src="/img/loadinganim.gif">', document.getElementById('c'+ID),'200');
+}
+
+function editcomment(ID) {
+   if (lastID!="0") getcomment(lastID);
+   var poststr="editcomment="+encodeURI(ID);
+   makePOSTRequest('/ajax.php', poststr,"c"+ID);
+   showbox('<b>Loading Editor...</b><br> Please Wait...<br><img src="/img/loadinganim.gif">', document.getElementById('c'+ID),'200');
+   lastID=ID;
+}
+</script>
+</if>

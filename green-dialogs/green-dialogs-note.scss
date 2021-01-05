@@ -1,0 +1,10 @@
+@import 'green-dialogs-base.scss';
+
+.green-dialogs {
+   &__note {
+      color: #666;
+      text-align: center;
+      border-bottom: 1px dotted #666;
+      padding: 15px;
+   }
+}
