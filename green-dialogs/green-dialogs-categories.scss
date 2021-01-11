@@ -1,0 +1,35 @@
+@import 'green-dialogs-base.scss';
+
+.green-dialogs {
+   max-width: none;
+   
+   &__categories {
+      margin: 150px auto;
+      max-width: none;
+      right: 0;
+      left: 0 !important;
+      width: auto;
+      position: relative;
+      background: #fff;
+      padding: 10px;
+      box-sizing: border-box;
+   }
+
+   &__form-wrapper {
+      padding:0px 20px 30px 20px;
+   }
+
+   &__form-inner {
+      margin: 20px 0 0;
+   }
+
+   &__step-1 {
+      overflow: hidden;
+   }
+
+   &__categories-layer {
+      width:100%;
+      font-size:12px;
+   }
+
+}

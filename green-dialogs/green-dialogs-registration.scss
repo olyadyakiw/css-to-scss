@@ -8,6 +8,7 @@
       max-width: 450px;
       box-sizing: border-box;
    }
+   
    &__steps {
       text-align: center;
       top: 80px;
@@ -15,6 +16,7 @@
       margin-left: -90px;
       position: absolute;
    }
+   
    &__note,
    &__noteOptional {
       color: #666;
@@ -22,12 +24,15 @@
       border-bottom: 1px dotted #666;
       padding: 15px;
    }
+   
    &__note-link {
       font-weight: 700;
    }
+   
    &__noteOptional {
       padding-top: 30px;
    }
+   
    &__bussinesNote {
       background-color: #fdedb2;
       text-align: center;
@@ -35,9 +40,11 @@
       padding: 12px 0;
       line-height: 20px;
    }
+   
    &__form-inner {
       margin: 20px 0 0;
    }
+   
    &__registration-errors {
       padding: 16px 40px;
       list-style-type: square;
@@ -45,9 +52,11 @@
       display: block;
       color: red;
    }
+   
    &__step-1 {
       overflow: hidden;
    }
+   
    &__connect {
       padding: 0 40px 20px;
       color: #666;
@@ -56,6 +65,7 @@
       text-align: center;
       width: 100%;
    }
+   
    &__connect-label {
       vertical-align: top;
       font-weight: 400;
@@ -64,18 +74,22 @@
       display: inline-block;
       margin-top: 6px;
    }
+   
    &__connect-icons {
       display: inline-block;
    }
+   
    &__connect-images {
       width: 32px;
       height: 32px;
    }
+   
    &__or {
       line-height: 30px;
       font-size: 13px;
       vertical-align: top;
    }
+   
    &__username,
    &__email-wrapper,
    &__password,
@@ -83,6 +97,7 @@
       margin-bottom: 10px;
       padding: 0 40px;
    }
+   
    &__username-label,
    &__email-label,
    &__password-label,
@@ -94,6 +109,7 @@
       font-weight: 700;
       margin-top: 6px;
    }
+   
    &__username-input,
    &__email-input,
    &__password-input,
@@ -109,24 +125,30 @@
          box-shadow: 0 0 3px #9acb53;
       }
    }
+   
    &__password-input {
       max-width: 140px;
    }
+   
    &__password-input_user {
       max-width: 200px;
    }
+   
    &__code-label {
       vertical-align: top;
       margin-top: 15px;
    }
+   
    &__code-arrow {
       padding: 0 10px;
       vertical-align: top;
       margin-top: 15px;
    }
+   
    &__code-input {
       max-width: 64px;
    }
+   
    &__submit-wrapper {
       padding: 20px;
       background-color: #eff0f0;
@@ -137,6 +159,7 @@
       text-align: center;
       box-sizing: border-box;
    }
+   
    &__submit {
       background-color: #ff8000;
       color: #fff;

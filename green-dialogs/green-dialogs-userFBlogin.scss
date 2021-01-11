@@ -8,9 +8,11 @@
       max-width: 450px;
       box-sizing: border-box;
    }
+   
    &__form-inner {
       margin: 20px 0 0;
    }
+   
    &__registration-errors {
       padding: 16px 40px;
       list-style-type: square;
@@ -18,13 +20,16 @@
       display: block;
       color: red;
    }
+   
    &__step-1 {
       overflow: hidden;
    }
+   
    &__email-wrapper {
       margin-bottom: 10px;
       padding: 0 40px;
    }
+   
    &__username-label {
       text-align: right;
       padding-right: 20px;
@@ -33,6 +38,7 @@
       font-weight: 700;
       margin-top: 6px;
    }
+   
    &__username-input {
       margin: 0;
       max-width: 200px;
@@ -45,6 +51,7 @@
          box-shadow: 0 0 3px #9acb53;
       }
    }
+   
    &__submit-login {
       background: #e5e5e5;
       padding: 4px;
@@ -53,6 +60,7 @@
       vertical-align: middle;
       border-radius: 3px;
    }
+   
    &__submit-login_input {
       width: 105px;
       height: 30px;
@@ -63,6 +71,7 @@
       border: 0;
       cursor: pointer;
    }
+   
    &__prev {
       display: inline-block;
       width: 112px;

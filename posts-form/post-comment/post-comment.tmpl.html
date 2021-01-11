@@ -1,8 +1,9 @@
+<link rel="stylesheet" href="../css/components/block-header.css">
 <link rel="stylesheet" href="../css/default-forms.css?">
 
 <script src="/scripts/jquery.fileupload.js"></script>
 
-	<h4 class="default-forms__title_dark">
+	<h4 class="block-header__name block-header__name_under block-header__name_black">
 		Post your Comment
 	</h4>
 	
@@ -14,16 +15,11 @@
     <input type=hidden name="stars" value=""/>
 	<input type=hidden name="_no_rating" value="1">
     <ul class="default-forms__errors errors"></ul>
-	 <div class="default-forms__type-comment" style="text-align:center;display:none;">
+	 <div class="default-forms__type-comment">
 		<b class="default-forms__type-comment_title">I want to submit</b>
-		<input class="default-forms__type-comment_complaint" type="radio" name="score" value="D"
-		  style="vertical-align:bottom;margin-left:20px;"> Complaint
-		<input class="default-forms__type-comment_positive" type="radio" name="score" value="A"
-		  style="vertical-align:bottom;margin-left:15px;"> Positive
-		Review
-		<input class="default-forms__type-comment_neutral" type="radio" name="score" value="N" checked
-		  style="vertical-align:bottom;margin-left:15px;">
-		Neutral Comment
+		<input class="default-forms__type-comment_complaint" type="radio" name="score" value="D"> Complaint
+		<input class="default-forms__type-comment_positive" type="radio" name="score" value="A"> Positive Review
+		<input class="default-forms__type-comment_neutral" type="radio" name="score" value="N" checked> Neutral Comment
 	 </div>
 
     <div class="default-forms__comments-textarea_wrapper">
@@ -47,11 +43,11 @@
 
     <div>
 		<div class="add-image-block">
-			<input type="file" name="file" style="position:absolute;margin-left:-5000px;">
+			<input class="default-forms__input-file" type="file" name="file">
 			<div class="default-forms__photo default-forms__photo-comments">
 				<a class="default-forms__photo-link" href="#" onclick="$(this).parent().prev().click();return false;">Add Image</a>
 			</div>
-			<div class="default-forms__progress" style="display: none" id="user-uploads-progress">
+			<div class="default-forms__progress" id="user-uploads-progress">
 				<div class="default-forms__progress-inner"></div>
 		</div>
 		</div>
@@ -63,7 +59,7 @@
 			<script type="text/javascript" src="//api.solvemedia.com/papi/challenge.script?k={$config['captcha']['solvemedia']['ckey']}"></script>
 		<else>
 			<img class="default-forms__captcha-img" src="/captcha/captcha.php?{$args['rand']}">
-			<img class="default-forms__arrow" src="/img/arrow1.png"  width="23" height="16" />
+			<img class="default-forms__captcha-arrow" src="/img/arrow1.png"  width="23" height="16" />
 			<input class="default-forms__captcha-input" type=text name="code" id="code">
 		</if>
     </div>

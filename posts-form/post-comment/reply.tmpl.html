@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="../css/default-forms.css">
 
 <div class="default-forms__reply" replyCommentData postID="' + postID + '" isCaptcha="' + isCaptcha + '">
-    <div class="default-forms__errors red"></div>
+    <div class="default-forms__errors"></div>
     <textarea class="default-forms__reply-textarea" placeholder="Post your reply here."></textarea>
 
     <div class="default-forms__captcha">
@@ -9,7 +9,7 @@
             <script type="text/javascript" src="//api.solvemedia.com/papi/challenge.script?k={$config['captcha']['solvemedia']['ckey']}"></script>
         <else>
             <img class="default-forms__captcha-img" src="/captcha/captcha.php?{$args['rand']}">
-            <img class="default-forms__arrow" src="/img/arrow1.png"  width="23" height="16" />
+            <img class="default-forms__captcha-arrow" src="/img/arrow1.png"  width="23" height="16" />
             <input class="default-forms__captcha-input" type=text name="code" id="code">
         </if>
      </div>

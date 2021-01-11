@@ -1,3 +1,4 @@
+<link rel="stylesheet" href="../css/components/block-header.css">
 <link rel="stylesheet" href="../css/default-forms.css">
 
 <script src="/scripts/checkers.js"></script>
@@ -44,7 +45,7 @@ function gosubmit()
 		<input type="hidden" name="customFields" />
 		<input type="hidden" name="spititout" value="submit">
 
-			<h1 class="default-forms__title_light">
+			<h1 class="block-header__name block-header__name_under">
 				<if($args['isEdit'])>Complaint Editing Form<else>Complaint Registration Form</if>
 			</h1>
 		
@@ -53,7 +54,7 @@ function gosubmit()
 			<ul id="errors" class="default-forms__errors">{$args['Error']}</ul>
 		
 			<if($args['isEdit'])>
-				<div style="text-align:center;padding:10px 10px 10px 110px;line-height:20px;margin:0 -20px 0 -10px;background:url(/img/exclamation-mark.png) 30px 50% no-repeat #e2f0f8;">
+				<div class="default-forms__errors_text">
 					Hello,<br/>
 					You were redirected to this page, because your complaint is short, not informative and does not provide a complete picture of your problem.
 					To make sure your complaint is as complete as possible,  please carefully fill all the requested fields below, by following the instructions in the information boxes next to the fields.
@@ -64,8 +65,8 @@ function gosubmit()
 
 			<div class="default-forms__wrapper">
 				<label class="default-forms__label">Company Name</label>
-				<input class="default-forms__input-name" type=text name="company" id="company" value="{$args['company']}" placeholder="Company I'm complaining about..." onblur="spell_check_google(this);" >
-				<img class="default-forms__check-name mark" id='img_company' src="img/no.png" alt="">
+				<input class="default-forms__input default-forms__input-name" type=text name="company" id="company" value="{$args['company']}" placeholder="Company I'm complaining about..." onblur="spell_check_google(this);" >
+				<img class="default-forms__check mark" id='img_company' src="img/no.png" alt="">
 				<div class="default-forms__tip default-forms__tip-name">
 				  <div class="default-forms__tip-title">Company Name</div>
 				  <div class="default-forms__tip-text">
@@ -76,8 +77,8 @@ function gosubmit()
 
 			<div class="default-forms__wrapper">
 				<label class="default-forms__label">Complaint Subject</label>
-				<input class="default-forms__input-subject" type=text name="subject" id="subject" placeholder="Product/Subject I'm complaining about..." value="{$args['subject']}" onblur="spell_check_google(this);">
-				<img class="default-forms__check-subject mark" id='img_subject' src="img/no.png" alt="">
+				<input class="default-forms__input default-forms__input-subject" type=text name="subject" id="subject" placeholder="Product/Subject I'm complaining about..." value="{$args['subject']}" onblur="spell_check_google(this);">
+				<img class="default-forms__check mark" id='img_subject' src="img/no.png" alt="">
 				<div class="default-forms__tip default-forms__tip-subject">
 					<div class="default-forms__tip-title">Company Subject</div>
 					<div class="default-forms__tip-text">
@@ -91,21 +92,21 @@ function gosubmit()
 
 				  <div customFieldsTemplate style="display:none">
 					<label class="default-forms__label">%fieldNameCaption%
-						<span style="font-size:12px;color:red">Visible only for the company</span>
+						<span>Visible only for the company</span>
 					</label>
-						<input class="default-forms__input-custom" type=text name="%fieldName%" id="%fieldName%" maxlength="50" value="" placeholder="Your %fieldNameCaption%...">
-						<img id='img_%fieldName%' class="default-forms__check-custom mark" src='/img/no.png' class="mark">
+						<input class="default-forms__input default-forms__input-custom" type=text name="%fieldName%" id="%fieldName%" maxlength="50" value="" placeholder="Your %fieldNameCaption%...">
+						<img id='img_%fieldName%' class="default-forms__check mark" src='/img/no.png' class="mark">
 				</div>
 				
 				<foreach($args['customFields'] as $field)>
 				<div customfield>
 					<label class="default-forms__label">
 						{$field['caption']}<br>
-						<span style="font-size:12px;color:red">Visible only for the company</span>
+						<span>Visible only for the company</span>
 					</label>
 					<td>
-						<input class="default-forms__input-custom" type=text name="{$field['name']}" id="{$field['name']}" maxlength="50" value="{$field['value']}" placeholder="Your {$field['caption']}...">
-						<img id='img_{$field['name']}' class="mark" src='/img/no.png' class="default-forms__check-custom mark">
+						<input class="default-forms__input default-forms__input-custom" type=text name="{$field['name']}" id="{$field['name']}" maxlength="50" value="{$field['value']}" placeholder="Your {$field['caption']}...">
+						<img id='img_{$field['name']}' class="mark" src='/img/no.png' class="default-forms__check mark">
 					</td>
 				</div>
 			</for>
@@ -113,7 +114,7 @@ function gosubmit()
 			<div class="default-forms__wrapper">
 				<div class="default-forms__textarea">
 					<label class="default-forms__label">Complaint Details</label>
-					<textarea class="default-forms__input-details" name="text" id="text"
+					<textarea class="default-forms__input default-forms__input-details" name="text" id="text"
 					  placeholder="Please provide as much information as possible, but do NOT share your highly private details, such as phone/mobile number, credit card details etc. in this field, as it's visible for everyone." onkeyup="jQuery('#wcounter').html(this.value.length);">{$args['text']}</textarea>
 					<div class="default-forms__tip default-forms__tip-details">
 					  <div class="default-forms__tip-title">Complaint Details</div>
@@ -147,7 +148,7 @@ function gosubmit()
 					<label class="default-forms__label">Category</label>
 	
 					<select name="category" id="category" class="default-forms__select default-forms__select-categories"><for($i=0;$i<sizeof($args['categories']);$i++)><option class="default-forms__select default-forms__select-categories" value="{$args['categories'][$i]['value']}" {$args['categories'][$i]['selected']}>{$args['categories'][$i]['name']}</for></select>
-						<img id='img_category' class="default-forms__check-select mark" src='/img/no.png'> 
+						<img id='img_category' class="default-forms__check mark" src='/img/no.png'> 
 						<a class="default-forms__expanded-view" href="#" onclick="show_gray_bg();jQuery('#CategoryDialog_Table :radio').prop('checked',false);jQuery('#selcat_'+jQuery('#category').val()).prop('checked',true);var dlg=document.getElementById('CategoryDialog_Table');dlg.style.display='block';center_element(dlg,dlg.clientHeight/2,dlg.clientWidth/2);return false;">Expanded view</a>
 					 <div class="default-forms__tip default-forms__tip-categories">
 							<div class="default-forms__tip-title">Category</div>
@@ -175,7 +176,7 @@ function gosubmit()
 
 			<div class="default-forms__wrapper">
 				<label class="default-forms__label" id="addressrow">Address (optional)</label>
-				<input class="default-forms__input-address" type=text id="addressinput" name="address" value="{$args['address']}" autocomplete="off" placeholder="Address, where is this company located?" onkeypress="jQuery('#address_id').val('');">
+				<input class="default-forms__input default-forms__input-address" type=text id="addressinput" name="address" value="{$args['address']}" autocomplete="off" placeholder="Address, where is this company located?" onkeypress="jQuery('#address_id').val('');">
 				<div class="default-forms__tip default-forms__tip-address">
 				  <div class="default-forms__tip-title">Address</div>
 				  <div class="default-forms__tip-text">
@@ -187,18 +188,18 @@ function gosubmit()
 			</div>
 
 				  <label class="default-forms__label" id="websiterow">Website (optional)</label>
-              <input class="default-forms__input-website" type=text id="website" placeholder="What is the website you're complaining about?" name="website" value="{$args['website']}" autocomplete="off" onkeypress="jQuery('#website_id').val('');">
+              <input class="default-forms__input default-forms__input-website" type=text id="website" placeholder="What is the website you're complaining about?" name="website" value="{$args['website']}" autocomplete="off" onkeypress="jQuery('#website_id').val('');">
 
-				  <div class="red" align="center" style="padding:5px 0; height: 10px;">{$args['imageerrors']}</div>
+				  <div class="default-forms__image-errors" align="center">{$args['imageerrors']}</div>
 				  
-						<input type="file" name="user-uploads-image-video" style="position:absolute;margin-left:-5000px;">
+						<input class="default-forms__input-file" type="file" name="user-uploads-image-video">
 						<label class="default-forms__label default-forms__label-website"></label>
 						<div class="default-forms__photo">
 							<a class="default-forms__photo-link" href="#" onclick="jQuery('input[name=user-uploads-image-video]').click();return false;">
 								Add Photos/Videos
 							</a>
 						</div>
-						<div class="default-forms__progress" style="display: none" id="user-uploads-progress">
+						<div class="default-forms__progress" id="user-uploads-progress">
 							<div class="default-forms__progress-inner"></div>
 						</div>
 					
@@ -206,14 +207,14 @@ function gosubmit()
 					<div class="default-forms__wrapper">
 						<div id="user-uploads-html">{$args['images']}</div>
 
-						<div class="default-forms__captcha">
+						<div class="default-forms__captcha default-forms__captcha_complaint">
 							<label class="default-forms__label">Confirmation code</label>
 							<if($config['captcha']['type']=='solvemedia')>
 								<script type="text/javascript" src="//api.solvemedia.com/papi/challenge.script?k={$config['captcha']['solvemedia']['ckey']}"></script>
 							<else>
 								<img class="default-forms__captcha-img" src="/captcha/captcha.php?{$args['rand']}">
-								<img class="default-forms__arrow" src="/img/arrow1.png"  width="23" height="16" />
-								<input class="default-forms__captcha-input" type=text name="code" id="code">
+								<img class="default-forms__captcha-arrow" src="/img/arrow1.png"  width="23" height="16" />
+								<input class="default-forms__input default-forms__captcha-input" type=text name="code" id="code">
 							</if>
 							<div class="default-forms__tip default-forms__tip-captcha">
 							  <div class="default-forms__tip-title">Confirmation code</div>
@@ -235,19 +236,21 @@ function gosubmit()
 	</form>
 </div>
 
-<div id="CategoryDialog_Table">
-	<div class="registration" id="EditDialog2_Table">
-		<span class="closemodal"><a href="#" onclick="hide_gray_bg();document.getElementById('CategoryDialog_Table').style.display='none';return false;"></a></span>
-		<div class="container">
-			<div class="hdr">
-				<h3>Categories</h3>
+<link rel="stylesheet" href="../css/green-dialogs-categories.css">
+
+<div class="green-dialogs" id="CategoryDialog_Table">
+	<div class="green-dialogs__categories" id="EditDialog2_Table">
+		<span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#" onclick="hide_gray_bg();document.getElementById('CategoryDialog_Table').style.display='none';return false;"></a></span>
+		<div class="green-dialogs__container">
+			<div class="green-dialogs__title-wrapper">
+				<h3 class="green-dialogs__title">Categories</h3>
 			</div>
 			
-			<div id="UserCategories_fields" style="padding:0px 20px 30px 20px;">
-			  <form method="POST" id="UserLogin_Form3">
-				 <div class="regform22">
-					<div class="step1">
-						<table style="width:100%;font-size:12px;"><tr>
+			<div class="green-dialogs__form-wrapper" id="UserCategories_fields">
+			  <form class="green-dialogs__form" method="POST" id="UserLogin_Form3">
+				 <div>
+					<div class="green-dialogs__step-1">
+						<table class="green-dialogs__categories-layer"><tr>
 							{$args["category_layer_content"]}
 						</tr></table>
 					</div>

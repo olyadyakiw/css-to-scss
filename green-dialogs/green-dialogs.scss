@@ -1,22 +1,3 @@
-
-body {
-   font-weight: 400;
-   font-family: "Roboto", sans-serif;
-   background: #eff0f0;
-}
-
-h1,h2,h3,h4,h5,h6 {
-   margin: 0;
-   padding: 0;
-   font-weight: 400;
-}
-
-a {
-   color: #105cb6;
-   text-decoration: none;
-   cursor: pointer;
-}
-
 .green-dialogs {
    left: 50%;
    top: 0;
@@ -34,22 +15,26 @@ a {
       max-width: 450px;
       box-sizing: border-box;
    }
+
    &__closemodal {
       position: absolute;
       right: 10px;
       top: 10px;
       z-index: 7;
    }
+
    &__closemodal-link {
       display: block;
       width: 20px;
       height: 20px;
       background: url(/img/modal_close.png) no-repeat;
    }
+
    &__container {
       background: #f8f8f8;
       overflow: hidden;
    }
+
    &__title-wrapper {
       background-color: #64af37;
       color: #fff;
@@ -59,6 +44,7 @@ a {
       display: table;
       border-bottom: 0 solid #679d19;
    }
+   
    &__title {
       font-size: 24px;
       line-height: 24px;
@@ -66,6 +52,7 @@ a {
       vertical-align: middle;
       font-weight: 400;
    }
+   
    &__steps {
       text-align: center;
       top: 80px;
@@ -73,6 +60,7 @@ a {
       margin-left: -90px;
       position: absolute;
    }
+   
    &__note,
    &__noteOptional {
       color: #666;
@@ -80,12 +68,15 @@ a {
       border-bottom: 1px dotted #666;
       padding: 15px;
    }
+   
    &__note-link {
       font-weight: 700;
    }
+   
    &__noteOptional {
       padding-top: 30px;
    }
+   
    &__bussinesNote {
       background-color: #fdedb2;
       text-align: center;
@@ -93,9 +84,11 @@ a {
       padding: 12px 0;
       line-height: 20px;
    }
+   
    &__form-inner {
       margin: 20px 0 0;
    }
+   
    &__registration-errors {
       padding: 16px 40px;
       list-style-type: square;
@@ -103,9 +96,11 @@ a {
       display: block;
       color: red;
    }
+   
    &__step-1 {
       overflow: hidden;
    }
+   
    &__connect {
       padding: 0 40px 20px;
       color: #666;
@@ -114,6 +109,7 @@ a {
       text-align: center;
       width: 100%;
    }
+   
    &__connect-label {
       vertical-align: top;
       font-weight: 400;
@@ -122,18 +118,22 @@ a {
       display: inline-block;
       margin-top: 6px;
    }
+   
    &__connect-icons {
       display: inline-block;
    }
+   
    &__connect-images {
       width: 32px;
       height: 32px;
    }
+   
    &__or {
       line-height: 30px;
       font-size: 13px;
       vertical-align: top;
    }
+   
    &__username,
    &__email-wrapper,
    &__password,
@@ -141,6 +141,7 @@ a {
       margin-bottom: 10px;
       padding: 0 40px;
    }
+   
    &__username-label,
    &__email-label,
    &__password-label,
@@ -152,6 +153,7 @@ a {
       font-weight: 700;
       margin-top: 6px;
    }
+   
    &__username-input,
    &__email-input,
    &__password-input,
@@ -167,24 +169,30 @@ a {
          box-shadow: 0 0 3px #9acb53;
       }
    }
+   
    &__password-input {
       max-width: 140px;
    }
+   
    &__password-input_user {
       max-width: 200px;
    }
+   
    &__code-label {
       vertical-align: top;
       margin-top: 15px;
    }
+   
    &__code-arrow {
       padding: 0 10px;
       vertical-align: top;
       margin-top: 15px;
    }
+   
    &__code-input {
       max-width: 64px;
    }
+   
    &__submit-wrapper {
       padding: 20px;
       background-color: #eff0f0;
@@ -195,6 +203,7 @@ a {
       text-align: center;
       box-sizing: border-box;
    }
+   
    &__submit {
       background-color: #ff8000;
       color: #fff;
@@ -212,6 +221,7 @@ a {
          color: #fff;
       }
    }
+   
    &__submit-login {
       background: #e5e5e5;
       padding: 4px;
@@ -220,6 +230,7 @@ a {
       vertical-align: middle;
       border-radius: 3px;
    }
+   
    &__submit-login_input {
       width: 105px;
       height: 30px;
@@ -230,6 +241,7 @@ a {
       border: 0;
       cursor: pointer;
    }
+   
    &__prev {
       display: inline-block;
       width: 112px;
@@ -246,6 +258,7 @@ a {
       z-index: 120;
       display: none;
    }
+   
    &__view-pictures-inner {
       padding: 15px;
       text-align: center;

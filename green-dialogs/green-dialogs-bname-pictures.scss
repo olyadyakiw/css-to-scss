@@ -1,19 +1,24 @@
 @import 'green-dialogs-base.scss';
 
 .green-dialogs {
+   max-width: 1146px;
+
    &__view-pictures {
       background-color: #fff;
       padding: 10px;
       box-sizing: border-box;
       max-width: 1146px;
+      width: 100%;
       position: absolute;
       z-index: 120;
       display: none;
    }
+
    &__view-pictures-inner {
       padding: 15px;
       text-align: center;
    }
+   
    &__page-links {
       text-align: center;
       padding-top: 10px;
