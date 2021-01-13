@@ -1,0 +1,83 @@
+<link rel="stylesheet" href="css/round-forms.css">
+<div class="page-content">
+    
+    <div class="contact-us">
+    
+        <form class="form-block round-forms">
+
+            <div class="block-header block-header_contact-us">
+                <h1 class="block-header__name">
+                    Contact us
+                </h1>
+            </div>
+
+            <div class="round-forms__field-row success" ajax-base-done-show ajax-base-fail-hide>
+                <div class="round-forms__message-sended">
+                    <div class="round-forms__message-title">Your message has been sent successfully</div>
+                    <div class="round-forms__message-text">Thank you for contacting us. You should expect a reply shortly.</div>
+                </div>
+            </div>
+
+            <div class="round-forms__field-row fullname">
+                <div class="round-forms__field-error-block max-width" ajax-base-fail-set-class="fullname">
+                    <div class="round-forms__field max-width input" ajax-base-done-remove-class="active">
+                        <input type="text" name="fullname" value="" tabindex="1" autocomplete="off" ajax-base-done-clear-value>
+                        <div class="round-forms__placeholder">
+                            <div class="round-forms__bg"></div>
+                            <div class="round-forms__text">Full Name</div>
+                        </div>
+                    </div>
+                    <div class="round-forms__error" ajax-base-fail-set-html="fullname"></div>
+                </div>
+            </div>
+
+            <div class="round-forms__field-row email">
+                <div class="round-forms__field-error-block max-width" ajax-base-fail-set-class="email">
+                    <div class="round-forms__field max-width input" ajax-base-done-remove-class="active">
+                        <input type="text" name="email" value="" tabindex="2" autocomplete="off" ajax-base-done-clear-value>
+                        <div class="round-forms__placeholder">
+                            <div class="round-forms__bg"></div>
+                            <div class="round-forms__text">Email</div>
+                        </div>
+                    </div>
+                    <div class="round-forms__error" ajax-base-fail-set-html="email"></div>
+                </div>
+            </div>
+
+            <div class="round-forms__field-row subject">
+                <div class="round-forms__field-error-block max-width" ajax-base-fail-set-class="subject">
+                    <div class="round-forms__field max-width input" ajax-base-done-remove-class="active">
+                        <input type="text" name="subject" value="" tabindex="3" autocomplete="off" ajax-base-done-clear-value>
+                        <div class="round-forms__placeholder">
+                            <div class="round-forms__bg"></div>
+                            <div class="round-forms__text">Subject</div>
+                        </div>
+                    </div>
+                    <div class="round-forms__error" ajax-base-fail-set-html="subject"></div>
+                </div>
+            </div>
+
+            <div class="round-forms__field-row text">
+                <div class="round-forms__field-error-block max-width" ajax-base-fail-set-class="message">
+                    <div class="round-forms__field max-width textarea" ajax-base-done-remove-class="active">
+                        <div class="round-forms__overflow"><textarea name="message" autocomplete="off" tabindex="4" ajax-base-done-clear-value></textarea></div>
+                        <div class="round-forms__placeholder">
+                            <div class="round-forms__bg"></div>
+                            <div class="round-forms__text">Your message. <br>Please include the complaint URL (if applicable)</div>
+                        </div>
+                    </div>
+                    <div class="round-forms__error" ajax-base-fail-set-html="message"></div>
+                </div>
+            </div>
+
+            <div class="round-forms__field-row center submit">
+          <div class="round-forms__button submit" tabindex="5" onclick="ajaxBase.contactUs.addFromForm( '.contact-us form' )">Send</div>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/round-forms.js"></script>
+
+</div>
