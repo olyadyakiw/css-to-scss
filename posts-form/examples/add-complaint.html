@@ -1,0 +1,505 @@
+<div class="page-content ">
+	<div class="page-content__cols">
+		<div class="page-content__left">
+			<link rel="stylesheet" href="css//block-header.css">
+			<link rel="stylesheet" href="css/default-forms.css">
+			<script>
+				var addComplaintVideoURL = "/new_complaint/?ajax-class=user-uploads&ajax-method=add-video";
+
+				function gosubmit() {
+					jQuery('#company').val(jQuery.trim(jQuery('#company').val()));
+					jQuery('#subject').val(jQuery.trim(jQuery('#subject').val()));
+					var err = check_form_fields(document.forms.mainform, checkers, document.getElementById('errors'), location.href
+						.replace(/\#moveerrors/, '') + "#moveerrors");
+					if (err.length > 0) {
+						return false;
+					}
+					jQuery("#company").prop('disabled', false);
+					UserLogin.OnSuccess = _submitform;
+					UserLogin.Show();
+					return false;
+					_submitform();
+					return true;
+				}
+			</script><a name="images" anchor=""></a><a name="moveerrors" anchor=""></a>
+			<div class="default-forms">
+				<form class="default-forms__form" action="/new_complaint/" name="mainform" method="POST" enctype="multipart/form-data">
+					<input type="hidden" name="referer" value="">
+					<input type="hidden" name="city_id" value="" id="city_id">
+					<input type="hidden" name="editGUID" value="" id="editGUID">
+					<input type="hidden" name="alert" value=""><input type="hidden" name="customFields">
+					<input type="hidden" name="spititout" value="submit">
+					<h1 class="block-header__name block-header__name_under">Complaint Registration Form</h1>
+					<div class="default-forms__inner">
+						<ul id="errors" class="default-forms__errors">
+							<li>Company name is required</li>
+							<li>Subject is required</li>
+							<li>Category is required</li>
+							<li>Complaint cannot be empty</li>
+							<li>Confirmation code is required!</li>
+						</ul>
+						<div class="default-forms__wrapper">
+							<label class="default-forms__label">Company Name</label>
+							<input class="default-forms__input default-forms__input-name ui-autocomplete-input" type="text" name="company" id="company" value="" placeholder="Company I'm complaining about..." onblur="spell_check_google(this);" autocomplete="off">
+							<img class="default-forms__check mark" id="img_company" src="img/no.png" alt="">
+							<div class="default-forms__tip default-forms__tip-name">
+								<div class="default-forms__tip-title">Company Name</div>
+								<div class="default-forms__tip-text"> 
+									Please enter a company name <br> you are having issue with. 
+								</div>
+							</div>
+						</div>
+						<div class="default-forms__wrapper">
+							<label class="default-forms__label">Complaint Subject</label>
+							<input class="default-forms__input default-forms__input-subject" type="text" name="subject" id="subject" placeholder="Product/Subject I'm complaining about..." value="" onblur="spell_check_google(this);">
+							<img class="default-forms__check mark" id="img_subject" src="img/no.png" alt="">
+							<div class="default-forms__tip default-forms__tip-subject">
+								<div class="default-forms__tip-title">Company Subject</div>
+								<div class="default-forms__tip-text"> Other consumers and companies need to<br>understand your
+									issue to help
+									you,<br>so please try to mention the exact<br>problem you are having (“payment
+									not<br>received”,
+									“unauthorized credit card charges”,<br>“unethical behaviour”, etc) instead of<br>just stating
+									“scam, ripoff, lies”. 
+								</div>
+							</div>
+						</div>
+						<div customfieldstemplate="" style="display:none">
+							<label class="default-forms__label">%fieldNameCaption% <span>Visible only for the company</span></label>
+							<input class="default-forms__input default-forms__input-custom" type="text" name="%fieldName%" id="%fieldName%" maxlength="50" value="" placeholder="Your %fieldNameCaption%...">
+							<img id="img_%fieldName%" class="default-forms__check mark" src="img/no.png"></div>
+						<div class="default-forms__wrapper">
+							<div class="default-forms__textarea">
+								<label class="default-forms__label">Complaint Details</label>
+								<textarea class="default-forms__input default-forms__input-details"name="text" id="text"placeholder="Please provide as much information as possible, but do NOT share your highly private details, such as phone/mobile number, credit card details etc. in this field, as it's visible for everyone."onkeyup="jQuery('#wcounter').html(this.value.length);"></textarea>
+								<div class="default-forms__tip default-forms__tip-details">
+									<div class="default-forms__tip-title">Complaint Details</div>
+									<div class="default-forms__tip-text"> Please provide as much
+										information as possible:<br> - date of the incident<br> - client number (if available)<br>
+										- full description of the incident<br> - desirable resolution of your complaint, for
+										example:<br>request a refund, return,
+										repair, etc.<br><br> Remember! The more details you provide, the<br>easier it will be for
+										a company
+										to<br>resolve your issue.<br><br> Attach all available documents:<br> - photo of the
+										damaged or defective product<br> - invoices<br> - copy of the email correspondence, or
+										chat<br> - any other relevant documents<br><br> Make sure your complaint is easy to
+										read,<br>please be polite, avoid using CAPS
+										letters,<br>or abusive language 
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="default-forms__wrapper">
+							<div class="default-forms__wrapper" id="categoryRow"><label
+									class="default-forms__label">Category</label>
+									<select name="category" id="category" class="default-forms__select default-forms__select-categories">
+									<option class="default-forms__select default-forms__select-categories" value="0">Select
+										category</option>
+									<option class="default-forms__select default-forms__select-categories" value="45">Airlines
+									</option>
+									<option class="default-forms__select default-forms__select-categories" value="3">Business
+										&amp; Finances</option>
+									<option class="default-forms__select default-forms__select-categories" value="s14">
+										&nbsp;&nbsp;&nbsp;Banks</option>
+									<option class="default-forms__select default-forms__select-categories" value="s48">
+										&nbsp;&nbsp;&nbsp;Credit Cards</option>
+									<option class="default-forms__select default-forms__select-categories" value="s36">
+										&nbsp;&nbsp;&nbsp;Insurance</option>
+									<option class="default-forms__select default-forms__select-categories" value="s21">
+										&nbsp;&nbsp;&nbsp;Loans</option>
+									<option class="default-forms__select default-forms__select-categories" value="s37">
+										&nbsp;&nbsp;&nbsp;Stock Market</option>
+									<option class="default-forms__select default-forms__select-categories" value="s30">
+										&nbsp;&nbsp;&nbsp;Tax Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="4">Cars, Parts
+										&amp; Vehicles</option>
+									<option class="default-forms__select default-forms__select-categories" value="s10">
+										&nbsp;&nbsp;&nbsp;Auto Insurance &amp; Loan</option>
+									<option class="default-forms__select default-forms__select-categories" value="s38">
+										&nbsp;&nbsp;&nbsp;Car Dealers</option>
+									<option class="default-forms__select default-forms__select-categories" value="s39">
+										&nbsp;&nbsp;&nbsp;Car Service Centers</option>
+									<option class="default-forms__select default-forms__select-categories" value="s42">
+										&nbsp;&nbsp;&nbsp;Cars, Vans &amp; SUVs</option>
+									<option class="default-forms__select default-forms__select-categories" value="18">Clothing,
+										Shoes &amp; Accessories </option>
+									<option class="default-forms__select default-forms__select-categories" value="6">Computers
+										&amp; Accessories</option>
+									<option class="default-forms__select default-forms__select-categories" value="s47">
+										&nbsp;&nbsp;&nbsp;Computer Software</option>
+									<option class="default-forms__select default-forms__select-categories" value="s45">
+										&nbsp;&nbsp;&nbsp;Laptops / Notebooks</option>
+									<option class="default-forms__select default-forms__select-categories" value="8">Education
+									</option>
+									<option class="default-forms__select default-forms__select-categories" value="s59">
+										&nbsp;&nbsp;&nbsp;Institutes</option>
+									<option class="default-forms__select default-forms__select-categories" value="s58">
+										&nbsp;&nbsp;&nbsp;Universities</option>
+									<option class="default-forms__select default-forms__select-categories" value="7">Electronics
+										&amp; Appliances</option>
+									<option class="default-forms__select default-forms__select-categories" value="s26">
+										&nbsp;&nbsp;&nbsp;Mobile Handsets</option>
+									<option class="default-forms__select default-forms__select-categories" value="47">Family
+										&amp; Relationships</option>
+									<option class="default-forms__select default-forms__select-categories" value="s65">
+										&nbsp;&nbsp;&nbsp;Neighbours</option>
+									<option class="default-forms__select default-forms__select-categories" value="s31">
+										&nbsp;&nbsp;&nbsp;Sexual Abuse</option>
+									<option class="default-forms__select default-forms__select-categories" value="42">Food
+									</option>
+									<option class="default-forms__select default-forms__select-categories" value="27">Government
+										Organizations</option>
+									<option class="default-forms__select default-forms__select-categories" value="s94">
+										&nbsp;&nbsp;&nbsp;Citizenship &amp; Immigration</option>
+									<option class="default-forms__select default-forms__select-categories" value="s67">
+										&nbsp;&nbsp;&nbsp;Municipal Corporation</option>
+									<option class="default-forms__select default-forms__select-categories" value="s93">
+										&nbsp;&nbsp;&nbsp;Passport Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="s95">
+										&nbsp;&nbsp;&nbsp;Postal &amp; Delivery Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="31">Home &amp;
+										Garden</option>
+									<option class="default-forms__select default-forms__select-categories" value="s28">
+										&nbsp;&nbsp;&nbsp;Appliances</option>
+									<option class="default-forms__select default-forms__select-categories" value="s29">
+										&nbsp;&nbsp;&nbsp;Utility Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="28">Internet
+										Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="s56">
+										&nbsp;&nbsp;&nbsp;Broadband</option>
+									<option class="default-forms__select default-forms__select-categories" value="s92">
+										&nbsp;&nbsp;&nbsp;Lottery and Sweepstake Emails</option>
+									<option class="default-forms__select default-forms__select-categories" value="s90">
+										&nbsp;&nbsp;&nbsp;Online Games</option>
+									<option class="default-forms__select default-forms__select-categories" value="s55">
+										&nbsp;&nbsp;&nbsp;Online Shopping</option>
+									<option class="default-forms__select default-forms__select-categories" value="49">Jewelry
+										&amp; Watches</option>
+									<option class="default-forms__select default-forms__select-categories" value="12">Job &amp;
+										Career</option>
+									<option class="default-forms__select default-forms__select-categories" value="s82">
+										&nbsp;&nbsp;&nbsp;Employees</option>
+									<option class="default-forms__select default-forms__select-categories" value="s81">
+										&nbsp;&nbsp;&nbsp;Employers</option>
+									<option class="default-forms__select default-forms__select-categories" value="52">Kids &amp;
+										Baby</option>
+									<option class="default-forms__select default-forms__select-categories" value="51">Law &amp;
+										Civil Rights</option>
+									<option class="default-forms__select default-forms__select-categories" value="14">News &amp;
+										Media</option>
+									<option class="default-forms__select default-forms__select-categories" value="21">Other
+									</option>
+									<option class="default-forms__select default-forms__select-categories" value="15">Pets &amp;
+										Animals</option>
+									<option class="default-forms__select default-forms__select-categories" value="25">Products
+										&amp; Services</option>
+									<option class="default-forms__select default-forms__select-categories" value="57">Public
+										Transportation</option>
+									<option class="default-forms__select default-forms__select-categories" value="s49">
+										&nbsp;&nbsp;&nbsp;Airlines</option>
+									<option class="default-forms__select default-forms__select-categories" value="s50">
+										&nbsp;&nbsp;&nbsp;Railways</option>
+									<option class="default-forms__select default-forms__select-categories" value="16">Real Estate
+									</option>
+									<option class="default-forms__select default-forms__select-categories" value="s88">
+										&nbsp;&nbsp;&nbsp;Building Developers</option>
+									<option class="default-forms__select default-forms__select-categories" value="s89">
+										&nbsp;&nbsp;&nbsp;House, Apartment Rental</option>
+									<option class="default-forms__select default-forms__select-categories" value="23">
+										Telecommunications</option>
+									<option class="default-forms__select default-forms__select-categories" value="s84">
+										&nbsp;&nbsp;&nbsp;Landline &amp; Home Phone Provider</option>
+									<option class="default-forms__select default-forms__select-categories" value="s83">
+										&nbsp;&nbsp;&nbsp;Mobile Service Providers</option>
+									<option class="default-forms__select default-forms__select-categories" value="50">
+										Unauthorized charges</option>
+									<option class="default-forms__select default-forms__select-categories" value="48">Unsolicited
+										Phone Calls</option>
+								</select><img id="img_category" class="default-forms__check mark" src="img/no.png"><a
+									class="default-forms__expanded-view" href="#"
+									onclick="show_gray_bg();jQuery('#CategoryDialog_Table :radio').prop('checked',false);jQuery('#selcat_'+jQuery('#category').val()).prop('checked',true);var dlg=document.getElementById('CategoryDialog_Table');dlg.style.display='block';center_element(dlg,dlg.clientHeight/2,dlg.clientWidth/2);return false;">Expanded
+									view</a>
+								<div class="default-forms__tip default-forms__tip-categories">
+									<div class="default-forms__tip-title">Category</div>
+									<div class="default-forms__tip-text"> Please choose the appropriate <br> category for your
+										complaint. </div>
+								</div>
+							</div>
+						</div>
+						<div class="default-forms__wrapper"><label class="default-forms__label">Country</label><select
+								class="default-forms__select default-forms__select-country" name="country" id="country">
+								<option class="default-forms__option" value="5" selected="">India</option>
+								<option class="default-forms__option" value="3">United States</option>
+								<option class="default-forms__option" value="201">United Kingdom</option>
+								<option class="default-forms__option" value="200">United Arab Emirates</option>
+								<option class="default-forms__option" value="172">Singapore</option>
+								<option class="default-forms__option" value="0">-----------------------------------------------
+								</option>
+								<option class="default-forms__option" value="7">Afghanistan</option>
+								<option class="default-forms__option" value="8">Albania</option>
+								<option class="default-forms__option" value="9">Algeria</option>
+								<option class="default-forms__option" value="10">American Samoa</option>
+								<option class="default-forms__option" value="11">Andorra</option>
+								<option class="default-forms__option" value="12">Angola</option>
+								<option class="default-forms__option" value="13">Argentina</option>
+								<option class="default-forms__option" value="14">Armenia</option>
+								<option class="default-forms__option" value="15">Aruba</option>
+								<option class="default-forms__option" value="16">Ascension</option>
+								<option class="default-forms__option" value="17">Australia</option>
+								<option class="default-forms__option" value="18">Australian Ext. Territory</option>
+								<option class="default-forms__option" value="19">Austria</option>
+								<option class="default-forms__option" value="20">Azerbaijan</option>
+								<option class="default-forms__option" value="21">Bahrain</option>
+								<option class="default-forms__option" value="22">Bangladesh</option>
+								<option class="default-forms__option" value="23">Belarus</option>
+								<option class="default-forms__option" value="24">Belgium</option>
+								<option class="default-forms__option" value="25">Belize</option>
+								<option class="default-forms__option" value="26">Benin</option>
+								<option class="default-forms__option" value="27">Bhutan</option>
+								<option class="default-forms__option" value="28">Bolivia</option>
+								<option class="default-forms__option" value="29">Bosnia</option>
+								<option class="default-forms__option" value="30">Botswana</option>
+								<option class="default-forms__option" value="31">Brazil</option>
+								<option class="default-forms__option" value="32">Brunei Darussalam</option>
+								<option class="default-forms__option" value="33">Bulgaria</option>
+								<option class="default-forms__option" value="34">Burkina Faso</option>
+								<option class="default-forms__option" value="35">Burundi</option>
+								<option class="default-forms__option" value="36">Cambodia</option>
+								<option class="default-forms__option" value="37">Cameroon</option>
+								<option class="default-forms__option" value="38">Canada</option>
+								<option class="default-forms__option" value="39">Cape Verde</option>
+								<option class="default-forms__option" value="40">Central African Republic</option>
+								<option class="default-forms__option" value="41">Chad</option>
+								<option class="default-forms__option" value="42">Chile</option>
+								<option class="default-forms__option" value="43">China</option>
+								<option class="default-forms__option" value="44">Colombia</option>
+								<option class="default-forms__option" value="45">Congo</option>
+								<option class="default-forms__option" value="46">Cook Islands</option>
+								<option class="default-forms__option" value="47">Costa Rica</option>
+								<option class="default-forms__option" value="48">Croatia</option>
+								<option class="default-forms__option" value="49">Cuba</option>
+								<option class="default-forms__option" value="50">Cyprus</option>
+								<option class="default-forms__option" value="51">Czech Republic</option>
+								<option class="default-forms__option" value="52">Denmark</option>
+								<option class="default-forms__option" value="53">Diego Garcia</option>
+								<option class="default-forms__option" value="54">Djibouti</option>
+								<option class="default-forms__option" value="55">Dominican Republic</option>
+								<option class="default-forms__option" value="56">DPR Korea (North)</option>
+								<option class="default-forms__option" value="57">East Timor</option>
+								<option class="default-forms__option" value="58">Ecuador</option>
+								<option class="default-forms__option" value="59">Egypt</option>
+								<option class="default-forms__option" value="60">El Salvador</option>
+								<option class="default-forms__option" value="61">Equatorial Guinea</option>
+								<option class="default-forms__option" value="62">Eritrea</option>
+								<option class="default-forms__option" value="63">Estonia</option>
+								<option class="default-forms__option" value="64">Ethiopia</option>
+								<option class="default-forms__option" value="65">F.S. Micronesia</option>
+								<option class="default-forms__option" value="66">Falkland Islands</option>
+								<option class="default-forms__option" value="67">Faroe Islands</option>
+								<option class="default-forms__option" value="68">Fiji</option>
+								<option class="default-forms__option" value="69">Finland</option>
+								<option class="default-forms__option" value="70">France</option>
+								<option class="default-forms__option" value="71">French Polynesia</option>
+								<option class="default-forms__option" value="72">Gabon</option>
+								<option class="default-forms__option" value="73">Gambia</option>
+								<option class="default-forms__option" value="74">Georgia</option>
+								<option class="default-forms__option" value="75">Germany</option>
+								<option class="default-forms__option" value="76">Ghana</option>
+								<option class="default-forms__option" value="77">Gibraltar</option>
+								<option class="default-forms__option" value="78">Greece</option>
+								<option class="default-forms__option" value="79">Greenland</option>
+								<option class="default-forms__option" value="80">Guadeloupe</option>
+								<option class="default-forms__option" value="81">Guatemala</option>
+								<option class="default-forms__option" value="82">Guiana (French)</option>
+								<option class="default-forms__option" value="83">Guinea</option>
+								<option class="default-forms__option" value="84">Guinea-Bissau</option>
+								<option class="default-forms__option" value="85">Guyana</option>
+								<option class="default-forms__option" value="86">Haiti</option>
+								<option class="default-forms__option" value="87">Honduras</option>
+								<option class="default-forms__option" value="88">Hong Kong</option>
+								<option class="default-forms__option" value="89">Hungary</option>
+								<option class="default-forms__option" value="90">Iceland</option>
+								<option class="default-forms__option" value="5">India</option>
+								<option class="default-forms__option" value="92">Indonesia</option>
+								<option class="default-forms__option" value="93">Iran</option>
+								<option class="default-forms__option" value="94">Iraq</option>
+								<option class="default-forms__option" value="95">Ireland</option>
+								<option class="default-forms__option" value="96">Israel</option>
+								<option class="default-forms__option" value="97">Italy</option>
+								<option class="default-forms__option" value="98">Ivory Coast</option>
+								<option class="default-forms__option" value="99">Jamaica</option>
+								<option class="default-forms__option" value="100">Japan</option>
+								<option class="default-forms__option" value="101">Jordan</option>
+								<option class="default-forms__option" value="102">Kazakhstan</option>
+								<option class="default-forms__option" value="103">Kenya</option>
+								<option class="default-forms__option" value="104">Kiribati</option>
+								<option class="default-forms__option" value="105">Korea (South)</option>
+								<option class="default-forms__option" value="106">Kuwait</option>
+								<option class="default-forms__option" value="107">Kyrgyz Republic</option>
+								<option class="default-forms__option" value="108">Laos</option>
+								<option class="default-forms__option" value="109">Latvia</option>
+								<option class="default-forms__option" value="110">Lebanon</option>
+								<option class="default-forms__option" value="111">Lesotho</option>
+								<option class="default-forms__option" value="112">Liberia</option>
+								<option class="default-forms__option" value="113">Libya</option>
+								<option class="default-forms__option" value="114">Liechtenstein</option>
+								<option class="default-forms__option" value="115">Lithuania</option>
+								<option class="default-forms__option" value="116">Luxembourg</option>
+								<option class="default-forms__option" value="117">Macau</option>
+								<option class="default-forms__option" value="118">Macedonia</option>
+								<option class="default-forms__option" value="119">Madagascar</option>
+								<option class="default-forms__option" value="120">Malawi</option>
+								<option class="default-forms__option" value="121">Malaysia</option>
+								<option class="default-forms__option" value="122">Maldives</option>
+								<option class="default-forms__option" value="123">Mali</option>
+								<option class="default-forms__option" value="124">Malta</option>
+								<option class="default-forms__option" value="125">Marshall Islands</option>
+								<option class="default-forms__option" value="126">Martinique</option>
+								<option class="default-forms__option" value="127">Mauritania</option>
+								<option class="default-forms__option" value="128">Mauritius</option>
+								<option class="default-forms__option" value="129">Mayotte, Comoros Is.</option>
+								<option class="default-forms__option" value="130">Mexico</option>
+								<option class="default-forms__option" value="131">Moldova</option>
+								<option class="default-forms__option" value="132">Monaco</option>
+								<option class="default-forms__option" value="133">Mongolia</option>
+								<option class="default-forms__option" value="134">Morocco</option>
+								<option class="default-forms__option" value="135">Mozambique</option>
+								<option class="default-forms__option" value="136">Myanmar (Burma)</option>
+								<option class="default-forms__option" value="137">Namibia</option>
+								<option class="default-forms__option" value="138">Nauru</option>
+								<option class="default-forms__option" value="139">Nepal</option>
+								<option class="default-forms__option" value="140">Netherlands</option>
+								<option class="default-forms__option" value="141">Netherlands Antilles</option>
+								<option class="default-forms__option" value="142">New Caledonia</option>
+								<option class="default-forms__option" value="143">New Zealand</option>
+								<option class="default-forms__option" value="144">Nicaragua</option>
+								<option class="default-forms__option" value="145">Niger</option>
+								<option class="default-forms__option" value="146">Nigeria</option>
+								<option class="default-forms__option" value="147">Niue</option>
+								<option class="default-forms__option" value="148">Norway</option>
+								<option class="default-forms__option" value="149">Oman</option>
+								<option class="default-forms__option" value="150">Pakistan</option>
+								<option class="default-forms__option" value="151">Palau</option>
+								<option class="default-forms__option" value="152">Palestine</option>
+								<option class="default-forms__option" value="153">Panama</option>
+								<option class="default-forms__option" value="154">Papua New Guinea</option>
+								<option class="default-forms__option" value="155">Paraguay</option>
+								<option class="default-forms__option" value="156">Peru</option>
+								<option class="default-forms__option" value="157">Philippines</option>
+								<option class="default-forms__option" value="158">Poland</option>
+								<option class="default-forms__option" value="159">Portugal</option>
+								<option class="default-forms__option" value="160">Qatar</option>
+								<option class="default-forms__option" value="161">Reunion Island</option>
+								<option class="default-forms__option" value="162">Romania</option>
+								<option class="default-forms__option" value="163">Russia</option>
+								<option class="default-forms__option" value="164">Rwanda</option>
+								<option class="default-forms__option" value="165">Saint Helena</option>
+								<option class="default-forms__option" value="166">San Marino</option>
+								<option class="default-forms__option" value="167">Sao Tome &amp; Principe</option>
+								<option class="default-forms__option" value="168">Saudi Arabia</option>
+								<option class="default-forms__option" value="214">Schotland</option>
+								<option class="default-forms__option" value="169">Senegal</option>
+								<option class="default-forms__option" value="170">Seychelles</option>
+								<option class="default-forms__option" value="171">Sierra Leone</option>
+								<option class="default-forms__option" value="172">Singapore</option>
+								<option class="default-forms__option" value="173">Slovakia</option>
+								<option class="default-forms__option" value="174">Slovenia</option>
+								<option class="default-forms__option" value="175">Solomon Islands</option>
+								<option class="default-forms__option" value="176">Somalia</option>
+								<option class="default-forms__option" value="177">South Africa</option>
+								<option class="default-forms__option" value="178">Spain</option>
+								<option class="default-forms__option" value="179">Sri Lanka</option>
+								<option class="default-forms__option" value="180">St Pierre &amp; Miquelon</option>
+								<option class="default-forms__option" value="181">Sudan</option>
+								<option class="default-forms__option" value="182">Suriname</option>
+								<option class="default-forms__option" value="183">Swaziland</option>
+								<option class="default-forms__option" value="184">Sweden</option>
+								<option class="default-forms__option" value="185">Switzerland</option>
+								<option class="default-forms__option" value="186">Syria</option>
+								<option class="default-forms__option" value="187">Taiwan</option>
+								<option class="default-forms__option" value="188">Tajikistan</option>
+								<option class="default-forms__option" value="189">Tanzania</option>
+								<option class="default-forms__option" value="190">Thailand</option>
+								<option class="default-forms__option" value="191">Togo</option>
+								<option class="default-forms__option" value="192">Tokelau</option>
+								<option class="default-forms__option" value="193">Tonga</option>
+								<option class="default-forms__option" value="194">Tunisia</option>
+								<option class="default-forms__option" value="195">Turkey</option>
+								<option class="default-forms__option" value="196">Turkmenistan</option>
+								<option class="default-forms__option" value="197">Tuvalu</option>
+								<option class="default-forms__option" value="198">Uganda</option>
+								<option class="default-forms__option" value="199">Ukraine</option>
+								<option class="default-forms__option" value="200">United Arab Emirates</option>
+								<option class="default-forms__option" value="201">United Kingdom</option>
+								<option class="default-forms__option" value="3">United States</option>
+								<option class="default-forms__option" value="202">Uruguay</option>
+								<option class="default-forms__option" value="203">Uzbekistan</option>
+								<option class="default-forms__option" value="204">Vanuatu</option>
+								<option class="default-forms__option" value="205">Vatican City</option>
+								<option class="default-forms__option" value="206">Venezuela</option>
+								<option class="default-forms__option" value="207">Vietnam</option>
+								<option class="default-forms__option" value="208">Wallis and Futuna</option>
+								<option class="default-forms__option" value="209">Western Samoa</option>
+								<option class="default-forms__option" value="210">Yemen</option>
+								<option class="default-forms__option" value="211">Yugoslavia</option>
+								<option class="default-forms__option" value="212">Zambia</option>
+								<option class="default-forms__option" value="213">Zimbabwe</option>
+							</select>
+							<div class="default-forms__tip default-forms__tip-country">
+								<div class="default-forms__tip-title">Country</div>
+								<div class="default-forms__tip-text"> Please select a country, where the <br> company of you
+									complaint is located. 
+								</div>
+							</div>
+						</div>
+						<div class="default-forms__wrapper">
+							<label class="default-forms__label" id="addressrow">Address (optional)</label>
+							<input class="default-forms__input default-forms__input-address" type="text" id="addressinput" name="address" value="" autocomplete="off" placeholder="Address, where is this company located?" onkeypress="jQuery('#address_id').val('');">
+							<div class="default-forms__tip default-forms__tip-address">
+								<div class="default-forms__tip-title">Address</div>
+								<div class="default-forms__tip-text"> If you can provide us with the address<br> where the
+									company you're complaining<br> about is located,
+									it can help
+									us to<br> reach proper regional customer care. </div>
+							</div>
+						</div>
+						<label class="default-forms__label" id="websiterow">Website (optional)</label>
+						<input class="default-forms__input default-forms__input-website" type="text" id="website" placeholder="What is the website you're complaining about?" name="website" value="" autocomplete="off" onkeypress="jQuery('#website_id').val('');">
+						<div class="default-forms__image-errors" align="center"></div>
+						<input class="default-forms__input-file"type="file" name="user-uploads-image-video">
+						<label class="default-forms__label default-forms__label-website"></label>
+						<div class="default-forms__photo">
+							<a class="default-forms__photo-link" href="#" onclick="jQuery('input[name=user-uploads-image-video]').click();return false;"> Add Photos/Videos </a>
+							</div>
+						<div class="default-forms__progress" id="user-uploads-progress">
+							<div class="default-forms__progress-inner"></div>
+						</div>
+						<div class="default-forms__wrapper">
+							<div id="user-uploads-html"></div>
+							<div class="default-forms__captcha default-forms__captcha_complaint">
+								<label class="default-forms__label">Confirmation code</label>
+								<img class="default-forms__captcha-img" src="img/captcha.jfif">
+								<img class="default-forms__captcha-arrow" src="img/arrow1.png" width="23" height="16">
+								<input class="default-forms__input default-forms__captcha-input" type="text" name="code" id="code">
+								<div class="default-forms__tip default-forms__tip-captcha">
+									<div class="default-forms__tip-title">Confirmation code</div>
+									<div class="default-forms__tip-text"> Please enter the correct <br> confirmation code and
+										click "Submit" </div>
+								</div>
+							</div>
+						</div><input type="hidden" name="spititout" value="1">
+						<div class="default-forms__submit-wrapper">
+							<a class="default-forms__submit" href="#" id="main-btn-submit" onclick="return gosubmit();">Submit</a></div>
+					</div>
+				</form>
+
+				<script>
+					fw.push(function () {});
+				</script>
+			</div>
+		</div>
+		<div class="page-content__right">
+
+		</div>
+	</div>
+</div>
