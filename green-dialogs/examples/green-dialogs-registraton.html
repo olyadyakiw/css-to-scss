@@ -2,9 +2,10 @@
 
 <div class="page-content">
 
-   <div class="green-dialogs__registration" id="UserRegistration_Table" style="display: block;"><span
-         class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#"
-            onclick="UserRegistration.Close();return false;"></a></span>
+   <div class="green-dialogs__registration" id="UserRegistration_Table" style="display: block;">
+      <span class="green-dialogs__closemodal">
+         <a class="green-dialogs__closemodal-link" href="#" onclick="UserRegistration.Close();return false;"></a>
+      </span>
       <div class="green-dialogs__container">
          <div class="green-dialogs__title-wrapper">
             <h3 class="green-dialogs__title">New Member Registration</h3>
@@ -16,13 +17,17 @@
                <li class="w3"><a href="#3"></a></li>
             </ul>
          </div>
-         <div class="green-dialogs__note"> Already a Consumer Complaints member? <a class="green-dialogs__note-link"
-               href="#" onclick="UserRegistration.Close();return UserLogin.Show()">Log in now</a></div>
+         <div class="green-dialogs__note"> Already a Consumer Complaints member?
+            <a class="green-dialogs__note-link" href="#" onclick="UserRegistration.Close();return UserLogin.Show()">Log
+               in now</a>
+         </div>
          <div class="green-dialogs__noteOptional" style="display: none;"> You can skip this step and add information
             later.
          </div>
-         <div class="green-dialogs__bussinesNote" style="display:none;" id="bussinesNote"> Business registration form is
-            meant for the companies who want to<br> resolve the complaints about their products and services. </div>
+         <div class="green-dialogs__bussinesNote" style="display:none;" id="bussinesNote">
+            Business registration form is
+            meant for the companies who want to<br> resolve the complaints about their products and services.
+         </div>
          <form class="green-dialogs__form" method="POST" id="UserRegistration_Form">
             <div class="green-dialogs__form-inner" id="UserRegistration_fields">
                <ul id="UserRegistration_errors" class="green-dialogs__registration-errors" style="display:block">
@@ -31,38 +36,47 @@
                   <li>Password required</li>
                   <li>Confirmation code is required!</li>
                </ul>
-               <div class="green-dialogs__step-1"><input type="hidden" name="UserRegistration_type" value="personal">
-                  <div class="green-dialogs__connect"><label class="green-dialogs__connect-label">Connect with</label>
-                     <div class="green-dialogs__connect-icons"><a class="green-dialogs__connect-link" href="#"
-                           onclick="return UserLogin.LoginByFacebook();"><img class="green-dialogs__connect-link-images"
-                              src="img/facebook-icon.png" width="32" height="32"></a>&nbsp;&nbsp; <a
-                           class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();"><img
-                              class="green-dialogs__connect-link-images" src="img/google-icon.png" width="32"
-                              height="32"></a>&nbsp;&nbsp; <a class="green-dialogs__connect-link" href="#"
-                           onclick="return UserLogin.LoginByTwitter();"><img class="green-dialogs__connect-link-images"
-                              src="img/twitter-icon.png" width="32" height="32"></a>&nbsp;&nbsp; <a
-                           class="green-dialogs__connect-link" href="#"
-                           onclick="return UserLogin.LoginByLinkedin();"><img class="green-dialogs__connect-link-images"
-                              src="img/linedin-icon.png" width="32" height="32"></a>&nbsp;&nbsp; </div><span
-                        class="green-dialogs__or">or</span>
+               <div class="green-dialogs__step-1">
+                  <input type="hidden" name="UserRegistration_type" value="personal">
+                  <div class="green-dialogs__connect">
+                     <label class="green-dialogs__connect-label">Connect with</label>
+                     <div class="green-dialogs__connect-icons">
+                        <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByFacebook();">
+                           <img class="green-dialogs__connect-link-images" src="img/facebook-icon.png" width="32"
+                              height="32"></a>&nbsp;&nbsp;
+                        <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();">
+                           <img class="green-dialogs__connect-link-images" src="img/google-icon.png" width="32"
+                              height="32"></a>&nbsp;&nbsp;
+                        <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByTwitter();">
+                           <img class="green-dialogs__connect-link-images" src="img/twitter-icon.png" width="32"
+                              height="32"></a>&nbsp;&nbsp;
+                        <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByLinkedin();">
+                           <img class="green-dialogs__connect-link-images" src="img/linedin-icon.png" width="32"
+                              height="32"></a>&nbsp;&nbsp;
+                     </div>
+                     <span class="green-dialogs__or">or</span>
                   </div>
-                  <div class="green-dialogs__username"><label
-                        class="green-dialogs__username-label">Username</label><input
-                        class="green-dialogs__username-input" name="UserRegistration_displayname"
+                  <div class="green-dialogs__username">
+                     <label class="green-dialogs__username-label">Username</label>
+                     <input class="green-dialogs__username-input" name="UserRegistration_displayname"
                         id="UserRegistration_displayname" type="text" placeholder="Nickname"></div>
-                  <div class="green-dialogs__email-wrapper"><label class="green-dialogs__email-label"
-                        for="email">E-mail</label><input class="green-dialogs__username-input"
-                        name="UserRegistration_email" id="UserRegistration_email" type="email"
-                        placeholder="mail@example.com"></div>
-                  <div class="green-dialogs__password"><label class="green-dialogs__password-label"
-                        for="pass">Password</label><input class="green-dialogs__password-input"
-                        name="UserRegistration_password" id="UserRegistration_password" type="password"></div>
-                  <div id="tr_UserRegistration_code" class="green-dialogs__code"><label
-                        class="green-dialogs__code-label" for="code">Code:</label><img class="green-dialogs__code-image"
-                        src="img/captcha.jfif" id="UserRegistration_authcode" width="120"
-                        height="50"><img class="green-dialogs__code-arrow" src="img/arrow1.png" width="23" height="16"
-                        style="padding:0 10px;"><input class="green-dialogs__code-input" name="UserRegistration_code"
-                        id="UserRegistration_code" type="text" maxlength="6"></div>
+                  <div class="green-dialogs__email-wrapper">
+                     <label class="green-dialogs__email-label" for="email">E-mail</label>
+                     <input class="green-dialogs__username-input" name="UserRegistration_email"
+                        id="UserRegistration_email" type="email" placeholder="mail@example.com"></div>
+                  <div class="green-dialogs__password">
+                     <label class="green-dialogs__password-label" for="pass">Password</label>
+                     <input class="green-dialogs__password-input" name="UserRegistration_password"
+                        id="UserRegistration_password" type="password"></div>
+                  <div id="tr_UserRegistration_code" class="green-dialogs__code">
+                     <label class="green-dialogs__code-label" for="code">Code:</label>
+                     <img class="green-dialogs__code-image" src="img/captcha.jfif" id="UserRegistration_authcode"
+                        width="120" height="50">
+                     <img class="green-dialogs__code-arrow" src="img/arrow1.png" width="23" height="16"
+                        style="padding:0 10px;">
+                     <input class="green-dialogs__code-input" name="UserRegistration_code" id="UserRegistration_code"
+                        type="text" maxlength="6">
+                  </div>
                </div>
                <div class="wizard step2" style="display: none;">
                   <ul>
@@ -583,8 +597,10 @@
                               id="cl7"><label for="cl7">Closed</label></span></li>
                   </ul>
                </div>
-               <div class="green-dialogs__submit-wrapper"><a class="green-dialogs__submit" href="#"
-                     onclick="return UserRegistration.Register()" id="submit_button"> &nbsp; Register &nbsp; </a></div>
+               <div class="green-dialogs__submit-wrapper">
+                  <a class="green-dialogs__submit" href="#" onclick="return UserRegistration.Register()"
+                     id="submit_button"> &nbsp; Register &nbsp; </a>
+               </div>
             </div>
             <div id="UserRegistration_loading" style="display:none">
                <div class="note"> Loading, please wait... </div>

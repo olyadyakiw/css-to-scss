@@ -3,8 +3,9 @@
 <div class="page-content">
 
    <div class="green-dialogs__user" id="UserLogin_Table">
-      <span class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#"
-            onclick="UserLogin.Close();return false;"></a></span>
+      <span class="green-dialogs__closemodal">
+         <a class="green-dialogs__closemodal-link" href="#" onclick="UserLogin.Close();return false;"></a>
+      </span>
       <div class="green-dialogs__container">
          <div class="green-dialogs__title-wrapper">
             <h3 class="green-dialogs__title">User Login</h3>
@@ -24,34 +25,47 @@
                      <li>Password required</li>
                   </ul>
                   <div class="green-dialogs__step-1">
-                     <div class="green-dialogs__connect"><label class="green-dialogs__connect-label">Connect
-                           with</label>
-                        <div class="green-dialogs__connect-icons"><a class="green-dialogs__connect-link" href="#"
-                              onclick="return UserLogin.LoginByFacebook();"><img
-                                 class="green-dialogs__connect-link-images" src="img/facebook-icon.png" width="32"
-                                 height="32"></a>&nbsp;&nbsp; <a class="green-dialogs__connect-link" href="#"
-                              onclick="return UserLogin.LoginByGoogle();"><img
-                                 class="green-dialogs__connect-link-images" src="img/google-icon.png" width="32"
-                                 height="32"></a>&nbsp;&nbsp; <a class="green-dialogs__connect-link" href="#"
-                              onclick="return UserLogin.LoginByTwitter();"><img
-                                 class="green-dialogs__connect-link-images" src="img/twitter-icon.png" width="32"
-                                 height="32"></a>&nbsp;&nbsp; <a class="green-dialogs__connect-link" href="#"
-                              onclick="return UserLogin.LoginByLinkedin();"><img
-                                 class="green-dialogs__connect-link-images" src="img/linedin-icon.png" width="32"
-                                 height="32"></a>&nbsp;&nbsp; </div><span class="green-dialogs__or">or</span>
+                     <div class="green-dialogs__connect">
+                        <label class="green-dialogs__connect-label">Connect with</label>
+                        <div class="green-dialogs__connect-icons">
+                           <a class="green-dialogs__connect-link" href="#"
+                              onclick="return UserLogin.LoginByFacebook();">
+                              <img class="green-dialogs__connect-link-images" src="img/facebook-icon.png" width="32"
+                                 height="32">
+                           </a>&nbsp;&nbsp;
+                           <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();">
+                              <img class="green-dialogs__connect-link-images" src="img/google-icon.png" width="32"
+                                 height="32">
+                           </a>&nbsp;&nbsp;
+                           <a class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByTwitter();">
+                              <img class="green-dialogs__connect-link-images" src="img/twitter-icon.png" width="32"
+                                 height="32">
+                           </a>&nbsp;&nbsp;
+                           <a class="green-dialogs__connect-link" href="#"
+                              onclick="return UserLogin.LoginByLinkedin();">
+                              <img class="green-dialogs__connect-link-images" src="img/linedin-icon.png" width="32"
+                                 height="32">
+                           </a>&nbsp;&nbsp;
+                        </div>
+                        <span class="green-dialogs__or">or</span>
                      </div>
-                     <div class="green-dialogs__email-wrapper"><label class="green-dialogs__email-label"
-                           for="email">E-mail</label><input class="green-dialogs__username-input"
-                           name="UserRegistration_email" id="UserRegistration_email" type="email"></div>
-                     <div class="green-dialogs__password"><label class="green-dialogs__password-label"
-                           for="pass">Password</label><input
-                           class="green-dialogs__password-input green-dialogs__password-input_user"
-                           name="UserRegistration_password" id="UserRegistration_password" type="password"></div>
+                     <div class="green-dialogs__email-wrapper">
+                        <label class="green-dialogs__email-label" for="email">E-mail</label>
+                        <input class="green-dialogs__username-input" name="UserRegistration_email"
+                           id="UserRegistration_email" type="email">
+                     </div>
+                     <div class="green-dialogs__password">
+                        <label class="green-dialogs__password-label" for="pass">Password</label>
+                        <input class="green-dialogs__password-input green-dialogs__password-input_user"
+                           name="UserRegistration_password" id="UserRegistration_password" type="password">
+                     </div>
                   </div>
-                  <div class="green-dialogs__submit-wrapper"><a href="#" class="green-dialogs__submit"
-                        onclick="jQuery('#UserLogin_Form1').submit();return false;"> &nbsp; Login &nbsp; </a><a href="#"
-                        class="green-dialogs__submit-forgot" onclick="return UserLogin.ShowReset()">Forgot your
-                        password?</a></div>
+                  <div class="green-dialogs__submit-wrapper">
+                     <a href="#" class="green-dialogs__submit"
+                        onclick="jQuery('#UserLogin_Form1').submit();return false;"> &nbsp; Login &nbsp; </a>
+                     <a href="#" class="green-dialogs__submit-forgot" onclick="return UserLogin.ShowReset()">Forgot your
+                        password?</a>
+                  </div>
                </div>
             </form>
          </div>
