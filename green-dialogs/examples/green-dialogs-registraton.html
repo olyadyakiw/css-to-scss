@@ -1,0 +1,596 @@
+<link rel="stylesheet" href="css/green-dialogs-registration.css">
+
+<div class="page-content">
+
+   <div class="green-dialogs__registration" id="UserRegistration_Table" style="display: block;"><span
+         class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#"
+            onclick="UserRegistration.Close();return false;"></a></span>
+      <div class="green-dialogs__container">
+         <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">New Member Registration</h3>
+         </div>
+         <div class="green-dialogs__steps" style="display: none;">
+            <ul>
+               <li><a href="#1"></a></li>
+               <li class="curw w2"><a href="#2"></a></li>
+               <li class="w3"><a href="#3"></a></li>
+            </ul>
+         </div>
+         <div class="green-dialogs__note"> Already a Consumer Complaints member? <a class="green-dialogs__note-link"
+               href="#" onclick="UserRegistration.Close();return UserLogin.Show()">Log in now</a></div>
+         <div class="green-dialogs__noteOptional" style="display: none;"> You can skip this step and add information
+            later.
+         </div>
+         <div class="green-dialogs__bussinesNote" style="display:none;" id="bussinesNote"> Business registration form is
+            meant for the companies who want to<br> resolve the complaints about their products and services. </div>
+         <form class="green-dialogs__form" method="POST" id="UserRegistration_Form">
+            <div class="green-dialogs__form-inner" id="UserRegistration_fields">
+               <ul id="UserRegistration_errors" class="green-dialogs__registration-errors" style="display:block">
+                  <li>Email required</li>
+                  <li>Username required</li>
+                  <li>Password required</li>
+                  <li>Confirmation code is required!</li>
+               </ul>
+               <div class="green-dialogs__step-1"><input type="hidden" name="UserRegistration_type" value="personal">
+                  <div class="green-dialogs__connect"><label class="green-dialogs__connect-label">Connect with</label>
+                     <div class="green-dialogs__connect-icons"><a class="green-dialogs__connect-link" href="#"
+                           onclick="return UserLogin.LoginByFacebook();"><img class="green-dialogs__connect-link-images"
+                              src="img/facebook-icon.png" width="32" height="32"></a>&nbsp;&nbsp; <a
+                           class="green-dialogs__connect-link" href="#" onclick="return UserLogin.LoginByGoogle();"><img
+                              class="green-dialogs__connect-link-images" src="img/google-icon.png" width="32"
+                              height="32"></a>&nbsp;&nbsp; <a class="green-dialogs__connect-link" href="#"
+                           onclick="return UserLogin.LoginByTwitter();"><img class="green-dialogs__connect-link-images"
+                              src="img/twitter-icon.png" width="32" height="32"></a>&nbsp;&nbsp; <a
+                           class="green-dialogs__connect-link" href="#"
+                           onclick="return UserLogin.LoginByLinkedin();"><img class="green-dialogs__connect-link-images"
+                              src="img/linedin-icon.png" width="32" height="32"></a>&nbsp;&nbsp; </div><span
+                        class="green-dialogs__or">or</span>
+                  </div>
+                  <div class="green-dialogs__username"><label
+                        class="green-dialogs__username-label">Username</label><input
+                        class="green-dialogs__username-input" name="UserRegistration_displayname"
+                        id="UserRegistration_displayname" type="text" placeholder="Nickname"></div>
+                  <div class="green-dialogs__email-wrapper"><label class="green-dialogs__email-label"
+                        for="email">E-mail</label><input class="green-dialogs__username-input"
+                        name="UserRegistration_email" id="UserRegistration_email" type="email"
+                        placeholder="mail@example.com"></div>
+                  <div class="green-dialogs__password"><label class="green-dialogs__password-label"
+                        for="pass">Password</label><input class="green-dialogs__password-input"
+                        name="UserRegistration_password" id="UserRegistration_password" type="password"></div>
+                  <div id="tr_UserRegistration_code" class="green-dialogs__code"><label
+                        class="green-dialogs__code-label" for="code">Code:</label><img class="green-dialogs__code-image"
+                        src="img/captcha.jfif" id="UserRegistration_authcode" width="120"
+                        height="50"><img class="green-dialogs__code-arrow" src="img/arrow1.png" width="23" height="16"
+                        style="padding:0 10px;"><input class="green-dialogs__code-input" name="UserRegistration_code"
+                        id="UserRegistration_code" type="text" maxlength="6"></div>
+               </div>
+               <div class="wizard step2" style="display: none;">
+                  <ul>
+                     <li><label for="company">Company Name:</label><input class="forminpt"
+                           name="UserRegistration_company" id="UserRegistration_company" type="text"
+                           placeholder="Company Title"></li>
+                     <li><label for="country">Country:</label><select class="formsel large"
+                           id="UserRegistration_country" name="UserRegistration_country">
+                           <option value="5">India</option>
+                           <option value="3">United States</option>
+                           <option value="201">United Kingdom</option>
+                           <option value="200">United Arab Emirates</option>
+                           <option value="172">Singapore</option>
+                           <option value="0">-----------------------------------------------</option>
+                           <option value="7">Afghanistan</option>
+                           <option value="8">Albania</option>
+                           <option value="9">Algeria</option>
+                           <option value="10">American Samoa</option>
+                           <option value="11">Andorra</option>
+                           <option value="12">Angola</option>
+                           <option value="13">Argentina</option>
+                           <option value="14">Armenia</option>
+                           <option value="15">Aruba</option>
+                           <option value="16">Ascension</option>
+                           <option value="17">Australia</option>
+                           <option value="18">Australian Ext. Territory</option>
+                           <option value="19">Austria</option>
+                           <option value="20">Azerbaijan</option>
+                           <option value="21">Bahrain</option>
+                           <option value="22">Bangladesh</option>
+                           <option value="23">Belarus</option>
+                           <option value="24">Belgium</option>
+                           <option value="25">Belize</option>
+                           <option value="26">Benin</option>
+                           <option value="27">Bhutan</option>
+                           <option value="28">Bolivia</option>
+                           <option value="29">Bosnia</option>
+                           <option value="30">Botswana</option>
+                           <option value="31">Brazil</option>
+                           <option value="32">Brunei Darussalam</option>
+                           <option value="33">Bulgaria</option>
+                           <option value="34">Burkina Faso</option>
+                           <option value="35">Burundi</option>
+                           <option value="36">Cambodia</option>
+                           <option value="37">Cameroon</option>
+                           <option value="38">Canada</option>
+                           <option value="39">Cape Verde</option>
+                           <option value="40">Central African Republic</option>
+                           <option value="41">Chad</option>
+                           <option value="42">Chile</option>
+                           <option value="43">China</option>
+                           <option value="44">Colombia</option>
+                           <option value="45">Congo</option>
+                           <option value="46">Cook Islands</option>
+                           <option value="47">Costa Rica</option>
+                           <option value="48">Croatia</option>
+                           <option value="49">Cuba</option>
+                           <option value="50">Cyprus</option>
+                           <option value="51">Czech Republic</option>
+                           <option value="52">Denmark</option>
+                           <option value="53">Diego Garcia</option>
+                           <option value="54">Djibouti</option>
+                           <option value="55">Dominican Republic</option>
+                           <option value="56">DPR Korea (North)</option>
+                           <option value="57">East Timor</option>
+                           <option value="58">Ecuador</option>
+                           <option value="59">Egypt</option>
+                           <option value="60">El Salvador</option>
+                           <option value="61">Equatorial Guinea</option>
+                           <option value="62">Eritrea</option>
+                           <option value="63">Estonia</option>
+                           <option value="64">Ethiopia</option>
+                           <option value="65">F.S. Micronesia</option>
+                           <option value="66">Falkland Islands</option>
+                           <option value="67">Faroe Islands</option>
+                           <option value="68">Fiji</option>
+                           <option value="69">Finland</option>
+                           <option value="70">France</option>
+                           <option value="71">French Polynesia</option>
+                           <option value="72">Gabon</option>
+                           <option value="73">Gambia</option>
+                           <option value="74">Georgia</option>
+                           <option value="75">Germany</option>
+                           <option value="76">Ghana</option>
+                           <option value="77">Gibraltar</option>
+                           <option value="78">Greece</option>
+                           <option value="79">Greenland</option>
+                           <option value="80">Guadeloupe</option>
+                           <option value="81">Guatemala</option>
+                           <option value="82">Guiana (French)</option>
+                           <option value="83">Guinea</option>
+                           <option value="84">Guinea-Bissau</option>
+                           <option value="85">Guyana</option>
+                           <option value="86">Haiti</option>
+                           <option value="87">Honduras</option>
+                           <option value="88">Hong Kong</option>
+                           <option value="89">Hungary</option>
+                           <option value="90">Iceland</option>
+                           <option value="5">India</option>
+                           <option value="92">Indonesia</option>
+                           <option value="93">Iran</option>
+                           <option value="94">Iraq</option>
+                           <option value="95">Ireland</option>
+                           <option value="96">Israel</option>
+                           <option value="97">Italy</option>
+                           <option value="98">Ivory Coast</option>
+                           <option value="99">Jamaica</option>
+                           <option value="100">Japan</option>
+                           <option value="101">Jordan</option>
+                           <option value="102">Kazakhstan</option>
+                           <option value="103">Kenya</option>
+                           <option value="104">Kiribati</option>
+                           <option value="105">Korea (South)</option>
+                           <option value="106">Kuwait</option>
+                           <option value="107">Kyrgyz Republic</option>
+                           <option value="108">Laos</option>
+                           <option value="109">Latvia</option>
+                           <option value="110">Lebanon</option>
+                           <option value="111">Lesotho</option>
+                           <option value="112">Liberia</option>
+                           <option value="113">Libya</option>
+                           <option value="114">Liechtenstein</option>
+                           <option value="115">Lithuania</option>
+                           <option value="116">Luxembourg</option>
+                           <option value="117">Macau</option>
+                           <option value="118">Macedonia</option>
+                           <option value="119">Madagascar</option>
+                           <option value="120">Malawi</option>
+                           <option value="121">Malaysia</option>
+                           <option value="122">Maldives</option>
+                           <option value="123">Mali</option>
+                           <option value="124">Malta</option>
+                           <option value="125">Marshall Islands</option>
+                           <option value="126">Martinique</option>
+                           <option value="127">Mauritania</option>
+                           <option value="128">Mauritius</option>
+                           <option value="129">Mayotte, Comoros Is.</option>
+                           <option value="130">Mexico</option>
+                           <option value="131">Moldova</option>
+                           <option value="132">Monaco</option>
+                           <option value="133">Mongolia</option>
+                           <option value="134">Morocco</option>
+                           <option value="135">Mozambique</option>
+                           <option value="136">Myanmar (Burma)</option>
+                           <option value="137">Namibia</option>
+                           <option value="138">Nauru</option>
+                           <option value="139">Nepal</option>
+                           <option value="140">Netherlands</option>
+                           <option value="141">Netherlands Antilles</option>
+                           <option value="142">New Caledonia</option>
+                           <option value="143">New Zealand</option>
+                           <option value="144">Nicaragua</option>
+                           <option value="145">Niger</option>
+                           <option value="146">Nigeria</option>
+                           <option value="147">Niue</option>
+                           <option value="148">Norway</option>
+                           <option value="149">Oman</option>
+                           <option value="150">Pakistan</option>
+                           <option value="151">Palau</option>
+                           <option value="152">Palestine</option>
+                           <option value="153">Panama</option>
+                           <option value="154">Papua New Guinea</option>
+                           <option value="155">Paraguay</option>
+                           <option value="156">Peru</option>
+                           <option value="157">Philippines</option>
+                           <option value="158">Poland</option>
+                           <option value="159">Portugal</option>
+                           <option value="160">Qatar</option>
+                           <option value="161">Reunion Island</option>
+                           <option value="162">Romania</option>
+                           <option value="163">Russia</option>
+                           <option value="164">Rwanda</option>
+                           <option value="165">Saint Helena</option>
+                           <option value="166">San Marino</option>
+                           <option value="167">Sao Tome &amp; Principe</option>
+                           <option value="168">Saudi Arabia</option>
+                           <option value="214">Schotland</option>
+                           <option value="169">Senegal</option>
+                           <option value="170">Seychelles</option>
+                           <option value="171">Sierra Leone</option>
+                           <option value="172">Singapore</option>
+                           <option value="173">Slovakia</option>
+                           <option value="174">Slovenia</option>
+                           <option value="175">Solomon Islands</option>
+                           <option value="176">Somalia</option>
+                           <option value="177">South Africa</option>
+                           <option value="178">Spain</option>
+                           <option value="179">Sri Lanka</option>
+                           <option value="180">St Pierre &amp; Miquelon</option>
+                           <option value="181">Sudan</option>
+                           <option value="182">Suriname</option>
+                           <option value="183">Swaziland</option>
+                           <option value="184">Sweden</option>
+                           <option value="185">Switzerland</option>
+                           <option value="186">Syria</option>
+                           <option value="187">Taiwan</option>
+                           <option value="188">Tajikistan</option>
+                           <option value="189">Tanzania</option>
+                           <option value="190">Thailand</option>
+                           <option value="191">Togo</option>
+                           <option value="192">Tokelau</option>
+                           <option value="193">Tonga</option>
+                           <option value="194">Tunisia</option>
+                           <option value="195">Turkey</option>
+                           <option value="196">Turkmenistan</option>
+                           <option value="197">Tuvalu</option>
+                           <option value="198">Uganda</option>
+                           <option value="199">Ukraine</option>
+                           <option value="200">United Arab Emirates</option>
+                           <option value="201">United Kingdom</option>
+                           <option value="3">United States</option>
+                           <option value="202">Uruguay</option>
+                           <option value="203">Uzbekistan</option>
+                           <option value="204">Vanuatu</option>
+                           <option value="205">Vatican City</option>
+                           <option value="206">Venezuela</option>
+                           <option value="207">Vietnam</option>
+                           <option value="208">Wallis and Futuna</option>
+                           <option value="209">Western Samoa</option>
+                           <option value="210">Yemen</option>
+                           <option value="211">Yugoslavia</option>
+                           <option value="212">Zambia</option>
+                           <option value="213">Zimbabwe</option>
+                        </select></li>
+                     <li><label for="city">City:</label><input class="forminpt middle" name="UserRegistration_city"
+                           id="UserRegistration_city" type="text"></li>
+                     <li><label for="addr">Address:</label><textarea class="formtxarea forminpt"
+                           name="UserRegistration_address" id="UserRegistration_address"></textarea></li>
+                     <li><label for="pin">Postal / PIN Code:</label><input class="forminpt fsmall"
+                           name="UserRegistration_pin" id="UserRegistration_pin" type="text"></li>
+                  </ul>
+                  <ul>
+                     <li id="phone_container"><label for="phone">Phone:</label><span class="addMoreBlock"><input
+                              class="forminpt middle" data-more="true" name="UserRegistration_phone[]" id="phone"
+                              type="text"></span><a href="#" class="addMore">Add More Numbers</a></li>
+                  </ul>
+                  <ul>
+                     <li id="mobile_container"><label for="mobile">Mobile:</label><span class="addMoreBlock"><input
+                              class="forminpt middle" data-more="true" name="UserRegistration_mobile[]" id="mobile"
+                              type="text"></span><a href="#" class="addMore">Add More Numbers</a></li>
+                  </ul>
+                  <ul>
+                     <li><label for="website">Website:</label><input class="forminpt" name="UserRegistration_website"
+                           id="UserRegistration_website" type="text"></li>
+                  </ul>
+               </div>
+               <div class="wizard step3" style="display: none;">
+                  <ul>
+                     <li><label for="services">Services / Products Description:</label><textarea
+                           id="UserRegistration_services" name="UserRegistration_services"
+                           class="formtxarea"></textarea>
+                     </li>
+                     <li><label>Working Hours:</label><select class="formsel fsmall"
+                           name="UserRegistration_hours_main_from">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_main_to">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="applyAll"><a href="#">Apply to all</a></span></li>
+                  </ul>
+                  <ul class="grayBlock hours">
+                     <li><label>Monday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_1">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_1">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_1"
+                              id="cl1"><label for="cl1">Closed</label></span></li>
+                     <li><label>Tuesday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_2">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_2">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_2"
+                              id="cl2"><label for="cl2">Closed</label></span></li>
+                     <li><label>Wednesday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_3">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_3">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_3"
+                              id="cl3"><label for="cl3">Closed</label></span></li>
+                     <li><label>Thursday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_4">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_4">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_4"
+                              id="cl4"><label for="cl4">Closed</label></span></li>
+                     <li><label>Friday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_5">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_5">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_5"
+                              id="cl5"><label for="cl5">Closed</label></span></li>
+                     <li><label>Saturday:</label><select class="formsel fsmall" name="UserRegistration_hours_from_6">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_to_6">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_6"
+                              id="cl6"><label for="cl6">Closed</label></span></li>
+                     <li><label>Sunday:</label><select class="formsel fsmall" name="UserRegistration_hours_to_7">
+                           <option value="0">00:00</option>
+                           <option value="1">01:00</option>
+                           <option value="2">02:00</option>
+                           <option value="3">03:00</option>
+                           <option value="4">04:00</option>
+                           <option value="5">05:00</option>
+                           <option value="6">06:00</option>
+                           <option value="7">07:00</option>
+                           <option value="8">08:00</option>
+                           <option value="9" selected="">09:00</option>
+                           <option value="10">10:00</option>
+                           <option value="11">11:00</option>
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                        </select> - <select class="formsel fsmall" name="UserRegistration_hours_from_7">
+                           <option value="12">12:00</option>
+                           <option value="13">13:00</option>
+                           <option value="14">14:00</option>
+                           <option value="15">15:00</option>
+                           <option value="16">16:00</option>
+                           <option value="17">17:00</option>
+                           <option value="18" selected="">18:00</option>
+                           <option value="19">19:00</option>
+                           <option value="20">20:00</option>
+                           <option value="21">21:00</option>
+                           <option value="22">22:00</option>
+                           <option value="23">23:00</option>
+                           <option value="24">24:00</option>
+                        </select><span class="closed"><input type="checkbox" name="UserRegistration_closed_7"
+                              id="cl7"><label for="cl7">Closed</label></span></li>
+                  </ul>
+               </div>
+               <div class="green-dialogs__submit-wrapper"><a class="green-dialogs__submit" href="#"
+                     onclick="return UserRegistration.Register()" id="submit_button"> &nbsp; Register &nbsp; </a></div>
+            </div>
+            <div id="UserRegistration_loading" style="display:none">
+               <div class="note"> Loading, please wait... </div>
+            </div>
+         </form>
+      </div>
+   </div>
+
+</div>

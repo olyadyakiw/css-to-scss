@@ -12,6 +12,14 @@
    &__form-inner {
       margin: 20px 0 0;
    }
+
+   &__registration {
+      position: relative;
+      background: #fff;
+      padding: 10px;
+      max-width: 450px;
+      box-sizing: border-box;
+   }
    
    &__registration-errors {
       padding: 16px 40px;

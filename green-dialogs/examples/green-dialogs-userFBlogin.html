@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="css/green-dialogs-userFBlogin.css">
+<div class="page-content">
+
+   <div class="green-dialogs__registration" id="UserFBLogin_Table" style="display: block;"><span
+      class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#"
+      onclick="UserFBLogin.Close();return false;"></a></span>
+      <div class="green-dialogs__container">
+         <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">User Facebook Login</h3>
+         </div>
+         <form name="UserFBLogin_Form" action="/fb/" method="post"><input type="hidden" name="code" value=""
+            id="UserFBLogin_code">
+            <div class="green-dialogs__form-inner" id="UserFBLogin_fields">
+               <div id="UserFBLogin_errors" class="green-dialogs__registration-errors"></div>
+               <div class="green-dialogs__step-1">
+                  <div class="green-dialogs__email-wrapper"><label class="green-dialogs__username-label"
+                     for="username">Enter Username:</label><input class="green-dialogs__username-input" name="name"
+                     id="UserFBLogin_name" type="text"></div>
+                  </div>
+                  <span class="green-dialogs__prev"></span>
+                  <span class="green-dialogs__submit-login">
+                     <input class="green-dialogs__submit-login_input" value="Login" type="submit">
+                  </span>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>

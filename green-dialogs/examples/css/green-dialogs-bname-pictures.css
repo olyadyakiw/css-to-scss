@@ -1,0 +1,131 @@
+body {
+   font-weight: 400;
+   font-family: Roboto, sans-serif;
+   background: #eff0f0;
+   font-size: 14;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   margin: 0;
+   padding: 0;
+   font-weight: 400;
+}
+a {
+   color: #105cb6;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.page-content {
+   max-width: 1160px;
+   margin: 0 auto;
+   padding: 0 50px;
+}
+
+.page-content__cols {
+   display: flex;
+    flex-direction: row;
+    max-width: 1120px;
+    width: 100%;
+}
+
+.page-content__left {
+   max-width: 780px;
+   flex-grow: 1;
+}
+
+.page-content__right {
+   width: 340px;
+   min-width: 340px;
+   padding-left: 20px;
+}
+
+div.feature-stories.h246 {
+   height: 246px;
+}
+div.feature-stories {
+   width: 100%;
+   padding: 0;
+   position: relative;
+   cursor: pointer;
+   overflow: hidden;
+}
+
+
+
+
+.green-dialogs {
+   left: 50%;
+   top: 0;
+   transform: translate(-50%);
+   width: 100%;
+   max-width: 450px;
+   z-index: 10;
+   position: absolute;
+}
+.green-dialogs__closemodal {
+   position: absolute;
+   right: 10px;
+   top: 10px;
+   z-index: 7;
+}
+.green-dialogs__closemodal-link {
+   display: block;
+   width: 20px;
+   height: 20px;
+   background: url(../img/modal_close.png) no-repeat;
+}
+.green-dialogs__container {
+   background: #f8f8f8;
+   overflow: hidden;
+}
+.green-dialogs__title-wrapper {
+   background-color: #64af37;
+   color: #fff;
+   text-align: center;
+   width: 100%;
+   height: 60px;
+   display: table;
+   border-bottom: 0 solid #679d19;
+}
+.green-dialogs__title {
+   font-size: 24px;
+   line-height: 24px;
+   display: table-cell;
+   vertical-align: middle;
+   font-weight: 400;
+}
+
+.green-dialogs {
+   max-width: 1146px;
+}
+.green-dialogs__view-pictures {
+   background-color: #fff;
+   padding: 10px;
+   box-sizing: border-box;
+   max-width: 1146px;
+   width: 100%;
+   position: absolute;
+   z-index: 120;
+   display: none;
+}
+.green-dialogs__view-pictures-inner {
+   padding: 15px;
+   text-align: center;
+}
+
+.green-dialogs__page-links {
+   text-align: center;
+   padding-top: 10px;
+   width: 100%;
+   margin: 15px;
+   margin-right: 0;
+   display: inline-block;
+   overflow: hidden;
+   vertical-align: top;
+}
+

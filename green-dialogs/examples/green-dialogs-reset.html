@@ -1,0 +1,47 @@
+<link rel="stylesheet" href="css/green-dialogs-reset.css">
+
+<div class="page-content">
+
+   <div class="green-dialogs__user" id="UserLogin_Table" style="display: block;"><span
+         class="green-dialogs__closemodal"><a class="green-dialogs__closemodal-link" href="#"
+            onclick="UserLogin.Close();return false;"></a></span>
+      <div class="green-dialogs__container">
+         <div class="green-dialogs__title-wrapper">
+            <h3 class="green-dialogs__title">User Login</h3>
+         </div>
+         <div class="green-dialogs__note"> Not a member of Consumer Complaints? <a class="green-dialogs__note-link"
+               href="#"
+               onclick="UserLogin.Close();UserRegistration.OnSuccess = UserLogin.OnSuccess;return UserRegistration.Show()">Register
+               now.</a></div>
+         <div id="UserLogin_reset" style="">
+            <form class="green-dialogs__form" method="POST" id="UserLogin_Form2" onsubmit="return UserLogin.Reset();">
+               <input type="submit" name="submit" value="submit"
+                  style="width:0px;height:0px;position:absolute;margin-left:-10000px;">
+               <div class="green-dialogs__form-inner">
+                  <ul id="UserLogin_rerrors" class="green-dialogs__registration-errors" style="display:block;">
+                     <li>Email required</li>
+                  </ul>
+                  <div class="green-dialogs__step-1">
+                     <div class="green-dialogs__email-wrapper"><label for="UserLogin_lemail"
+                           class="green-dialogs__email-label">E-mail:</label><input
+                           class="green-dialogs__username-input" name="UserLogin_remail" id="UserLogin_remail"
+                           type="email"></div>
+                  </div>
+                  <div class="green-dialogs__submit-wrapper"><a class="green-dialogs__submit" href="#"
+                        onclick="jQuery('#UserLogin_Form2').submit();return false;"> &nbsp; Reset &nbsp; </a><a href="#"
+                        onclick="return UserLogin.Show()" class="extra green-dialogs__submit-forgot">Back</a></div>
+               </div>
+            </form>
+         </div>
+         <div id="UserLogin_loading" style="display: none;">
+            <div class="green-dialogs__note"> Loading, please wait...<br><img src="/img/loadinganim.gif" width="220"
+                  height="19" style="vertical-align:bottom"><br><br></div>
+         </div>
+         <div id="UserLogin_reset_done" style="display: none;">
+            <div class="green-dialogs__note"> Your password has been sent to the specified email address. <a href="#"
+                  onclick="return UserLogin.Show()" class="extra"><b>Log in</b></a><br><br></div>
+         </div>
+      </div>
+   </div>
+
+</div>
