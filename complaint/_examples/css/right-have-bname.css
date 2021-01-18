@@ -1,0 +1,210 @@
+body {
+   font-weight: 400;
+   font-family: Roboto, sans-serif;
+   background: #eff0f0;
+   font-size: 14px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   margin: 0;
+   padding: 0;
+   font-weight: 400;
+}
+a {
+   color: #105cb6;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.page-content {
+   max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.page-content__cols {
+   display: flex;
+    flex-direction: row;
+    max-width: 1120px;
+    width: 100%;
+}
+
+.page-content__left {
+   max-width: 780px;
+   flex-grow: 1;
+}
+
+.page-content__right {
+   width: 340px;
+   min-width: 340px;
+   padding-left: 20px;
+}
+
+.right-have-bname {
+   margin: 0 0 10px;
+   background-color: #fff;
+   border: 1px solid #e2e3e1;
+   border-radius: 15px;
+}
+.right-have-bname__inner {
+   padding: 10px 0;
+   width: 100%;
+}
+.right-have-bname__header {
+   width: 100%;
+   margin: 0 auto;
+}
+.right-have-bname__img-wrapper {
+   text-align: center;
+   line-height: 0;
+   font-size: 0;
+   width: 60px;
+   vertical-align: middle;
+   height: 60px;
+   padding: 10px 10px 10px 20px;
+}
+.right-have-bname__img {
+   width: 60px;
+   height: 60px;
+   cursor: pointer;
+   background-position: 50% 50%;
+   background-size: contain;
+   background-repeat: no-repeat;
+   border: 1px solid #ccc;
+   border-radius: 50%;
+}
+.right-have-bname__img_check {
+   padding-top: 5px;
+}
+.right-have-bname__title {
+   font-size: 18px;
+}
+.right-have-bname__satisfaction {
+   display: table;
+   width: 100%;
+}
+.right-have-bname__caption {
+   padding: 10px 0;
+   text-align: center;
+   border-top: 1px solid #eff0f0;
+   color: #999;
+}
+.right-have-bname__satisfaction-circle {
+   padding-right: 10px;
+   display: table-cell;
+   vertical-align: middle;
+   color: #999;
+   padding: 0 0 20px 10px;
+   box-sizing: border-box;
+}
+.right-have-bname__satisfaction-canvas {
+   position: relative;
+   text-align: center;
+}
+.right-have-bname__satisfaction-number {
+   position: absolute;
+   left: 50%;
+   top: 50%;
+   display: inline-block;
+   transform: translate(-50%, -50%);
+   font: 200 32px Roboto;
+   padding-top: 5px;
+   vertical-align: top;
+   line-height: 42px;
+   text-align: center;
+}
+
+.right-have-bname__satisfaction-percent {
+   font: 100 18px Roboto;
+   display: block;
+}
+.right-have-bname__dots-wrapper {
+   padding-left: 0;
+   display: table-cell;
+   vertical-align: middle;
+   color: #999;
+   padding: 0 20px 20px;
+   box-sizing: border-box;
+}
+.right-have-bname__dots {
+   padding: 3px 0;
+}
+.right-have-bname__complaints, .right-have-bname__pending, .right-have-bname__resolved {
+   float: left;
+   clear: both;
+   padding: 1px 0;
+   background: #fff;
+   height: 1em;
+   font-size: 14px;
+}
+.right-have-bname__number {
+   padding: 1px 0;
+   background: #fff;
+   float: right;
+   height: 1em;
+   font-size: 14px;
+}
+.right-have-bname__dotted {
+   border-bottom: 1px dotted grey;
+   margin-bottom: 2px;
+   height: 1em;
+   font-size: 14px;
+}
+.right-have-bname__addlink {
+   border-bottom: 1px solid #eff0f0;
+   padding: 0 10px 20px;
+   text-align: center;
+   font-weight: 700;
+}
+.right-have-bname__additional {
+   text-align: left;
+   padding: 10px 20px 17px;
+}
+.right-have-bname__additional-inner {
+   display: table;
+   width: 100%;
+}
+.right-have-bname__contacts {
+   display: table-row;
+}
+.right-have-bname__contacts-inner {
+   width: 50px;
+   padding: 10px 0 7px;
+   display: table-cell;
+   color: #333;
+   font-size: 14px;
+   font-weight: 500;
+   vertical-align: top;
+   box-sizing: border-box;
+}
+.right-have-bname__contacts-img {
+   vertical-align: middle;
+   margin-right: 10px;
+   margin-top: -3px;
+}
+.right-have-bname__phone, .right-have-bname__website, .right-have-bname__address {
+   display: table-cell;
+   width: 100%;
+   color: #333;
+   font-size: 14px;
+   font-weight: 500;
+   padding-top: 11px;
+}
+.right-have-bname__phone div, .right-have-bname__website div, .right-have-bname__address div {
+   padding-bottom: 3px;
+   font-size: 14px;
+}
+.right-have-bname__view-full-info {
+   text-align: center;
+   padding: 20px 0;
+   border-top: 1px solid #eff0f0;
+}
+.right-have-bname__view-full-info-link {
+   color: #e1685c;
+   text-decoration: none;
+   font-size: 14px;
+}

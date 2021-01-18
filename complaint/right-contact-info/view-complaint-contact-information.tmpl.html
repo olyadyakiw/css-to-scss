@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="css/right-contact-info.css">
+
+            <if(!$args['haveBname'] && (!empty($args['catsubcat']) || !empty($args['location'])))>
+
+                    <div class="right-contact-info">
+                        <h3 class="right-contact-info__title">Contact Information</h3>
+                    
+                        <if($args['location'])>
+                            <div class="right-contact-info__item"><address class="right-contact-info__address" itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">{$args['location2']}</address><br/></div>
+                        </if>
+                    
+                        <if(!empty($args['catsubcat']))>
+                            <div class="right-contact-info__item"><img class="right-contact-info__category-img" src="/img/category.gif" width="14" height="14" title="Complaint category" alt="Complaint category"> <span class="right-contact-info__item-title">Category:</span> {$args['catsubcat']}</div>
+                        </if>
+                    
+                        <if(!empty($args['compl_website']))>
+                            <div class="right-contact-info__item right-contact-info__contacts"><span class="right-contact-info__item-title">Website:</span> <span itemprop="url">{$args['compl_website']}</span></div>
+                        </if>
+                    
+                        <if(!empty($args['compl_phone']))>
+                            <div class="right-contact-info__item right-contact-info__contacts"><span class="right-contact-info__item-title">Phone:</span> <span itemprop="telephone">{$args['compl_phone']}</span></div>
+                        </if>
+                    
+                        <if(!empty($args['compl_fax']))>
+                            <div class="right-contact-info__item right-contact-info__contacts"><span class="right-contact-info__item-title">Fax:</span> {$args['compl_fax']}</div>
+                        </if>
+                    
+                        <if(!empty($args['compl_info']))>
+                            <di class="right-contact-info__item right-contact-info__info"><span class="right-contact-info__item-title">{$args['compl_info']}</span></di>
+                        </if>
+                        <div class="right-contact-info__new-contact" onclick="loadEditCompany()" title="Do you know any valid information and/or contacts of {$args["company_bname"]}? If you do, please share it with our users."><span class="right-contact-info__new-contact-title">Add Company Information</span></div>
+                        <script>
+                        function loadEditCompany() {
+                            jQuery.ajax({
+                                url: '/layer.php?company_add_info={$args["company_id"]}',
+                            }).done(function( data ) {
+                                jQuery('body').append(data);
+                            });
+                            return false;
+                        }
+                        </script>
+
+                        <p class="right-contact-info__lrg-bottom right-contact-info__bg-rose"></p>
+	                </div>
+	
+            </if>

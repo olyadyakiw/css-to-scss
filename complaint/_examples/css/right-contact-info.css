@@ -1,0 +1,116 @@
+body {
+   font-weight: 400;
+   font-family: Roboto, sans-serif;
+   /* background: #eff0f0; */
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+   margin: 0;
+   padding: 0;
+   font-weight: 400;
+}
+a {
+   color: #105cb6;
+   text-decoration: none;
+   cursor: pointer;
+}
+
+.page-content {
+   max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 50px;
+}
+
+.page-content__cols {
+   display: flex;
+    flex-direction: row;
+    max-width: 1120px;
+    width: 100%;
+}
+
+.page-content__left {
+   max-width: 780px;
+   flex-grow: 1;
+}
+
+.page-content__right {
+   width: 340px;
+   min-width: 340px;
+   padding-left: 20px;
+}
+
+.right-contact-info {
+   width: 100% !important;
+   background-color: #fff;
+   margin-bottom: 10px;
+   padding: 1px 10px 2px;
+   border-bottom: 3px solid #e1e1e1;
+   box-shadow: 0 0 5px 0 #e2e3e1;
+   box-sizing: border-box;
+   border-radius: 15px;
+}
+.right-contact-info__title {
+   background: transparent !important;
+   padding-bottom: 10px;
+   padding-top: 0;
+   font-size: 15px;
+   color: #999;
+   padding: 6px 0 7px 10px;
+   margin: 8px 0 -2px;
+   font-weight: 700;
+}
+.right-contact-info__item {
+   background: transparent !important;
+   padding: 0 10px 5px;
+   color: #000;
+}
+.right-contact-info__address {
+   font-style: normal;
+   line-height: 18px;
+}
+.right-contact-info__category-img {
+   margin-bottom: -2px;
+   width: 14px;
+   height: 14px;
+}
+.right-contact-info__category-title,
+.right-contact-info__item-title {
+   color: #999;
+}
+.right-contact-info__contacts {
+   padding-left: 28px;
+}
+.right-contact-info__info {
+   padding-top: 15px;
+}
+.right-contact-info__new-contact {
+   background: #eff0f0 !important;
+   padding: 10px;
+   border: 1px solid #e1e1e1;
+   border-radius: 3px;
+   padding: 10px;
+   text-align: center;
+   width: 100%;
+   max-width: 320px;
+   font-size: 14px;
+   color: #105cb6;
+   cursor: pointer;
+   box-sizing: border-box;
+   margin-top: 10px;
+}
+.right-contact-info__new-contact-title {
+   text-align: center;
+}
+.right-contact-info__new-contact-title:before {
+   content: "";
+   background: url(../img/plus-blue.png) 0 0 no-repeat;
+   display: inline-block;
+   margin-right: 8px;
+   width: 18px;
+   height: 18px;
+   vertical-align: middle;
+}

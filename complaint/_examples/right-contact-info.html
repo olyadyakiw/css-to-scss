@@ -1,0 +1,37 @@
+<link rel="stylesheet" href="css/right-contact-info.css">
+
+<div class="page-content">
+   <div class="page-content__cols">
+      <div class="page-content__left"></div>
+      <div class="page-content__right">
+      
+         <div class="right-contact-info">
+            <h3 class="right-contact-info__title">Contact Information</h3>
+            <div class="right-contact-info__item">
+               <address class="right-contact-info__address" itemprop="address" itemscope=""
+                  itemtype="https://schema.org/PostalAddress"><span itemprop="streetAddress">kushaiguda D-MART, Secunderabad,
+                     Andhra Pradesh</span><br><span itemprop="addressCountry">India</span></address><br>
+            </div>
+            <div class="right-contact-info__item"><img class="right-contact-info__category-img" src="img/category.gif"
+                  width="14" height="14" title="Complaint category" alt="Complaint category"><span
+                  class="right-contact-info__item-title">Category:</span> <a href="/bycategory/food">Food</a></div>
+            <div class="right-contact-info__new-contact" onclick="loadEditCompany()"
+               title="Do you know any valid information and/or contacts of Ltd name? If you do, please share it with our users.">
+               <span class="right-contact-info__new-contact-title">Add Company Information</span></div>
+            <script>
+               function loadEditCompany() {
+                  jQuery.ajax({
+                     url: '/layer.php?company_add_info=443804',
+                  }).done(function (data) {
+                     jQuery('body').append(data);
+                  });
+                  return false;
+               }
+            </script>
+            <p class="right-contact-info__lrg-bottom right-contact-info__bg-rose"></p>
+         </div>
+      
+      </div>
+
+   </div>
+</div>

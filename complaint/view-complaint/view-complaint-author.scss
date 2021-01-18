@@ -1,0 +1,40 @@
+.view-complaint-author {
+   vertical-align: middle;
+   color: #999;
+   font-size: 13px;
+   padding: 0 0 6px;
+   &__link {
+      color: #4a8a29;
+      text-decoration: none;
+   }
+   &__link-inner img {
+      width: 20px;
+      height: 20px;
+   }
+
+   &__name {
+      color: #4a8a29;
+      text-decoration: none;
+   }
+
+   &__bname_no_logo {
+      width: 60px;
+      height: 60px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 700;
+      user-select: none;
+      &.s20 {
+         width: 24px;
+         height: 24px;
+         font-size: 14px;
+     }
+     &.P {
+        background-color: #c9a;
+     }
+   }
+}

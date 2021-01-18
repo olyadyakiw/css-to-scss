@@ -1,0 +1,80 @@
+.right-contact-info {
+   width: 100% !important;
+   background-color: #fff;
+   margin-bottom: 10px;
+   padding: 1px 10px 2px;
+   border-bottom: 3px solid #e1e1e1;
+   box-shadow: 0 0 5px 0 #e2e3e1;
+   box-sizing: border-box;
+   border-radius: 15px;
+
+   &__title {
+      background: transparent !important;
+      padding-bottom: 10px;
+      padding-top: 0;
+      font-size: 15px;
+      color: #999;
+      padding: 6px 0 7px 10px;
+      margin: 8px 0 -2px;
+      font-weight: 700;
+   }
+
+   &__item {
+      background: transparent !important;
+      padding: 0 10px 5px;
+      color: #000;
+   }
+
+   &__address {
+      font-style: normal;
+      line-height: 18px;
+   }
+
+   &__category-img {
+      margin-bottom: -2px;
+      width: 14px;
+      height: 14px;
+   }
+
+   &__category-title {
+      color: #999;
+   }
+
+   &__contacts {
+      padding-left: 28px;
+   }
+
+   &__info {
+      padding-top: 15px;
+   }
+
+   &__new-contact {
+      background: #eff0f0 !important;
+      padding: 10px;
+      border: 1px solid #e1e1e1;
+      border-radius: 3px;
+      padding: 10px;
+      text-align: center;
+      width: 100%;
+      max-width: 320px;
+      font-size: 14px;
+      color: #105cb6;
+      cursor: pointer;
+      box-sizing: border-box;
+      margin-top: 10px;
+   }
+
+   &__new-contact-title {
+      text-align: center;
+      &:before {
+         content: "";
+         background: url(/img/plus-blue.png) 0 0 no-repeat;
+         display: inline-block;
+         margin-right: 8px;
+         width: 18px;
+         height: 18px;
+         vertical-align: middle;
+      }
+   }
+
+}

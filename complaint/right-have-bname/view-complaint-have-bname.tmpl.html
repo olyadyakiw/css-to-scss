@@ -1,0 +1,169 @@
+<link rel="stylesheet" href="../css/right-have-bname.css">
+
+<if($args['haveBname'])>
+    <div class="right-have-bname">
+        <div class="right-have-bname__inner">
+            <table class="right-have-bname__header">
+                <tr>
+                    <td class="right-have-bname__img-wrapper">
+                        <div onclick="location.href = '{$args["bname_link"]}'" class="right-have-bname__img" style="background-image:url('{$args['b_logo2']}')" title="{$args["bname"]} Customer Care Service">
+                        </div>
+                        <if($base->isAdmin && $args["bname_status"])>
+                            <br/><img class="right-have-bname__img_check" src="/img/green-check.png" />
+                        </if>
+                    </td>
+                    <td>
+                        <a class="right-have-bname__title" href="{$args["bname_link"]}">{$args["bname"]}<br>Customer Care Service</a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="right-have-bname__satisfaction right-have-bname__caption"><b>Customer satisfaction rating</b></div>
+        <div class="right-have-bname__satisfaction">
+            <div class="right-have-bname__satisfaction-circle">
+                <div class="right-have-bname__satisfaction-canvas">
+                    <canvas id="overall-satisfaction" width="100" height="100"></canvas>
+                    <span class="right-have-bname__satisfaction-number" id="overall-satisfaction-percents">{$args['bname_rating']}<i class="right-have-bname__satisfaction-percent">%</i></span></div>
+                    <script>
+                        function drawMultiRadiantCircle(xc, yc, r, perc) 
+                        {
+                            var gradient = null;
+                            var canvas = document.getElementById("overall-satisfaction");
+                            var ctx = canvas.getContext("2d");
+                            
+                            ctx.beginPath();
+                            
+                            gradient = ctx.createLinearGradient(xc,yc - r, xc + r,yc);
+                            gradient.addColorStop(0,'#e1675d'); 
+                            gradient.addColorStop(1,'#fed632');
+                            
+                            ctx.strokeStyle = gradient;
+                            ctx.arc(xc, yc, r, 1.5*Math.PI, 0 );
+                            ctx.lineWidth = 4;
+                            ctx.stroke();
+                            
+                            ctx.beginPath();
+                            
+                            gradient = ctx.createLinearGradient(xc + r,yc, xc,yc + r);
+                            gradient.addColorStop(0,'#fed632'); 
+                            gradient.addColorStop(1,'#8fcb6b');
+                            
+                            ctx.strokeStyle = gradient;
+                            ctx.arc(xc, yc, r, 0, 0.5*Math.PI );
+                            ctx.stroke();
+                            
+                            ctx.beginPath();
+                            
+                            gradient = ctx.createLinearGradient(xc,yc + r, xc - r,yc);
+                            gradient.addColorStop(0,'#8fcb6b'); 
+                            gradient.addColorStop(1,'#618ed7');
+                            
+                            ctx.strokeStyle = gradient;
+                            ctx.arc(xc, yc, r, 0.5*Math.PI, 1*Math.PI );
+                            ctx.stroke();
+                            
+                            ctx.beginPath();
+                            
+                            gradient = ctx.createLinearGradient(xc - r,yc, xc,yc - r);
+                            gradient.addColorStop(0,'#618ed7'); 
+                            gradient.addColorStop(1,'#e1675d');
+                            
+                            ctx.strokeStyle = gradient;
+                            ctx.arc(xc, yc, r, 1*Math.PI, 1.5*Math.PI );
+                            ctx.stroke();
+                            
+                            ctx.beginPath();
+                            if( perc )
+                            {
+                                ctx.strokeStyle = '#e1e1e1';
+                            }else{
+                                ctx.strokeStyle = '#e1675d';
+                            }
+                            
+                            if( perc < 10 )
+                            {
+                                jQuery('#overall-satisfaction-percents').css('color','#e1675d');
+                                
+                                ctx.strokeStyle = '#e1675d';
+                                perc = 0;
+                            }else if( perc >=10 && perc < 40 )
+                            {
+                                jQuery('#overall-satisfaction-percents').css('color','#fed632');
+                            }else if( perc >=40 && perc < 70 )
+                            {
+                                jQuery('#overall-satisfaction-percents').css('color','#8fcb6b');
+                            }else{
+                                jQuery('#overall-satisfaction-percents').css('color','#618ed7');
+                            }
+                
+                            var p = (perc)/100*360.0*(Math.PI / 180);
+
+                            ctx.arc(xc, yc, r, p-Math.PI/2, 2*Math.PI-Math.PI/2);
+                            ctx.stroke();
+                        };
+
+                        fw.push(function () {
+                            drawMultiRadiantCircle(50, 50, 48, {$args['bname_rating']});
+                        });
+                    </script>
+            </div>
+            <div class="right-have-bname__dots-wrapper">
+                <div class="right-have-bname__dots">
+                    <div class="right-have-bname__complaints">Complaints</div>
+                    <div class="right-have-bname__number">{$args['bname_complaints']}</div>
+                    <div class="right-have-bname__dotted"></div>
+                </div>
+                
+                <div class="right-have-bname__dots">
+                    <div class="right-have-bname__pending">Pending</div>
+                    <div class="right-have-bname__number">{$args['bname_responses_diff']}</div>
+                    <div class="right-have-bname__dotted"></div>
+                </div>
+                    
+                <div class="right-have-bname__dots">
+                    <div class="right-have-bname__resolved">Resolved</div>
+                    <div class="right-have-bname__number">{$args['bname_resolved']}</div>
+                    <div class="right-have-bname__dotted"></div>
+                </div>
+            </div>
+        </div>
+        <div class="right-have-bname__addlink">
+            <a href="{$args["bname_link"]}">View all {$args['bname_complaints']} complaints</a>
+        </div>
+        <div class="right-have-bname__additional">
+            <div class="right-have-bname__additional-inner">
+                <if(!empty($args['bname_one_phone']))>
+                    <div class="right-have-bname__contacts">
+                        <div class="right-have-bname__contacts-inner">
+                            <img class="right-have-bname__contacts-img" src="/img/bn/phone.svg" width="16" height="16" alt="{$args['bname']} Phone" title="{$args['bname']} Phone">
+                        </div>
+                        <div class="right-have-bname__phone">{$args['bname_one_phone']}</div>
+                    </div>
+                </if>
+                <if(!empty($args['bname_websites']))>
+                <for($i = 0, $l = sizeof($args['bname_websites']); $i < $l; $i++)>
+                    <div class="right-have-bname__contacts">
+                        <div class="right-have-bname__contacts-inner">
+                            <img class="right-have-bname__contacts-img" src="/img/bn/www.svg" width="16" height="16" alt="{$args['bname']} Website" title="{$args['bname']} Website">
+                        </div>
+                        <div class="right-have-bname__website">
+                            <a href="http://{$args['bname_websites'][$i]}" target="_blank" rel="nofollow">{$args['bname_websites'][$i]}</a>
+                        </div>
+                    </div>
+                </for>
+                </if>
+                <if(!empty($args['bname_one_address']))>
+                    <div class="right-have-bname__contacts">
+                        <div class="right-have-bname__contacts-inner">
+                            <img class="right-have-bname__contacts-img" src="/img/bn/location.svg" width="16" height="16" alt="{$args['bname']} Address" title="{$args['bname']} Address">
+                        </div>
+                        <div class="right-have-bname__address">{$args['bname_one_address']}</div>
+                    </div>
+                </if>
+            </div>
+        </div>
+        <div class="right-have-bname__view-full-info">
+            <a class="right-have-bname__view-full-info-link" href="{$args["bname_link"]}">View Full Information</a>
+        </div>
+    </div>
+</if>

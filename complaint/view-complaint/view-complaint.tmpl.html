@@ -1,0 +1,751 @@
+<!--script src='/scripts/fancybox/source/jquery.fancybox.js' ></script-->
+<script src="/scripts/jquery.fileupload.js"></script>
+<script src="/scripts/user-uploads.js"></script>
+<!--link rel="stylesheet" href="/scripts/fancybox/source/jquery.fancybox.css" type="text/css" media="screen" /-->
+
+<script type="text/javascript">
+    var lastID="0";
+    var textOK=false;
+
+    function savecomment(ID) {
+       lastID="0";
+       var score='';
+       if (document.getElementById('scoreA'+ID).checked) score="A";
+       else
+	   if (document.getElementById('scoreN'+ID).checked) score="N";
+	   else score="D";
+       var ratting=0;
+       ratting = document.getElementById('ratting'+ID).options[document.getElementById('ratting'+ID).selectedIndex].value;
+       if (!ratting) ratting = 0;
+
+       var poststr="savecomment="+encodeURI(ID)+"&fullname="+encodeURI(document.getElementById('fullname'+ID).value).replace(/&/g, "%26")+"&score="+score+"&ratting="+ratting+"&email="+encodeURI(document.getElementById('email'+ID).value)+
+       "&subject="+encodeURI(document.getElementById('subject'+ID).value)+
+       "&company="+encodeURI(document.getElementById('company'+ID).value)+
+       "&text="+encodeURI(document.getElementById('text'+ID).value).replace(/&/g, "%26")+
+       "&isResolved="+(document.getElementById('isResolved'+ID).checked ? 1 : 0)+
+       "&isResolvedTitle="+(document.getElementById('isResolvedTitle'+ID).checked ? 1 : 0)+
+       "&post_time="+encodeURI(document.getElementById('post_time'+ID).value)+
+       "&resolved="+encodeURI(document.getElementById('resolved'+ID).value).replace(/&/g, "%26");
+       makePOSTRequest('/ajax.php', poststr,"c"+ID);
+       showbox('<b>Saving comment...</b><br> Please Wait...<br><img src="/img/loadinganim.gif">', document.getElementById('c'+ID),'200');
+   }
+
+   function getcomment(ID) {
+       lastID="0";
+       var poststr="getcomment="+encodeURI(ID);
+       makePOSTRequest('/ajax.php', poststr,"c"+ID);
+       showbox('<b>Canceling...</b><br> Please Wait...<br><img src="/img/loadinganim.gif">', document.getElementById('c'+ID),'200');
+	   return false;
+   }
+
+   function editcomment(postID) 
+   {
+        jQuery.post('/ajax.php', {'editcomment':postID}).done(function (data) {
+            jQuery( '#c' + postID ).html(data);
+        }).fail(function () {
+            alert("Error");
+        });
+	   return false;
+   }
+
+   function allgood() {
+	var result = true;
+	var error = document.getElementById('error');
+		
+	li_clear(error);
+		
+	if(!document.getElementsByName('text')[0].value.length) {
+	    add_li(error,'Comment cannot be empty!');
+	    result = false;
+	}
+	var v=jQuery('#form_ratting').val();
+	if (!v || v == 0 || v == '0') {
+	    if (!jQuery('#no_rating').get(0).checked) {
+	    	if (jQuery('#postUpdate').val() == '0' && jQuery('#postReply').val() == '0') 
+			{
+				add_li(error,'Choose Your Rating!');
+				result = false;
+			}
+	    }
+	}
+	return result;
+   }
+
+   function checkall() {
+	rdy=allgood();
+	if (rdy) {
+	    <if(!isset($base->session['user']))>
+		UserLogin.OnSuccess = _submitform;
+		UserLogin.Show();
+		return false;
+	    <else>
+		_submitform();
+  		return true;
+	    </if>
+	}
+	return false;
+    }
+    
+    function _submitform() {
+		show_gray_bg();
+		showbox('<b>Your comment is being sent</b><br> Please be patient...<br><img src="/img/loadinganim.gif">', document.getElementById('txtarea'), 250);
+		document.forms.mainform.submit();
+    }
+    
+    function li_clear(obj) {
+		while(obj.hasChildNodes())
+	    	obj.removeChild(obj.firstChild);
+    }
+    
+    function add_li(obj,text) {	
+		var li = document.createElement('li');
+		li.innerHTML = text;
+		li.style.marginLeft = '15px';
+		obj.insertBefore(li,obj.firstChild);
+    }
+    
+    function add_photo() {
+        var href=location.href.replace('#comment','');
+        href=href.replace(/#c[0-9]+/,'');
+        document.forms.mainform.action=href+'#comment';
+        document.forms.mainform.submit();
+        show_gray_bg();
+        showbox('Uploading...<br><img src="/img/loadinganim.gif" width="220" height="19">', null,220);
+    }
+    function rattingOver(val) {
+		jQuery('#comment-form .stars-big').removeClass('stars-big-1 stars-big-2 stars-big-3 stars-big-4 stars-big-5').addClass('stars-big-'+val);
+		return false;
+    }
+    function rattingOut() {
+		var val = jQuery('#form_ratting').val();
+		jQuery('#comment-form .stars-big').removeClass('stars-big-1 stars-big-2 stars-big-3 stars-big-4 stars-big-5');
+		if (val && val != '0' && val != 0) jQuery('#comment-form .stars-big').addClass('stars-big-'+val);
+		var r = jQuery('#no_rating').prop('checked', val == '0');
+		return false;
+    }
+    function rattingChange(val) {
+		jQuery('#form_ratting').val(val);
+		if (val != '')jQuery('#no_rating').get(0).checked = false;
+	return false;
+    }
+
+fw.push(function() {
+    jQuery('.cuttext a').on("click", function() {
+	o = jQuery(this).closest('.cuttext');
+        t = o.prop('title');
+        o.html(t);
+        return false;
+    });
+});
+	
+var PostReport = {
+	_id: null,
+	_type: null,
+	_prepare: function (id, type) {
+		this._id = id;
+		this._type = type;
+		
+		<if(!isset($base->session['user']))>
+			UserLogin.OnSuccess = PostReport._showConfirmDialog;
+			UserLogin.Show();
+		<else>
+			this._showConfirmDialog(type);
+	    </if>
+		
+		return false;
+	},
+	_click_no: function () {
+		hide_gray_bg();
+		hidebox(1);
+		
+		this._id = this._type = null;
+		
+		return false;
+	},
+	_click_yes: function () {
+		jQuery('#PostReportConfirmDialog').html('<b>Your spam report is being sent</b><br> Please be patient...<br><img src="/img/loadinganim.gif">');
+		
+		jQuery.ajax({
+			url: '/ajax.php?cid-action=post-spam-report&ids='+this._type+':'+this._id
+		}).done(function(){
+			PostReport._click_no();
+		});
+		
+		return false;
+	},
+	_showConfirmDialog: function (type) {
+		show_gray_bg();
+        showbox('<div style="text-align:center;padding:30px 70px;" id="PostReportConfirmDialog"><b>Are you sure this comment is '+type+'?</b><br><br><form><input type="submit" name="done" value="Yes" class="formbtn orange" onclick="return PostReport._click_yes();">&nbsp;&nbsp;<input type="button" value="No" class="formbtn orange" onclick="return PostReport._click_no();"></form></div>', null,400);
+	},
+	offensive: function (id) {
+		return this._prepare(id, 'offensive');
+	},
+	spam: function (id) {
+		return this._prepare(id, 'spam');
+	}
+};
+    
+    var likeID = false;
+	function clickLike() {
+		var cid = likeID;
+		if (!cid) return;
+		jQuery('#c'+cid+' .comments__btn_like').hide();
+		jQuery.get('/ajax.php?post_like='+cid, function(data) {
+			jQuery('#c'+cid+' .comments__like-count').html(data);
+			jQuery('#c'+cid+' .comments__btn_unlike').show();
+		});
+	}
+
+	function clickUnLike() {
+		var cid = likeID;
+		if (!cid) return;
+		jQuery('#c'+cid+' .comments__btn_unlike').hide();
+		jQuery.get('/ajax.php?post_unlike='+cid, function(data) {
+			jQuery('#c'+cid+' .comments__like-count').html(data);
+			jQuery('#c'+cid+' .comments__btn_like').show();
+		});
+	}
+	function showResolveForm() {
+		if (typeof(UserLogin) != "undefined") UserLogin.Close();
+		jQuery('#resolveComplaintTD').slideDown();
+	}
+//-->
+fw.push(function () {
+
+	if( (re = location.href.match(/#c[0-9]+/i)) )
+	{
+		var obj = jQuery(re[0]);
+		if( obj.length )
+		{
+			var margin = 100;
+			var offset = (obj.offset().top > margin ? obj.offset().top - margin : 0);
+			
+			jQuery(window).scrollTop(offset);
+		}
+	}
+});
+<if($base->isAdmin && (!$base->adminRole))> 
+function sentence_grammar_save(comment_id, type)
+{
+	var type = typeof(type)==undefined ? 'comment' : type;
+	
+	if( confirm('Do you realy want Sentence Case + Grammar + Save?') )
+	{
+		show_gray_bg();
+		showbox('Please wait...<br><img src="/img/loadinganim.gif">', null, 250);
+		
+		jQuery.ajax('/ajax.php?sentence_grammar_save='+comment_id+'&type=' + type).done(function (data) {
+			if( type=='comment' )
+			{
+				jQuery('#c'+comment_id+' td.compl-text div').html(data);
+			}else if(type=='reply')
+			{
+				jQuery('#reply-'+comment_id+' div[text]').html(data);
+			}
+			
+			hide_gray_bg();
+			hidebox(1);
+		});
+	}
+	return false;
+}
+</if>
+</script>
+<div class="white-box viewcompl">
+<if($args["bname_ID"])>
+	<includePHP(blocks/breadcrumbs.php)>
+	
+	<if($args['popup-custom-fields'])>
+	<div class="registration uploadtable" id="customFieldsTable" style="max-width:480px">
+		<span class="closemodal"><a href="#" onclick="hide_custom_fields_table();return false;"></a></span>
+		<div class="container">
+			<div class="hdr">
+				<h3>Help the company, help yourself!</h3>
+			</div>
+			<div class="note" style="border-bottom:0px">
+				In order to help the company to resolve your complaint faster, please fill the fields with relevant information (if you have any) below:<br><br>
+				<b style="color:red">This information will be visible to the company representatives only!</b>
+			</div>
+			
+			<div class="regform" style="margin:0">
+			<ul style="margin:0">
+			<form id="customFieldsForm">
+			<foreach($args['popup-custom-fields'] as $field)>
+				<li>
+					<label for="{$field['id']}" style="width:100%;text-align:left;padding-bottom:2px;">{$field['name']}:</label><br>
+					<input type="text" name="{$field['id']}" placeholder="{$field['placeholder']}" class="forminpt">
+				</li>
+			</for>
+			</form>
+			</ul>
+			</div>
+
+			<div class="ftr">        
+				<a href="#" class="btn-orange" onclick="
+				jQuery('#customFieldsTable').css('display', 'none');
+				jQuery.ajax('/ajax.php?cid-action=user-add-custom-fields&ids={$args['compl_id']}&' + jQuery('#customFieldsForm').serialize()).done( function () {
+					location.reload();
+				});return false;">Submit</a>&nbsp;&nbsp;
+				<a href="#" class="btn-gray" onclick="hide_custom_fields_table();return false;">Ignore</a>
+			</div>
+		</div>
+	</div>
+	<script>
+		function hide_custom_fields_table()
+		{
+			hide_gray_bg();
+			jQuery('#customFieldsTable').css('display', 'none');
+		}
+
+		fw.push(function () {
+			show_gray_bg();
+				
+			var dlg = jQuery('#customFieldsTable').css('display', 'block');
+			center_element(dlg.get(0),dlg.get(0).clientHeight/2,dlg.get(0).clientWidth/2);
+		});
+	</script>
+	</if>
+<else>
+    <includePHP(blocks/breadcrumbs.php)>
+</if>
+
+<if($args['triangle-prev'] && $args['triangle-next'])>
+<ins class="triangles" data-prev="{$args['triangle-prev']}" data-next="{$args['triangle-next']}"></ins>
+</if>
+
+<link rel="stylesheet" href="../css/view-complaint.css">
+
+<table class="view-complaint" itemscope itemtype="https://schema.org/Review" <if(!empty($args['comments']))>itemref="schemaComments"</if>>
+	<tr>
+	    <td class="view-complaint__title-wrapper" colspan="2">
+			<h1 class="view-complaint__title">
+				<if($args["isResolved"]>0)><span class="view-complaint__resolved">[Resolved]</span>&nbsp;</if>
+				{$args['compl_h1_company']} &mdash; {$args['compl_h1_subject']}
+			</h1>
+			<if($base->isAdmin)>
+				<div class="view-complaint__last-date" title="Pages in google, last date">[{$args['stat_pages_google']}, {$args['stat_last']}]</div>
+			</if>
+			<meta itemprop="headline" content="{$args['compl_h1_company']} &mdash; {$args['compl_h1_subject']}">
+			<if($args['haveBname'])>
+				<div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+					<meta itemprop="name" content="{$args['bname']}">
+					<meta itemprop="telephone" content="{$args['telephone']}">
+					<if( !empty( $args['bname_websites'] ) )>
+						<meta itemprop="url" content="{$args['bname_websites'][0]}">
+					</if>
+					<if(  !empty( $args['bname_one_address'] ) )>
+					<div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+						<meta itemprop="streetAddress" content="{$args['bnameAddress']}">
+						<meta itemprop="addressLocality" content="{$args['bnameCity']}">
+						<meta itemprop="addressRegion" content="<if($args['bnameStateCode'])>{$args['bnameStateCode']}<else>{$args['bnameStateName']}</if>">
+						<meta itemprop="postalCode" content="{$args['bnameZip']}">
+						<meta itemprop="addressCountry" content="{$args['bnameCountryName']}">
+					</div>
+					</if>
+					<if( $args['b_logo2'] )>
+					<div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+						<meta itemprop="url" content="{$args['b_logo2']}">
+						<meta itemprop="width" content="60">
+						<meta itemprop="height" content="60">
+					</div>
+					</if>
+					<if( $args['comment_count'] )>
+						<meta itemprop="commentCount" content="{$args['comment_count']}">
+					</if>
+				</div>
+			</if>
+			<if($args['haveCompany'])>
+				<div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+					<meta itemprop="name" content="{$args['companyNameHTML']}">
+					<meta itemprop="telephone" content="">
+					<if( $args['c_logo2'] )>
+					<div itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+						<meta itemprop="url" content="{$args['c_logo2']}">
+						<meta itemprop="width" content="60">
+						<meta itemprop="height" content="60">
+					</div>
+					</if>
+					<if( $args['comment_count'] )>
+						<meta itemprop="commentCount" content="{$args['comment_count']}">
+					</if>
+				</div>
+			</if>
+			<if(!$args['haveBname'] && (!empty($args['catsubcat']) || !empty($args['location'])))>
+				<div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+					<meta itemprop="name" content="{$args['companyNameHTML']}">
+					<if( !empty( $args['location'] ) )>
+						<meta itemprop="address" content="{$args['locationString']}">
+					</if>
+					<if( !empty( $args['compl_website'] ) )>
+						<meta itemprop="url" content="{$args['compl_website']}">
+					</if>
+					<meta itemprop="telephone" content="{$args['compl_phone']}">
+					<if( $args['comment_count'] )>
+						<meta itemprop="commentCount" content="{$args['comment_count']}">
+					</if>
+				</div>
+			</if>
+		</td>
+	</tr>
+	<if(!empty($args['compl_subject_google_mean']) && $base->isAdmin && !$base->adminRole)>
+	<tr>
+		<td colspan="2">
+			<div class="google-mean" id="gf{$args['compl_id']}">
+				<div>Google fix: {$args['compl_subject_google_mean']}</div>
+				<div>
+					<a href="#" onclick="
+						jQuery.ajax('/ajax.php?cid-action=google-mean-update-complaint&ids={$args['compl_id']}').done(function () {
+							location.reload();
+						}); 
+						return false
+					" title="Fix subject with google fix"><img src="/img/check-green.png" alt="Agree"></a>
+					&nbsp;&nbsp;
+					<a href="#" onclick="
+						jQuery.ajax('/ajax.php?cid-action=google-mean-delete&ids={$args['compl_id']}').done(function () {
+							location.reload();
+						}); 
+						return false" title="Delete google fix"><img src="/img/delete3.png" alt="Delete"></a>
+				</div>
+			</div>
+		</td>
+	</tr>
+	</if>
+	<tr><td class="view-complaint__h6" colspan="2"></td></tr>
+	<tr>
+		<td class="view-complaint-author" colspan="2" itemprop="author" itemscope itemtype="https://schema.org/Person">
+			<if($args['uid'])>
+				<if($args['bnuLink'])>
+					<a href="{$args['bnuLink']}" itemprop="url" class="view-complaint-author__link profimg">
+						<if($args['img'])>
+						<div class="view-complaint-author__link-inner profimgcont"><img src="{$args['img']}" alt="User"></div>
+						<else>
+						<div class="view-complaint-author__bname_no_logo s20 {$args['no_logo_alpha_style']}">{$args['no_logo_alpha']}</div>
+						</if>
+					</a>&nbsp;
+					<a class="view-complaint-author__name" href="{$args['bnuLink']}">{$args['bnuName']} Customer Care</a>
+				<else>
+					<a href="/profile-{$args['uid']}" itemprop="url" class="view-complaint-author__link profimg">
+						<if($args['img'])>
+						<div class="view-complaint-author__link-inner profimgcont"><img src="{$args['img']}" alt="User"></div>
+						<else>
+						<div class="view-complaint-author__bname_no_logo s20 {$args['no_logo_alpha_style']}">{$args['no_logo_alpha']}</div>
+						</if>
+					</a>&nbsp;<a class="view-complaint-author__name" href="/profile-{$args['uid']}">{$args['compl_user']}</a>
+				</if>
+				<if($base->isAdmin && (!$base->adminRole))> 
+					{$args['email_confirm']} <!--a href="/panel.php?action=profile&subaction=delete&id={$args['uid']}&backUrl={$args['backurl']}" title="Remove User" onclick="return confirm('Do you realy want delete user?')"><img src="/img/del2.gif"></a-->
+				</if>
+			<else>
+				<span>{$args['compl_user']}</span> <img src="/img/mail.gif" width="14" height="11" style="vertical-align:top;margin-top:1px"> 
+				<a href="{$args['sendmail']}" rel="nofollow">Send email</a>
+			</if> 
+			<if( $args['img'] )>
+			<div itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+				<meta itemprop="url" content="{$args['img']}">
+				<meta itemprop="width" content="20">
+				<meta itemprop="height" content="20">
+			</div>
+			</if>
+			<meta itemprop="datePublished" content="{$args['datePublished']}">
+			<meta itemprop="name" content="<if( $args['uid'] && $args['bnuLink'] )>{$args['bnuName']} Customer Care<else>{$args['compl_user']}</if>">
+			{$args['compl_time']}
+			
+			<div class="resolve">
+				<if($args["haveUpdateBtn"])>
+					<if($args["isResolved"]<=0)>
+						<if($args['resolved_show'])>
+							<a href="/my-complaints-resolve/{$args['ID']}/">Mark as Resolved</a>
+						<else>
+							<span onclick="alert('You cannot mark your complaint as resolved within 1 hour after posting it.')">Mark as Resolved</span>
+						</if>
+					</if>
+				</if>
+			</div>
+			
+		</td>
+	</tr>
+	<tr>	
+		<td colspan="2">
+			<includePHP(blocks/admin-complaint-tools.php?complaintID={$args['ID']})>
+		</td>
+	</tr>
+	<tr>
+		<td class="view-complaint__text" colspan="2">
+			<div itemprop="reviewBody">
+				<if( $base->isAdmin || (!empty($base->session['user']['bnameID']) && $base->session['user']['bnameID']==$args['bname_ID']) || $base->session['user']['id']==$args['uid'])>
+					<table class="custom-fields">
+					<foreach($args['customFields'] as $field)>
+					<tr>
+						<td class="name"><b>{$field['caption']}:</b></td>
+						<td class="value"><span>{$field['value']}</span> 
+							<if($base->isAdmin && !$base->adminRole)>
+								&nbsp;&nbsp;
+								<img src="/img/edit.png" alt="Edit" title="Edit" onclick="
+								var obj = jQuery(this).parent().find('span');
+								var result = prompt('Enter new value', obj.html().replace(/<\/?[^>]+>/gi, ''));
+								
+								if( result ){
+									obj.html('Update, please wait...');
+									jQuery.ajax('/ajax.php?cid-action=edit-custom-field&ids={$args['ID']}&name={$field['name']}&value='+encodeURIComponent(result)).done(function () {
+										obj.html(result);
+									});
+								}">
+								<img src="/img/del.png" alt="Delete" title="Delete" onclick="
+									var obj = jQuery(this).parent().parent();
+									if(confirm('Delete?'))
+									{
+										jQuery.ajax('/ajax.php?cid-action=delete-custom-field&ids={$args['ID']}&name={$field['name']}').done(function () {
+											obj.remove();
+										});
+									}
+								">
+							</if>
+						</td>
+					</tr>
+					</for>
+					</table>
+					<br>
+				</if>
+				{$args['image']}{$args['compl_text']}
+				<includePHP(blocks/complaint-attachments.php?complaintID={$args["ID"]}&title={$args['compl_subject']}&uid={$args['uid']}&videos={$args['compl_videos']})>
+				<div itemprop="publisher" itemscope itemtype="https://schema.org/Organization">
+					<meta itemprop="name" content="Consumer Complaints">
+					<meta itemprop="sameAs" content="https://www.consumercomplaints.in">
+				</div>
+
+			</div>
+			<a id="comment"></a>
+			
+			<if($base->adsense2["inside"])>
+			<div class="view-complaint__in-ads middle">
+				<header>ADVERTISEMENT</header>
+				<code>{ad2:inside}</code>
+			</div>
+			</if>
+			
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<includePHP(blocks/complaint-is-resolved.php?complaintID={$args["ID"]})>
+			<includePHP(blocks/complaint-send-mail-company.php?complaintID={$args["ID"]})>
+			<includePHP(blocks/complaint-send-mail-bname.php?complaintID={$args["ID"]})>
+			<a id="responses"></a>
+			<div id="UpdatedContent">
+				<includePHP(blocks/complaint-updates.php?complaintID={$args["ID"]})>
+			</div>
+			
+			<if( $args['currentUserType']=='support' || $args['currentUserType']=='author' || $base->isAdmin )>
+			<div id="formUpdate">
+				<a id="updateComplaint"></a>
+				<br>
+				<if( $args['currentUserType']=='support' )>
+					<h4>Respond to complaint</h4>
+				<else>
+					<h4>Update Complaint</h4>
+				</if>
+				<div style="background-color:#f8f8f8;border-top:2px solid #d5d7d8;padding:10px 29px 10px 23px;margin-top:3px;">
+					<textarea style="width:100%;height:100px;border:1px solid #cccccc;border-top:1px solid #9a9a9a;padding:5px;" 
+								<if( $args['currentUserType']=='author' )>placeholder="Post your update to complaint here."</if> 
+								<if( $args['currentUserType']=='support' )>placeholder="Post your response to complaint here."</if> >{$args['text']}</textarea>
+					<div style="padding-top:8px">
+						<input type="file" name="user-uploads-image" style="position:absolute;margin-left:-5000px;">
+						<div class="foto-btn"><a href="#" onclick="jQuery('input[name=user-uploads-image]').click();return false;">Add Image</a></div>
+						<div class="width300 progress" id="user-uploads-progress"><div></div></div>
+					</div>
+					<div id="user-uploads-html">
+					{$args['images']}      
+					</div>
+					<div style="text-align:center;padding-top:10px"><a href="#" class="btn-orange" onclick="
+					show_gray_bg();
+					showbox('Saving...<br><img src=\'/img/loadinganim.gif\' width=220 height=19>', null, 150);
+					jQuery.post('/complaints/complaint-c{$args['compl_id']}.html', {
+						ajaxUpdateComplaint: jQuery('#formUpdate textarea').val()
+					}).done(function (data) {
+						location.reload();
+					});
+					return false"> &nbsp;&nbsp;&nbsp; Submit &nbsp;&nbsp;&nbsp; </a></div>
+				</div>
+			</div>
+			</if>
+		</td>
+	</tr>
+
+	<tr id="social-line">
+		<td class="view-complaint__add-comment">
+			<img class="view-complaint__add-comment-img" src="/img/comments.svg" width="16" height="16" title="Complaint comments" alt="Complaint comments">&nbsp;
+			<a class="view-complaint__add-comment-link" href="{$args['compl_ripped_link']}#post-your-comment"><if($args['comment_count'])>{$args['commentcountword']}<else>Add a Comment</if></a>
+			<if( $args['last_comment'] )> 
+				&nbsp;&nbsp;&nbsp; 
+				Updated: <time datetime="{$args['last_comment_date']}">{$args['last_comment']}</time>
+			</if>
+		</td>
+		<td class="view-complaint__socials">
+			<span class="view-complaint__social"><a class="view-complaint__social-link fb" href="https://www.facebook.com/sharer/sharer.php?app_id=135685293174850&sdk=joey&u=tt_url_tt&display=popup&ref=plugin&src=share_button">Share</a></span>
+			<span class="view-complaint__social"><a class="view-complaint__social-link tw" href="https://twitter.com/share?text=tt_title_tt">Tweet</a></span>
+
+			<script>
+				fw.push(function () {
+					UserUploads.init({
+						url: '{$args['backurl']}',
+					});
+																				
+					jQuery('span.socnet a').each(function (i,e) {
+						jQuery(e).click(function () {
+							var ww = 520, wh = 350;
+							var wt = (screen.height / 2) - (wh / 2);
+							var wl = (screen.width / 2) - (ww / 2);
+							
+							var url = this.href.replace('tt_url_tt', location.href).replace('tt_title_tt', jQuery('title').html());
+							
+							window.open(url, 'Share', 'top=' + wt + ',left=' + wl + ',toolbar=0,status=0,width='+ww+',height='+wh);
+							return false;
+						});
+					});
+				});
+			</script>
+			
+		</td>
+	</tr>
+
+
+	<tr>
+		<td colspan="2" style="padding:30px;text-align:center;display:none;background-color:#eff0f0;" id="resolveComplaintTD">
+			<form method="post" class="form" onsubmit="
+				var v = jQuery('#resolveComplaintText').val();
+				var r = jQuery('#removeNotification').val();
+				jQuery.post('/ajax.php?resolveComplaint={$args['ID']}', {txt: v, removeNotification: r}).
+					done(function(data) {
+						if (data != 'DONE') {
+							alert(data);
+							return;
+						}
+						jQuery('#resolveComplaintText').val('');
+						jQuery('#resolveComplaintTD').slideUp();
+						setTimeout('document.location.href=document.location.href;', 300);
+					});
+				return false;">
+				<textarea name="txt" id="resolveComplaintText" style="width:100%;height:150px;border:1px solid #cccccc;border-top:1px solid #9a9a9a;" placeholder="Please provide information on how the complaint can be resolved"></textarea><br/>
+				<div style="padding-top:23px">
+					<a href="#" class="btn-orange" onclick="jQuery('#resolveComplaintTD form').submit();return false"> &nbsp;&nbsp;&nbsp; Submit &nbsp;&nbsp;&nbsp; </a>
+					<if($args["haveNotification"])>
+						&nbsp;&nbsp;&nbsp;
+						<a href="#" class="btn-orange" onclick="jQuery('#removeNotification').val({$args['haveNotification']});jQuery('#resolveComplaintTD form').submit();return false"> &nbsp;Submit & Remove from Notifications&nbsp; </a>
+						<input type="hidden" name="removeNotification" value="" id="removeNotification" />
+					</if>
+					&nbsp;&nbsp;&nbsp;
+					<a href="#" onclick="jQuery('#resolveComplaintTD').slideUp('slow');return false;">Close</a>
+				</div>
+			</form>
+		</td>
+	</tr>
+</table>
+
+<if($args['morecomplaints'])>
+    <div class="morecomplaints" style="margin-top:10px;">{$args['morecomplaints']}</div>
+</if>
+</div>
+
+<if(!empty($args['comments']))>
+<if($base->isAdmin)>
+	<div style="padding-top:20px">
+		With comments: 
+		<input type="button" value="Delete Selected" onclick="
+			var rows = jQuery('input[name=selectComments]:checked');
+			if( !rows.length )
+			{
+				alert('Select rows!');
+				return false;
+			}
+			
+			if( !confirm('Delete Selected?') )
+				return false;
+			
+			var ids = '';
+			rows.each(function (i,e) {
+				ids += (ids.length ? ',cp:' : 'cp:') + e.value;
+			});
+			jQuery.ajax('/ajax.php?cid-action=delete&ids='+ids).done(function (data){
+				location.reload();
+			});
+		">
+		<input type="button" value="SpamManual Selected" onclick="
+			var rows = jQuery('input[name=selectComments]:checked');
+			if( !rows.length )
+			{
+				alert('Select rows!');
+				return false;
+			}
+			
+			var reason;
+			if( !(reason = prompt('Write reason:')) )
+				return false;
+			
+			var ids = '';
+			rows.each(function (i,e) {
+				ids += (ids.length ? ',cp:' : 'cp:') + e.value;
+			});
+			jQuery.ajax('/ajax.php?cid-action=spam&reason='+encodeURI(reason)+'&ids='+ids).done(function (data){
+				location.reload();
+			});
+		">
+	</div>
+</if>
+
+<a name="comments"></a>
+<div class="white-box white-box_margin-top" id="schemaComments">
+	<div class="block-header">
+		<h4 class="block-header__name block-header__name_size18">Comments</h4>
+	</div>
+	<div class="w100">
+		<div id="all-comments">{$args['comments']}</div>
+		<div>{$args['pagelinks']}</div>
+	</div>
+</div>
+</if>
+
+<if($args['currentUserType']=='guest' || $args['currentUserType']=='user')>
+<div class="white-box white-box_margin-top">
+	<includePHP(blocks/chk-complaints-comments.php)>
+	<a name="post-your-comment"></a>
+	<includePHP(blocks/post-comment.php?complaintID={$args['compl_id']})>
+</div>
+</if>
+
+<script type="text/javascript">
+	fw.push(function () {
+		rattingOut();
+		<if(!empty($args['comments']))>
+		if( jQuery(window).width() < 860 )
+		{
+			jQuery('#all-comments div[id^=c]').each(function (i,e) {
+				var obj = jQuery(e);
+				if( obj.attr('id').match(/c[0-9]+/i) )
+				{
+					if( obj.attr('onmouseover') && obj.attr('onmouseout') )
+					{
+						obj.removeAttr('onmouseover');
+						obj.removeAttr('onmouseout');
+						
+						obj.find('.like-buttons').show();
+					}
+				}
+			});
+		}
+		</if>
+	});
+	{$args['addscript']}
+	var v=document.getElementById('text');
+/*
+	if (v.value == '' || v.value == 'Please provide as much information as possible...') {
+    	v.value = 'Please provide as much information as possible...';
+	    v.style.color = '#909090';
+	} else v.style.color = 'black';
+*/
+	var u = document.location.href;
+	var p = u.indexOf("#");
+	if (p != -1) {
+		var h = u.substring(p + 1);
+		if (h == 'updatecomplaint') jQuery('#updateLink').click();
+	}
+</script>

@@ -1,0 +1,11 @@
+<div class="related-complaints__row">
+	<if($args["isResolved"]>0)>
+		<span class="related-complaints__item">[Resolved]</span>&nbsp;
+	<else>
+		<if($args['haveResponse'])><span class="related-complaints__item">[Has Response]</span>&nbsp;</if>
+	</if>
+	<a class="related-complaints__link" href="{$args['compl_ripped_link']}">{$args['complaint_company']} - {$args['compl_subject']}</a>
+	<if($args['compl_comments'])>
+		&nbsp;<span class='related-complaints__number'>{$args['compl_comments']}</span>
+	</if>
+</div>
